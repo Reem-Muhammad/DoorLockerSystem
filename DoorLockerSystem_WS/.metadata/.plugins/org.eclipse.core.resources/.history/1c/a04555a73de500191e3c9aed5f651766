@@ -1,0 +1,39 @@
+/*
+ * EEPROM.c
+ *
+ *  Created on: 28 Sep 2019
+ *      Author: Home
+ */
+
+
+#include "EEPROM.h"
+/**/
+#include "I2C.h"
+
+#define TWI_OWN_ADDRESS 0b00000100
+
+Twi_ConfigType s_Twi_Config = {TWI_PRESCALER_VALUE_1, GENERAL_CALL_RECOGNITION_ENABLED,TWI_OWN_ADDRESS, 2};};
+
+/*-----------------------------------------------
+ * [Function Name]: Eep_init
+ * [Description]: initializes the I2C interface for the EEPROM
+ * [Args]: None
+ * [Return]: None
+ ------------------------------------------------*/
+void Eep_init()
+{
+	TWI_init(&s_Twi_Config);
+}
+
+/*-----------------------------------------------
+ * [Function Name]: Eep_Read
+ * [Description]: reads the specified number of bytes from the EEPROM
+ * [Args]:
+ * 		EepromAddress:
+ * [Return]: None
+ ------------------------------------------------*/
+uint8 Eep_Read(EepAddressType EepromAddress, uint8 *DataBufferPtr, uint8 Length)
+{
+	uint8 DataBufferIndex = 0;
+
+}

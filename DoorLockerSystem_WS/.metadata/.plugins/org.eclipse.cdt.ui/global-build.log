@@ -1,0 +1,88 @@
+21:19:48 **** Incremental Build of configuration Debug for project HMI_ECU ****
+make all 
+Building file: ../I2C.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"I2C.d" -MT"I2C.o" -c -o "I2C.o" "../I2C.c"
+In file included from ../micro_config.h:18,
+                 from ../I2C.h:11,
+                 from ../I2C.c:9:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../I2C.c:9:
+../I2C.h:15:2: warning: #warning "STATUS CODES ARE NOT COMPLETE YET"
+Finished building: ../I2C.c
+ 
+Building file: ../LCD.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"LCD.d" -MT"LCD.o" -c -o "LCD.o" "../LCD.c"
+In file included from ../micro_config.h:18,
+                 from ../LCD.h:11,
+                 from ../LCD.c:9:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../LCD.c:9:
+../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
+Finished building: ../LCD.c
+ 
+Building file: ../UART.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"UART.d" -MT"UART.o" -c -o "UART.o" "../UART.c"
+In file included from ../micro_config.h:18,
+                 from ../UART.h:11,
+                 from ../UART.c:9:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../UART.c
+ 
+Building file: ../hmi_ecu.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"hmi_ecu.d" -MT"hmi_ecu.o" -c -o "hmi_ecu.o" "../hmi_ecu.c"
+In file included from ../micro_config.h:18,
+                 from ../keypad.h:13,
+                 from ../hmi_ecu.c:9:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../hmi_ecu.c:10:
+../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
+../hmi_ecu.c: In function 'setNewPass':
+../hmi_ecu.c:23: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:25: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:37: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+Finished building: ../hmi_ecu.c
+ 
+Building file: ../keypad.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"keypad.d" -MT"keypad.o" -c -o "keypad.o" "../keypad.c"
+In file included from ../micro_config.h:18,
+                 from ../keypad.h:13,
+                 from ../keypad.c:9:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../keypad.c
+ 
+Building file: ../timer.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"timer.d" -MT"timer.o" -c -o "timer.o" "../timer.c"
+Finished building: ../timer.c
+ 
+Building target: HMI_ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_ECU.map -mmcu=atmega16 -o "HMI_ECU.elf"  ./I2C.o ./LCD.o ./UART.o ./hmi_ecu.o ./keypad.o ./timer.o   
+Finished building target: HMI_ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_ECU.elf  >"HMI_ECU.lss"
+Finished building: HMI_ECU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_ECU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7586 bytes (46.3% Full)
+(.text + .data + .bootloader)
+
+Data:         96 bytes (9.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 

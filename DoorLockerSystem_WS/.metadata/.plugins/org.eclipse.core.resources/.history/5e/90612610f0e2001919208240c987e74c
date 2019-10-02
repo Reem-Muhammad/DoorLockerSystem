@@ -1,0 +1,17 @@
+/*
+ * hmi_ecu.c
+ *
+ *  Created on: 29 Sep 2019
+ *      Author: Home
+ */
+
+
+#include "keypad.h"
+
+int main()
+{
+	while(1)
+	{
+		keypad_getPressedKey();
+	}
+}

@@ -1,0 +1,28 @@
+/*
+ * keypad.h
+ *
+ *  Created on: 9 Sep 2019
+ *      Author: Home
+ */
+
+#ifndef KEYPAD_H_
+#define KEYPAD_H_
+
+#include "common_macros.h"
+#include "std_types.h"
+#include "micro_config.h"
+
+/*static configurations*/
+#define N_COL 4
+#define N_ROW 4
+#define N_BUTTONS (N_COL * N_ROW)
+#define KEYPAD_PORT_DIR DIR_A
+#define KEYPAD_PORT_OUT OUT_A
+#define KEYPAD_PORT_IN IN_A
+
+
+/*Function Prototype*/
+uint8 keypad_getPressedKey(void);
+uint8 keypad_adjustKey(uint8 key_num);
+
+#endif /* KEYPAD_H_ */

@@ -1,0 +1,179 @@
+/*
+Â * LCD.c
+ *
+ *  Created on: 7 Sep 2019
+ *      Author: Home
+ */
+
+
+#include "LCD.h"
+#define STRING_SIZE 16
+
+/*----------------------------------------
+ * [Function Name]: LCD_sendCommand
+ * [Description]: sends a command to the LCD
+ * [Args]:
+ * 		command: command to be sent
+ * [Return]: -
+ -----------------------------------------*/
+void LCD_sendCommand(uint8 command)
+{
+	/*clear RS --> commands*/
+	CLEAR_BIT(CTRL_PORT_OUT, RS);
+
+	/*set to write*/
+	CLEAR_BIT(CTRL_PORT_OUT, R_W);
+
+	/*delay 1msec (timing diagram)*/
+	_delay_ms(1);
+
+	/*enable the LCD*/
+	SET_BIT(CTRL_PORT_OUT, EN);
+	_delay_ms(1);
+
+	/*send the command*/
+	DATA_PORT_OUT = command;
+	_delay_ms(1);
+
+	/*disable the LCD*/
+	CLEAR_BIT(CTRL_PORT_OUT, EN);
+	_delay_ms(1);
+
+}
+
+
+/*----------------------------------------
+ * [Function Name]: LCD_displayCharacter
+ * [Description]: sends a character to be displayed on the LCD
+ * [Args]:
+ * 		character: character to be displayed
+ * [Return]: -
+ -----------------------------------------*/
+void LCD_displayCharacter(uint8 character)
+{
+	/*set RS --> data*/
+	SET_BIT(CTRL_PORT_OUT, RS);
+
+	//set to write
+	CLEAR_BIT(CTRL_PORT_OUT, R_W);
+
+	//delay 1msec (timing diagram)
+	_delay_ms(1);
+
+	//enable the LCD
+	SET_BIT(CTRL_PORT_OUT, EN);
+	_delay_ms(1);
+
+	//send the command
+	DATA_PORT_OUT = character;
+	_delay_ms(1);
+
+	//disable the LCD
+	CLEAR_BIT(CTRL_PORT_OUT, EN);
+	_delay_ms(1);
+
+
+}
+
+void LCD_displayString(uint8 * character_ptr)
+{
+	while(*character_ptr != '\0')
+	{
+		LCD_displayCharacter(*character_ptr);
+		character_ptr++;
+	}
+}
+
+
+void LCD_displayInt(sint32 int_num)
+{
+	uint8 str_of_int[STRING_SIZE]= {0};
+	if (int_num < 0)
+	{
+		int_num = -1 * int_num;
+		LCD_displayCharacter('-');
+	}
+
+	convertIntToString(int_num, str_of_int);
+	LCD_displayString(str_of_int);
+}
+
+
+
+void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
+{
+	/*temporary array that stores the string of the int_num in reverse.
+	 *
+	 * the first item is NULL so that it is the last item stored in str_of_int to fit
+	 *  LCD_displayString().
+	 */
+	uint8 temp[STRING_SIZE]={'\0'};
+
+	/*a reference array that stores the equivalent ASCII for each decimal digit*/
+	uint8 ASCII_reference[10] = {'0','1','2', '3', '4', '5', '6', '7', '8', '9'};
+
+	uint8 index = 1;
+
+	if(int_num == 0)
+	{
+		temp[index] = ASCII_reference[0];
+		index++;
+	}
+	else
+	{
+		while(int_num != 0)
+		{
+			temp[index] = ASCII_reference[int_num % 10];
+			int_num /= 10;
+			index++;
+		}
+
+	}
+
+	/*store the converted number in str_of_int in the right order*/
+	for (uint8 i = 0; i < index; i++)
+	{
+		str_of_int_ptr[i] = temp[index - i -1];
+	}
+}
+
+
+void LCD_init()
+{
+	//set to o/p
+	DATA_PORT_DIR = 0xFF;
+
+	CTRL_PORT_DIR |= (1<<RS) | (1<<R_W) | (1<<EN);
+
+	LCD_sendCommand(TWO_LINE_8BIT_MODE);
+	LCD_sendCommand(CLEAR_DISPLAY_CLEAR_DDRAM);
+	LCD_sendCommand(DISPLAY_ON_CURSOR_OFF);
+	LCD_sendCommand(CLEAR_DISPLAY);
+
+}
+
+void LCD_clear()
+{
+	LCD_sendCommand(CLEAR_DISPLAY);
+}
+
+
+void LCD_goToRowCol(uint8 row, uint8 col)
+{
+	switch(row)
+	{
+	case 0:
+		/*[SELF_NOTE] check instruction 15 <set DDRAM address or cursor position on display> in 'Commands brief.PNG'*/
+		LCD_sendCommand( 0x80 + (FIRST_LINE_BASE_ADDRESS+col) );
+		break;
+	case 1:
+		LCD_sendCommand( 0x80 + (SECOND_LINE_BASE_ADDRESS+col) );
+		break;
+	case 2:
+		LCD_sendCommand( 0x80 + (THIRD_LINE_BASE_ADDRESS+col) );
+		break;
+	case 3:
+		LCD_sendCommand( 0x80 + (FOURTH_LINE_BASE_ADDRESS+col) );
+		break;
+	}
+}

@@ -1,0 +1,132 @@
+/*
+ * UART.c
+ *
+ *  Created on: 23 Sep 2019
+ *      Author: Home
+ */
+
+
+#include "UART.h"
+
+/*----------------------------------------
+ * [Function Name]: UART_init
+ * [Description]: initializes the UART
+ * [Args]:
+ * 		config_ptr: pointer to the configuration set
+ * [Return]: None
+ -----------------------------------------*/
+void UART_init(const Uart_ConfigType *config_ptr)
+{
+	/********************************************
+	 * - enable USART transmitter & receiver
+	 * - determine the operation mode (Synchronized/ Asynchronized)
+	 * - determine if you would use double speed or not
+	 * - set the parity mode (disabled/ odd/ even)
+	 * - determine whether the frame terminates with one or two stop bits
+	 * - set the character size
+	 * - set the baud rate
+	 *********************************************/
+
+	/*Enable the USART transmitter & receiver */
+	SET_BIT(UCSRB, RXEN);
+	SET_BIT(UCSRB, TXEN);
+
+#ifdef DOUBLE_SPEED
+	/*Enable double speed*/
+	SET_BIT(UCSRA, U2X);
+#endif
+
+	/*to access UCSRC, URSEL needs to be set*/
+	SET_BIT(UCSRC, URSEL);
+	/*set the mode to synchronous or asynchronous*/
+	UCSRC = (UCSRC & 0xBF) | (UART_MODE<<UMSEL);
+	/*~~~~~~~~~ frame ~~~~~~~*/
+	UCSRC = (UCSRC & 0xCF) | (config_ptr->e_Uart_parityMode << UPM0);
+	UCSRC = (UCSRC & 0xF7) | (config_ptr->e_Uart_stopBit << USBS);
+	UCSRC = (UCSRC & 0xF9) | ((config_ptr->e_Uart_charSize & 0x03) << UCSZ0);
+	UCSRB = (UCSRB & 0xFB) | (config_ptr->e_Uart_charSize & 0x04);
+	/*Clear URSEL to access UBRRH*/
+	CLEAR_BIT(UBRRH, URSEL);
+	/*Baud rate*/
+	UBRRH = BAUD_RATE_GENERATOR(config_ptr->Uart_baudRate) >> 8;
+	UBRRL = BAUD_RATE_GENERATOR(config_ptr->Uart_baudRate);
+
+}
+
+
+
+/*----------------------------------------
+ * [Function Name]: UART_sendByte
+ * [Description]: Sends a byte of data
+ * [Args]:
+ * 		data: byte to be sent
+ * [Return]: None
+ -----------------------------------------*/
+void UART_sendByte(uint8 data)
+{
+	/*wait until the transmit buffer is empty*/
+	while( BIT_IS_CLEAR(UCSRA, UDRE));
+
+	/*start transmission*/
+	UDR = data;
+}
+
+/*----------------------------------------
+ * [Function Name]: UART_receiveByte
+ * [Description]: receives a byte of data
+ * [Args]: None
+ * [Return]: the received byte
+ -----------------------------------------*/
+uint8 UART_receiveByte()
+{
+	/*wait until the whole byte is received*/
+	while( BIT_IS_CLEAR(UCSRA, RXC));
+
+	/*read the buffer, clear the flag*/
+	return UDR;
+}
+
+
+/*----------------------------------------
+ * [Function Name]: UART_receiveString
+ * [Description]: receives a string
+ * [Args]:
+ * 		str_ptr: pointer to an array of characters, where the received string will be stored
+ * [Return]: None
+ -----------------------------------------*/
+void UART_receiveString(uint8 *str_ptr)
+{
+	/*
+	 * the string will terminate with a special character '#' followed by the null terminator.
+	 * the function loops until it detects the special character and replaces it with the null terminator
+	 */
+	uint8 index = 0;
+	str_ptr[index] = UART_receiveByte();
+	while (str_ptr[index] != '#')
+	{
+		index++;
+		str_ptr[index] = UART_receiveByte();
+	}
+	str_ptr[index] = '\0';
+}
+
+
+/*----------------------------------------
+ * [Function Name]: UART_sendString
+ * [Description]: sends a string
+ * [Args]:
+ * 		str_ptr: pointer to the string that will be sent
+ * [Return]: None
+ -----------------------------------------*/
+void UART_sendString(uint8 *str_ptr)
+{
+	uint8 index = 0;
+	while(str_ptr[index] != '\0')
+	{
+		UART_sendByte(str_ptr[index]);
+		index++;
+	}
+	/*append the special character and the null terminator, to fit UART_receiveString*/
+	UART_sendByte('#');
+	UART_sendByte('\0');
+}

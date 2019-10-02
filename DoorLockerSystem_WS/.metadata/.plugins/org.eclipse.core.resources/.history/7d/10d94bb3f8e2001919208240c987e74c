@@ -1,0 +1,33 @@
+/*
+ * hmi_ecu.c
+ *
+ *  Created on: 29 Sep 2019
+ *      Author: Home
+ */
+
+
+#include "keypad.h"
+#include "LCD.h"
+
+uint8 password_counter = 0;
+uint8 key = 0;
+int main()
+{
+	LCD_init();
+
+	LCD_goToRowCol(0,0);
+	LCD_displayString("Please Enter New Pass:");
+
+	while(1)
+	{
+
+		LCD_goToRowCol(1,0);
+		while(password_counter < 5)
+		{
+			key = keypad_getPressedKey();
+			_delay_ms(500);
+			LCD_displayInt(key);
+			password_counter++;
+		}
+	}
+}

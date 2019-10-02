@@ -1,0 +1,38 @@
+/*
+ * EEPROM.h
+ *
+ *  Created on: 28 Sep 2019
+ *      Author: Home
+ */
+
+#ifndef EEPROM_H_
+#define EEPROM_H_
+
+#include "std_types.h"
+
+
+/*~~~~~~~ Macros ~~~~~~~~*/
+#define E_OK 1
+#define E_NOT_OK 0
+
+
+/*~~~~~~~~~~~ Type Definitions ~~~~~~~~~~~*/
+typedef uint16 EepAddressType;
+typedef struct
+{
+	/*
+	 * EEPROM base address
+	 * EEPROM size
+	 * maximum block sizes (write, erase) processed within the job processing function
+	 * maximum read block sizes for normal and fast EEPROM mode processed within the job processing function
+	 * call cycle of cyclic job processing function for read, write, erase
+	 */
+}Eep_ConfigType;
+
+
+/*~~~~~~~~~~ Functions Definitions ~~~~~~~~~~~*/
+void Eep_init();
+uint8 Eep_Read(EepAddressType EepromAddress, uint8 *DataBufferPtr, uint8 Length);
+uint8 Eep_Write(EepAddressType EepromAddress, uint8 *DataBufferPtr, uint8 Length);
+
+#endif /* EEPROM_H_ */

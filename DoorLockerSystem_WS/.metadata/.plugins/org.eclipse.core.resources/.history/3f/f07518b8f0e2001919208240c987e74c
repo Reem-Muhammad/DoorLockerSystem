@@ -1,0 +1,20 @@
+/*
+ * hmi_ecu.c
+ *
+ *  Created on: 29 Sep 2019
+ *      Author: Home
+ */
+
+
+#include "keypad.h"
+#include "LCD.h"
+int main()
+{
+	LCD_init();
+	while(1)
+	{
+		uint8 key = keypad_getPressedKey();
+		_delay_ms(50);
+		LCD_displayInt(key);
+	}
+}
