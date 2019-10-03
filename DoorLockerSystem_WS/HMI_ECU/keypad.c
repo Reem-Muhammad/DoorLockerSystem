@@ -13,7 +13,7 @@
  * [Function Name]: keypad_getPressedKey
  * [DESCRIPTION]:
  * [Args]: -
- * [Return]: returns the number/character associated to the pressed key
+ * [Return]: returns the number/character associated with the pressed key
  -----------------------------------------*/
 uint8 keypad_getPressedKey()
 {

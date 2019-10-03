@@ -43,6 +43,14 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
 	uint8 DataBufferIndex = 0;
 
 	TWI_start();
+	//LCD_goToRowCol(0,0);		//debug
+	//LCD_displayString("S ");	//debug
+	/*
+	if(TWI_STATUS != START_CONDITION_TRANSMITTED)
+	{
+		return TWI_STATUS;
+	}
+	*/
 
 	/*
 	 * Send the device select code to write in the EEPROM:
@@ -59,23 +67,64 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
 	 *										     = 0000 0000 1010 XXX0
 	 */
 	TWI_write( (DEVICE_TYPE_IDENTIFIER<<4) | ( ( (EepromAddress & 0x0700) >>7 ) + WRITE) );
+	//LCD_displayString("W "); //debug
+	/*
+	if(TWI_STATUS != MT_SLA_W_TRANSMITTED_ACK_RECEIVED)
+	{
+		return TWI_STATUS;
+	}
+	*/
 
 	/*Send a memory location to read from (A7:A0)*/
 	TWI_write( (uint8)EepromAddress );
+	//LCD_displayString("ad "); //debug
+	/*
+	if(TWI_STATUS != MT_DATA_TRANSMITTED_ACK_RECEIVED)
+	{
+		return TWI_STATUS;
+	}
+	*/
 
 	/*Repeated start*/
 	TWI_start();
+	//LCD_displayString("RS "); //debug
+	/*
+	if(TWI_STATUS != START_CONDITION_TRANSMITTED)
+	{
+		return TWI_STATUS;
+	}
+	*/
 
 	/*send the device select code to read from the EEPROM*/
 	TWI_write( (DEVICE_TYPE_IDENTIFIER<<4) | ( ( (EepromAddress & 0x0700) >>7 ) + READ) );
+	//LCD_displayString("R"); //debug
+	/*
+	if(TWI_STATUS != MR_SLA_R_TRANSMITTED_ACK_RECEIVED)
+	{
+		return TWI_STATUS;
+	}
+	*/
 
 	/*Read the specified number of bytes, and store them in the data buffer*/
-	for(DataBufferIndex = 0; DataBufferIndex <Length; DataBufferIndex++ )
+	for(DataBufferIndex = 0; DataBufferIndex <Length-1; DataBufferIndex++ )
 	{
 		DataBufferPtr[DataBufferIndex] = TWI_readWithACK();
+		//LCD_displayString(" A"); //debug
+		/*
+		if(TWI_STATUS != MR_DATA_RECEIVED_ACK_RETURNED)
+		{
+			return TWI_STATUS;
+		}
+		*/
 	}
+	/*the last byte is received without returning ACK, so the EEPROM stops sending.
+	 * receiving the last byte with ACK generated the following warning in Proteus:"Stop condition whilst memory is transmitting data is unreliable"
+	 */
+	DataBufferPtr[DataBufferIndex] = TWI_readWithNACK();
+	//LCD_displayString(" NA"); //debug
 
 	TWI_stop();
+	//LCD_displayString(" P"); //debug
 
 	return E_OK;		//<<<<<<<<<<<<<<<<<<<<<<<<<
 }

@@ -32,29 +32,34 @@ void saveNewPass()
 
 }
 
-void confirmPass()
+uint8 confirmPass()
 {
 	/*receive the confirmation password entered by the user*/
 
+	//LCD_displayString("Ctrl ECU.."); //debug
 	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
 	{
 		confirm_buffer[i] = UART_receiveByte();
 	}
 
 	/*compare it to the saved password*/
+	LCD_goToRowCol(0,0);
+	//LCD_displayString("                 "); //debug
+	//LCD_displayInt(Eep_Read(0, data_buffer, PASSWORD_LENGTH)); //debug
+	//LCD_displayString("Reading.."); //debug
 	Eep_Read(0, data_buffer, PASSWORD_LENGTH);
+
 	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
 	{
 		if (confirm_buffer[i] != data_buffer[i])
 		{
-
+			LCD_displayInt(i); //debug
 			UART_sendByte(CONFIRMATION_FAILED);
-			LCD_displayInt(22);
-			return;
+			return CONFIRMATION_FAILED;
 		}
 	}
 	UART_sendByte(CONFIRMATION_PASSED);
-	LCD_displayInt(33);
+	return CONFIRMATION_PASSED;
 }
 
 int main()
@@ -63,7 +68,13 @@ int main()
 	UART_init(&s_UartConfig);
 	Eep_init();
 	saveNewPass();
-	confirmPass();
+	//confirmPass();
+
+	while (confirmPass() == CONFIRMATION_FAILED)
+	{
+		saveNewPass();
+		confirmPass();
+	}
 
 	while(1)
 	{

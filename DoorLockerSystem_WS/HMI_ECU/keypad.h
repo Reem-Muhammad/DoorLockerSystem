@@ -15,7 +15,7 @@
 
 
 /*~~~~~~~~~~~ static configurations ~~~~~~~~~~~~~~*/
-#define N_COL 3
+#define N_COL 4
 #define N_ROW 4
 #define N_BUTTONS (N_COL * N_ROW)
 #define KEYPAD_PORT_DIR DDRB

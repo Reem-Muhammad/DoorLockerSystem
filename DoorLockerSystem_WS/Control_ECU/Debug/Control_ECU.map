@@ -148,7 +148,7 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1d54
+.text           0x00000000     0x1d8a
  *(.vectors)
  .vectors       0x00000000       0x54 f:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -264,90 +264,90 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000b46       0x16 ./EEPROM.o
                 0x00000b46                Eep_init
  .text.Eep_Read
-                0x00000b5c       0xb4 ./EEPROM.o
+                0x00000b5c       0xce ./EEPROM.o
                 0x00000b5c                Eep_Read
  .text.Eep_Write
-                0x00000c10       0x8c ./EEPROM.o
-                0x00000c10                Eep_Write
+                0x00000c2a       0x8c ./EEPROM.o
+                0x00000c2a                Eep_Write
  .text.TWI_init
-                0x00000c9c       0x7e ./I2C.o
-                0x00000c9c                TWI_init
+                0x00000cb6       0x7e ./I2C.o
+                0x00000cb6                TWI_init
  .text.TWI_start
-                0x00000d1a       0x20 ./I2C.o
-                0x00000d1a                TWI_start
+                0x00000d34       0x20 ./I2C.o
+                0x00000d34                TWI_start
  .text.TWI_write
-                0x00000d3a       0x2e ./I2C.o
-                0x00000d3a                TWI_write
+                0x00000d54       0x2e ./I2C.o
+                0x00000d54                TWI_write
  .text.TWI_readWithACK
-                0x00000d68       0x26 ./I2C.o
-                0x00000d68                TWI_readWithACK
+                0x00000d82       0x26 ./I2C.o
+                0x00000d82                TWI_readWithACK
  .text.TWI_readWithNACK
-                0x00000d8e       0x26 ./I2C.o
-                0x00000d8e                TWI_readWithNACK
+                0x00000da8       0x26 ./I2C.o
+                0x00000da8                TWI_readWithNACK
  .text.TWI_stop
-                0x00000db4       0x16 ./I2C.o
-                0x00000db4                TWI_stop
+                0x00000dce       0x16 ./I2C.o
+                0x00000dce                TWI_stop
  .text.LCD_sendCommand
-                0x00000dca      0x3f8 ./LCD.o
-                0x00000dca                LCD_sendCommand
+                0x00000de4      0x3f8 ./LCD.o
+                0x00000de4                LCD_sendCommand
  .text.LCD_displayCharacter
-                0x000011c2      0x3f8 ./LCD.o
-                0x000011c2                LCD_displayCharacter
+                0x000011dc      0x3f8 ./LCD.o
+                0x000011dc                LCD_displayCharacter
  .text.LCD_displayString
-                0x000015ba       0x38 ./LCD.o
-                0x000015ba                LCD_displayString
+                0x000015d4       0x38 ./LCD.o
+                0x000015d4                LCD_displayString
  .text.LCD_displayInt
-                0x000015f2       0x8e ./LCD.o
-                0x000015f2                LCD_displayInt
+                0x0000160c       0x8e ./LCD.o
+                0x0000160c                LCD_displayInt
  .text.convertIntToString
-                0x00001680      0x17e ./LCD.o
-                0x00001680                convertIntToString
+                0x0000169a      0x17e ./LCD.o
+                0x0000169a                convertIntToString
  .text.LCD_init
-                0x000017fe       0x3c ./LCD.o
-                0x000017fe                LCD_init
+                0x00001818       0x3c ./LCD.o
+                0x00001818                LCD_init
  .text.LCD_clear
-                0x0000183a       0x14 ./LCD.o
-                0x0000183a                LCD_clear
+                0x00001854       0x14 ./LCD.o
+                0x00001854                LCD_clear
  .text.LCD_goToRowCol
-                0x0000184e       0x4e ./LCD.o
-                0x0000184e                LCD_goToRowCol
+                0x00001868       0x4e ./LCD.o
+                0x00001868                LCD_goToRowCol
  .text.UART_init
-                0x0000189c      0x19e ./UART.o
-                0x0000189c                UART_init
+                0x000018b6      0x19e ./UART.o
+                0x000018b6                UART_init
  .text.UART_sendByte
-                0x00001a3a       0x2e ./UART.o
-                0x00001a3a                UART_sendByte
+                0x00001a54       0x2e ./UART.o
+                0x00001a54                UART_sendByte
  .text.UART_receiveByte
-                0x00001a68       0x1e ./UART.o
-                0x00001a68                UART_receiveByte
+                0x00001a82       0x1e ./UART.o
+                0x00001a82                UART_receiveByte
  .text.UART_receiveString
-                0x00001a86       0x86 ./UART.o
-                0x00001a86                UART_receiveString
+                0x00001aa0       0x86 ./UART.o
+                0x00001aa0                UART_receiveString
  .text.UART_sendString
-                0x00001b0c       0x5e ./UART.o
-                0x00001b0c                UART_sendString
+                0x00001b26       0x5e ./UART.o
+                0x00001b26                UART_sendString
  .text.saveNewPass
-                0x00001b6a       0x6c ./control_ecu.o
-                0x00001b6a                saveNewPass
+                0x00001b84       0x6c ./control_ecu.o
+                0x00001b84                saveNewPass
  .text.confirmPass
-                0x00001bd6       0xa6 ./control_ecu.o
-                0x00001bd6                confirmPass
- .text.main     0x00001c7c       0x22 ./control_ecu.o
-                0x00001c7c                main
- .text.libgcc   0x00001c9e       0x44 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001c9e                __udivmodsi4
- .text.libgcc   0x00001ce2        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00001ce2        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00001ce2        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00001ce2       0x38 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x00001ce2                __prologue_saves__
- .text.libgcc   0x00001d1a       0x36 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x00001d1a                __epilogue_restores__
-                0x00001d50                . = ALIGN (0x2)
+                0x00001bf0       0xb4 ./control_ecu.o
+                0x00001bf0                confirmPass
+ .text.main     0x00001ca4       0x30 ./control_ecu.o
+                0x00001ca4                main
+ .text.libgcc   0x00001cd4       0x44 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001cd4                __udivmodsi4
+ .text.libgcc   0x00001d18        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00001d18        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00001d18        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00001d18       0x38 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x00001d18                __prologue_saves__
+ .text.libgcc   0x00001d50       0x36 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00001d50                __epilogue_restores__
+                0x00001d86                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001d50        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00001d50                exit
-                0x00001d50                _exit
+ .fini9         0x00001d86        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00001d86                exit
+                0x00001d86                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -366,11 +366,11 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001d50        0x4 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001d86        0x4 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001d54                _etext = .
+                0x00001d8a                _etext = .
 
-.data           0x00800060       0x1c load address 0x00001d54
+.data           0x00800060       0x1c load address 0x00001d8a
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -449,8 +449,8 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00800081                confirm_buffer
  *(COMMON)
                 0x00800086                PROVIDE (__bss_end, .)
-                0x00001d54                __data_load_start = LOADADDR (.data)
-                0x00001d70                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001d8a                __data_load_start = LOADADDR (.data)
+                0x00001da6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800086        0x0
                 0x00800086                PROVIDE (__noinit_start, .)
@@ -475,21 +475,21 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x1b3c
+.stab           0x00000000     0x1b78
  *(.stab)
- .stab          0x00000000      0x618 ./EEPROM.o
- .stab          0x00000618      0x2f4 ./I2C.o
+ .stab          0x00000000      0x624 ./EEPROM.o
+ .stab          0x00000624      0x2f4 ./I2C.o
                                 0x594 (size before relaxing)
- .stab          0x0000090c      0xae0 ./LCD.o
+ .stab          0x00000918      0xae0 ./LCD.o
                                 0xd38 (size before relaxing)
- .stab          0x000013ec      0x414 ./UART.o
+ .stab          0x000013f8      0x414 ./UART.o
                                 0x66c (size before relaxing)
- .stab          0x00001800      0x33c ./control_ecu.o
-                                0x630 (size before relaxing)
+ .stab          0x0000180c      0x36c ./control_ecu.o
+                                0x660 (size before relaxing)
 
-.stabstr        0x00000000     0x1009
+.stabstr        0x00000000     0x1008
  *(.stabstr)
- .stabstr       0x00000000     0x1009 ./EEPROM.o
+ .stabstr       0x00000000     0x1008 ./EEPROM.o
 
 .stab.excl
  *(.stab.excl)
