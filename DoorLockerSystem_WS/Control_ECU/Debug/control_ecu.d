@@ -1,5 +1,5 @@
 control_ecu.o control_ecu.o: ../control_ecu.c ../LCD.h ../micro_config.h \
-  ../common_macros.h ../std_types.h ../UART.h
+  ../common_macros.h ../std_types.h ../UART.h ../EEPROM.h
 
 ../LCD.h:
 
@@ -10,3 +10,5 @@ control_ecu.o control_ecu.o: ../control_ecu.c ../LCD.h ../micro_config.h \
 ../std_types.h:
 
 ../UART.h:
+
+../EEPROM.h:

@@ -1,4 +1,4 @@
-21:19:48 **** Incremental Build of configuration Debug for project HMI_ECU ****
+05:58:36 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
 Building file: ../I2C.c
 Invoking: AVR Compiler
@@ -43,9 +43,16 @@ In file included from ../hmi_ecu.c:10:
 ../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
 ../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
 ../hmi_ecu.c: In function 'setNewPass':
-../hmi_ecu.c:23: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:25: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:37: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:24: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:26: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:39: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c: In function 'confirmPass':
+../hmi_ecu.c:53: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:55: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:69: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c: In function 'main':
+../hmi_ecu.c:89: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:94: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 Finished building: ../hmi_ecu.c
  
 Building file: ../keypad.c
@@ -77,10 +84,10 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    7586 bytes (46.3% Full)
+Program:    8080 bytes (49.3% Full)
 (.text + .data + .bootloader)
 
-Data:         96 bytes (9.4% Full)
+Data:        156 bytes (15.2% Full)
 (.data + .bss + .noinit)
 
 

@@ -133,5 +133,5 @@ void TWI_stop()
 	TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
 
 	/*wait until the STOP condition is transmitted*/
-	while( BIT_IS_CLEAR(TWCR, TWINT) );
+	//while( BIT_IS_CLEAR(TWCR, TWINT) );
 }

@@ -11,7 +11,8 @@
 #include "UART.h"
 
 #define PASSWORD_LENGTH 5
-
+#define CONFIRMATION_FAILED 0
+#define CONFIRMATION_PASSED 1
 
 uint8 password_counter = 0;
 uint8 key = 0;
@@ -24,6 +25,7 @@ void setNewPass()
 	LCD_goToRowCol(1,0);
 	LCD_displayString("-----");
 
+	password_counter = 0;
 	LCD_goToRowCol(1,0);
 	while(password_counter < PASSWORD_LENGTH)
 	{
@@ -45,9 +47,33 @@ void setNewPass()
 
 
 /*Password Confirmation*/
-void confirmPass()
+uint8 confirmPass()
 {
+	LCD_goToRowCol(0,0);
+	LCD_displayString("Please Re-enter The Pass:");
+	LCD_goToRowCol(1,0);
+	LCD_displayString("-----");
 
+	password_counter = 0;
+	LCD_goToRowCol(1,0);
+	while(password_counter < PASSWORD_LENGTH)
+	{
+		key = keypad_getPressedKey();
+		UART_sendByte(key);
+		_delay_ms(400);
+		LCD_displayCharacter('*');
+		password_counter++;
+	}
+
+	LCD_goToRowCol(0,0);
+	LCD_displayString("Press '#' To Enter.         ");
+	key = keypad_getPressedKey();
+	while(key != '#')
+	{
+		key = keypad_getPressedKey();
+	}
+	//uint8 confirm = UART_receiveByte(); //doesn't return --> reason: Eep_Write() wasn't returning due to the polling in TWI_stop()
+	return UART_receiveByte();;
 }
 
 int main()
@@ -56,7 +82,17 @@ int main()
 	UART_init(&s_UartConfig);
 
 	setNewPass();
-	confirmPass();
+	uint8 check = confirmPass();
+	if ( check == CONFIRMATION_PASSED)
+	{
+		LCD_goToRowCol(0,0);
+		LCD_displayString("Done              ");
+	}
+	else
+	{
+		LCD_goToRowCol(0,0);
+				LCD_displayString("Failed         ");
+	}
 
 	while(1)
 	{

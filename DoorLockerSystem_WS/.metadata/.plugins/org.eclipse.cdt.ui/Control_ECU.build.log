@@ -1,53 +1,5 @@
-21:19:33 **** Incremental Build of configuration Debug for project Control_ECU ****
+05:58:30 **** Incremental Build of configuration Debug for project Control_ECU ****
 make all 
-Building file: ../EEPROM.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"EEPROM.d" -MT"EEPROM.o" -c -o "EEPROM.o" "../EEPROM.c"
-In file included from ../micro_config.h:18,
-                 from ../I2C.h:11,
-                 from ../EEPROM.c:11:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../EEPROM.c:11:
-../I2C.h:15:2: warning: #warning "STATUS CODES ARE NOT COMPLETE YET"
-../EEPROM.c: In function 'Eep_Read':
-../EEPROM.c:60: warning: suggest parentheses around arithmetic in operand of |
-../EEPROM.c:69: warning: suggest parentheses around arithmetic in operand of |
-../EEPROM.c: In function 'Eep_Write':
-../EEPROM.c:99: warning: suggest parentheses around arithmetic in operand of |
-Finished building: ../EEPROM.c
- 
-Building file: ../I2C.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"I2C.d" -MT"I2C.o" -c -o "I2C.o" "../I2C.c"
-In file included from ../micro_config.h:18,
-                 from ../I2C.h:11,
-                 from ../I2C.c:9:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../I2C.c:9:
-../I2C.h:15:2: warning: #warning "STATUS CODES ARE NOT COMPLETE YET"
-Finished building: ../I2C.c
- 
-Building file: ../LCD.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"LCD.d" -MT"LCD.o" -c -o "LCD.o" "../LCD.c"
-In file included from ../micro_config.h:18,
-                 from ../LCD.h:11,
-                 from ../LCD.c:9:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../LCD.c:9:
-../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
-Finished building: ../LCD.c
- 
-Building file: ../UART.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"UART.d" -MT"UART.o" -c -o "UART.o" "../UART.c"
-In file included from ../micro_config.h:18,
-                 from ../UART.h:11,
-                 from ../UART.c:9:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-Finished building: ../UART.c
- 
 Building file: ../control_ecu.c
 Invoking: AVR Compiler
 avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"control_ecu.d" -MT"control_ecu.o" -c -o "control_ecu.o" "../control_ecu.c"
@@ -75,15 +27,15 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    7330 bytes (44.7% Full)
+Program:    7536 bytes (46.0% Full)
 (.text + .data + .bootloader)
 
-Data:         34 bytes (3.3% Full)
+Data:         38 bytes (3.7% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-21:19:39 Build Finished (took 6s.98ms)
+05:58:32 Build Finished (took 2s.76ms)
 
