@@ -76,19 +76,11 @@ uint8 confirmPass()
 void alarmStart()
 {
 	CLEAR_BIT(PORTC, BUZZER);
-	LCD_displayString("ALARM");
-
-	/*start the timer*/
-	Ocu_start(46874, 10);
 }
 
 void alarmStop()
 {
 	SET_BIT(PORTC, BUZZER);
-	LCD_displayString("STOPPED");
-
-	/*terminate the timer*/
-	Ocu_stop();
 }
 int main()
 {
@@ -109,7 +101,7 @@ int main()
 	while (confirmPass() == CONFIRMATION_FAILED)
 	{
 		saveNewPass();
-		//confirmPass();
+		confirmPass();
 	}
 
 	while(1)

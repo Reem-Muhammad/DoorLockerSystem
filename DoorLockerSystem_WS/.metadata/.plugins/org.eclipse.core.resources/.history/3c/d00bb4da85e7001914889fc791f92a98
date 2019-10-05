@@ -9,25 +9,19 @@
 #include "LCD.h"
 #include "UART.h"
 #include "EEPROM.h"
-#include "Ocu.h"
 
 #define PASSWORD_LENGTH 5
 #define CONFIRMATION_FAILED 0
 #define CONFIRMATION_PASSED 1
-#define WRONG_PASS_MAX 3
-
-#define MOTOR_IN1 PD5
-#define MOTOR_IN2 PD6
-#define MOTOR_EN1 PD7
-#define BUZZER PC7
+#define MOTOR_IN1
+#define MOTOR_IN2
+#define MOTOR_EN1
+#define BUZZER
 
 
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600};
-const Ocu_ConfigType s_OcuConfig = {OCU_DISABLE,OCU_PRESCALER_1024};
 uint8 data_buffer[PASSWORD_LENGTH] = {0};
 uint8 confirm_buffer[PASSWORD_LENGTH] = {0};
-uint8 key = 0;
-uint8 wrongPassCounter = 0;
 
 void saveNewPass()
 {
@@ -72,67 +66,23 @@ uint8 confirmPass()
 	return CONFIRMATION_PASSED;
 }
 
-
-void alarmStart()
-{
-	CLEAR_BIT(PORTC, BUZZER);
-	LCD_displayString("ALARM");
-
-	/*start the timer*/
-	Ocu_start(46874, 10);
-}
-
-void alarmStop()
-{
-	SET_BIT(PORTC, BUZZER);
-	LCD_displayString("STOPPED");
-
-	/*terminate the timer*/
-	Ocu_stop();
-}
 int main()
 {
 	LCD_init();
 	UART_init(&s_UartConfig);
-	SET_BIT(SREG, 7);
-	Ocu_init(&s_OcuConfig);
-	Ocu_setCbk(alarmStop);
 	Eep_init();
-
-	SET_BIT(DDRC, BUZZER);
-	SET_BIT(PORTC, BUZZER);		/*init*/
-	DDRD |= (1<< MOTOR_IN1) | (1<< MOTOR_IN2) | (1<< MOTOR_EN1);
-
 	saveNewPass();
 	//confirmPass();
 
 	while (confirmPass() == CONFIRMATION_FAILED)
 	{
 		saveNewPass();
-		//confirmPass();
+		confirmPass();
 	}
 
 	while(1)
 	{
-		key = UART_receiveByte();
-		if(key == '+')
-		{
-			while (confirmPass() == CONFIRMATION_FAILED)
-			{
-#if 1
-				wrongPassCounter++;
-				if(wrongPassCounter == WRONG_PASS_MAX)
-				{
-					if(UART_receiveByte() == 'A')
-					{
-						alarmStart();
-						while(1);
-					}
 
-				}
-#endif
-			}
-		}
 
 
 	}

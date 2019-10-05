@@ -57,7 +57,7 @@ void setNewPass()
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Enter New Pass:");
 	LCD_goToRowCol(1,0);
-	LCD_displayString("-----                  ");
+	LCD_displayString("-----");
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);
@@ -105,7 +105,7 @@ uint8 confirmPass()
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Re-enter The Pass:");
 	LCD_goToRowCol(1,0);
-	LCD_displayString("-----                     ");
+	LCD_displayString("-----");
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);

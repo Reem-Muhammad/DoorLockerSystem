@@ -57,7 +57,7 @@ void setNewPass()
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Enter New Pass:");
 	LCD_goToRowCol(1,0);
-	LCD_displayString("-----                  ");
+	LCD_displayString("-----");
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);
@@ -105,7 +105,7 @@ uint8 confirmPass()
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Re-enter The Pass:");
 	LCD_goToRowCol(1,0);
-	LCD_displayString("-----                     ");
+	LCD_displayString("-----");
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);
@@ -137,11 +137,6 @@ uint8 confirmPass()
 	//uint8 confirm = UART_receiveByte(); //[SOLVED] doesn't return --> reason: Eep_Write() wasn't returning due to the polling in TWI_stop()
 
 	return UART_receiveByte();
-}
-
-openAndClose()
-{
-
 }
 
 int main()
@@ -193,10 +188,10 @@ int main()
 		LCD_goToRowCol(1,0);
 		LCD_displayString("'-' : Change Password");
 
-		key = keypad_getPressedKey;
+		key = LCD_getPressedKey();
 		while(key != '+' && key != '-')
 		{
-			key = keypad_getPressedKey();
+			key = LCD_getPressedKey();
 			_delay_ms(300);
 		}
 
@@ -208,7 +203,6 @@ int main()
 				wrongPassCounter++;
 				if(wrongPassCounter == WRONG_PASS_MAX)
 				{
-					UART_sendByte('A');
 					alarmStart();
 					while(1);
 				}

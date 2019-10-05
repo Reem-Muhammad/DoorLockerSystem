@@ -7,6 +7,7 @@ C_SRCS += \
 ../EEPROM.c \
 ../I2C.c \
 ../LCD.c \
+../Ocu.c \
 ../UART.c \
 ../control_ecu.c 
 
@@ -14,6 +15,7 @@ OBJS += \
 ./EEPROM.o \
 ./I2C.o \
 ./LCD.o \
+./Ocu.o \
 ./UART.o \
 ./control_ecu.o 
 
@@ -21,6 +23,7 @@ C_DEPS += \
 ./EEPROM.d \
 ./I2C.d \
 ./LCD.d \
+./Ocu.d \
 ./UART.d \
 ./control_ecu.d 
 

@@ -1,4 +1,4 @@
-21:17:55 **** Incremental Build of configuration Debug for project Control_ECU ****
+19:52:44 **** Incremental Build of configuration Debug for project Control_ECU ****
 make all 
 Building file: ../control_ecu.c
 Invoking: AVR Compiler
@@ -10,11 +10,15 @@ f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compil
 In file included from ../control_ecu.c:9:
 ../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
 ../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
+../control_ecu.c: In function 'alarmStart':
+../control_ecu.c:79: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../control_ecu.c: In function 'alarmStop':
+../control_ecu.c:88: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 Finished building: ../control_ecu.c
  
 Building target: Control_ECU.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega16 -o "Control_ECU.elf"  ./EEPROM.o ./I2C.o ./LCD.o ./UART.o ./control_ecu.o   
+avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega16 -o "Control_ECU.elf"  ./EEPROM.o ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./control_ecu.o   
 Finished building target: Control_ECU.elf
  
 Invoking: AVR Create Extended Listing
@@ -27,15 +31,15 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    7590 bytes (46.3% Full)
+Program:    8232 bytes (50.2% Full)
 (.text + .data + .bootloader)
 
-Data:         38 bytes (3.7% Full)
+Data:         60 bytes (5.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-21:17:56 Build Finished (took 1s.296ms)
+19:52:48 Build Finished (took 3s.569ms)
 

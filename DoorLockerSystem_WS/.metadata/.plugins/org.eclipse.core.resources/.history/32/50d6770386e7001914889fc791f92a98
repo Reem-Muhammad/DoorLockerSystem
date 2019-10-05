@@ -14,14 +14,11 @@
 #define PASSWORD_LENGTH 5
 #define CONFIRMATION_FAILED 0
 #define CONFIRMATION_PASSED 1
-#define WRONG_PASS_MAX 3
 
 uint8 flag = 0;
 
 uint8 password_counter = 0; 	/*Keeps track of the number of digits the user has entered so far*/
 uint8 key = 0;		/*Stores the pressed key*/
-uint8 wrongPassCounter = 0;		/*keeps track of the number of wrong attempts to enter the password*/
-
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
 const Ocu_ConfigType s_OcuConfig = {OCU_DISABLE,OCU_PRESCALER_1024};
 
@@ -57,7 +54,7 @@ void setNewPass()
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Enter New Pass:");
 	LCD_goToRowCol(1,0);
-	LCD_displayString("-----                  ");
+	LCD_displayString("-----");
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);
@@ -105,7 +102,7 @@ uint8 confirmPass()
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Re-enter The Pass:");
 	LCD_goToRowCol(1,0);
-	LCD_displayString("-----                     ");
+	LCD_displayString("-----");
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);
@@ -137,11 +134,6 @@ uint8 confirmPass()
 	//uint8 confirm = UART_receiveByte(); //[SOLVED] doesn't return --> reason: Eep_Write() wasn't returning due to the polling in TWI_stop()
 
 	return UART_receiveByte();
-}
-
-openAndClose()
-{
-
 }
 
 int main()
@@ -187,40 +179,17 @@ int main()
 
 	while(1)
 	{
-
+		/*
 		LCD_goToRowCol(0,0);
 		LCD_displayString("'+' : Open Door");
 		LCD_goToRowCol(1,0);
 		LCD_displayString("'-' : Change Password");
-
-		key = keypad_getPressedKey;
-		while(key != '+' && key != '-')
+*/
+		if (flag == 0)
 		{
-			key = keypad_getPressedKey();
-			_delay_ms(300);
+			alarmStart();
+			flag =1;
 		}
-
-		UART_sendByte(key);
-		if(key == '+')
-		{
-			while (confirmPass() == CONFIRMATION_FAILED)
-			{
-				wrongPassCounter++;
-				if(wrongPassCounter == WRONG_PASS_MAX)
-				{
-					UART_sendByte('A');
-					alarmStart();
-					while(1);
-				}
-			}
-			openAndClose();
-		}
-		else if(key == '-')
-		{
-
-		}
-
-
 
 
 
