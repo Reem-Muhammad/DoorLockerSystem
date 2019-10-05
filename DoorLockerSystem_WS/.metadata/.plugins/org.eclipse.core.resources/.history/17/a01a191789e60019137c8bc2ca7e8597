@@ -1,0 +1,17 @@
+/*
+ * Ocu.h
+ *
+ *  Created on: 4 Oct 2019
+ *      Author: Home
+ */
+
+#ifndef OCU_H_
+#define OCU_H_
+
+#include "std_types.h"
+#include "common_macros.h"
+#include "micro_config.h"
+
+/*~~~~~~~~~~~~~~ Type Definitions ~~~~~~~~~~~~~~~*/
+
+#endif /* OCU_H_ */

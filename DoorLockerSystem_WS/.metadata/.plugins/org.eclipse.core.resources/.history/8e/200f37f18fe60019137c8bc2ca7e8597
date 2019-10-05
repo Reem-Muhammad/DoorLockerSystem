@@ -1,0 +1,42 @@
+/*
+ * Ocu.c
+ *
+ *  Created on: 4 Oct 2019
+ *      Author: Home
+ */
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_Init
+ * [Description]: initializes the output compare unit
+ * [Args]:
+ * 		ConfigPtr: pointer to the configuration set
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_Init(const Ocu_ConfigType* ConfigPtr)
+{
+
+}
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_DeInit
+ * [Description]: De-initializes the output compare unit
+ * [Args]: None
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_DeInit(void)
+{
+
+}
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_SetPinAction
+ * [Description]: specifies what shall be done automatically by hardware upon compare match.
+ * [Args]:
+ * 		ChannelNumber:
+ * 		PinAction:
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction)
+{
+
+}

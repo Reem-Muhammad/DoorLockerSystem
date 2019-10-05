@@ -6,6 +6,7 @@
 C_SRCS += \
 ../I2C.c \
 ../LCD.c \
+../Ocu.c \
 ../UART.c \
 ../hmi_ecu.c \
 ../keypad.c \
@@ -14,6 +15,7 @@ C_SRCS += \
 OBJS += \
 ./I2C.o \
 ./LCD.o \
+./Ocu.o \
 ./UART.o \
 ./hmi_ecu.o \
 ./keypad.o \
@@ -22,6 +24,7 @@ OBJS += \
 C_DEPS += \
 ./I2C.d \
 ./LCD.d \
+./Ocu.d \
 ./UART.d \
 ./hmi_ecu.d \
 ./keypad.d \

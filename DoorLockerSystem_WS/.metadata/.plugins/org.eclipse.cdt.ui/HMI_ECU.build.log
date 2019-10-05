@@ -1,4 +1,4 @@
-21:05:59 **** Incremental Build of configuration Debug for project HMI_ECU ****
+10:59:23 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
 Building file: ../hmi_ecu.c
 Invoking: AVR Compiler
@@ -10,22 +10,26 @@ f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compil
 In file included from ../hmi_ecu.c:10:
 ../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
 ../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
-../hmi_ecu.c: In function 'setNewPass':
-../hmi_ecu.c:24: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:26: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c: In function 'alarmStart':
+../hmi_ecu.c:28: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c: In function 'alarmStop':
 ../hmi_ecu.c:39: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c: In function 'setNewPass':
+../hmi_ecu.c:56: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:58: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:77: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c: In function 'confirmPass':
-../hmi_ecu.c:55: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:57: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:72: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:103: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:105: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:124: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c: In function 'main':
-../hmi_ecu.c:110: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:118: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:167: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:175: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 Finished building: ../hmi_ecu.c
  
 Building target: HMI_ECU.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,HMI_ECU.map -mmcu=atmega16 -o "HMI_ECU.elf"  ./I2C.o ./LCD.o ./UART.o ./hmi_ecu.o ./keypad.o ./timer.o   
+avr-gcc -Wl,-Map,HMI_ECU.map -mmcu=atmega16 -o "HMI_ECU.elf"  ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./hmi_ecu.o ./keypad.o ./timer.o   
 Finished building target: HMI_ECU.elf
  
 Invoking: AVR Create Extended Listing
@@ -38,15 +42,15 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    9034 bytes (55.1% Full)
+Program:   10210 bytes (62.3% Full)
 (.text + .data + .bootloader)
 
-Data:        176 bytes (17.2% Full)
+Data:        235 bytes (22.9% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-21:06:01 Build Finished (took 1s.750ms)
+10:59:24 Build Finished (took 1s.656ms)
 

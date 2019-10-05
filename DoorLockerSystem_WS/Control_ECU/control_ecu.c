@@ -13,6 +13,10 @@
 #define PASSWORD_LENGTH 5
 #define CONFIRMATION_FAILED 0
 #define CONFIRMATION_PASSED 1
+#define MOTOR_IN1
+#define MOTOR_IN2
+#define MOTOR_EN1
+#define BUZZER
 
 
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600};

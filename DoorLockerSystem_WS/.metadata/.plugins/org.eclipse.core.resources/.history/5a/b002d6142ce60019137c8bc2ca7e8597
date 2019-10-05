@@ -1,0 +1,23 @@
+/*
+ * gpt.h
+ *
+ *  Created on: 4 Oct 2019
+ *      Author: Home
+ */
+
+#ifndef GPT_H_
+#define GPT_H_
+
+#include "std_types.h"
+#include "common_macros.h"
+#include "micro_config.h"
+
+/*~~~~~~~~~~~~~~ Type Definitions ~~~~~~~~~~~~~~~*/
+
+/* type of the data structure including the configuration set required for initializing the GPT timer unit*/
+typedef struct
+{
+
+}Gpt_ConfigType;
+
+#endif /* GPT_H_ */

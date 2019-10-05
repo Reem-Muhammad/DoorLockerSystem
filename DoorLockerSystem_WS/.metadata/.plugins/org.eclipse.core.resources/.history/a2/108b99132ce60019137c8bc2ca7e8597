@@ -1,0 +1,18 @@
+/*
+ * gpt.c
+ *
+ *  Created on: 4 Oct 2019
+ *      Author: Home
+ */
+
+/*-------------------------------------------------------------
+ * [Function Name]: Gpt_Init
+ * [Description]: initializes the timer
+ * [Args]:
+ * 		ConfigPtr: pointer to the configuration set
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Gpt_Init(const Gpt_ConfigType *ConfigPtr)
+{
+
+}

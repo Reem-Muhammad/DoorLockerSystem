@@ -9,17 +9,49 @@
 #include "keypad.h"
 #include "LCD.h"
 #include "UART.h"
+#include "Ocu.h"
 
 #define PASSWORD_LENGTH 5
 #define CONFIRMATION_FAILED 0
 #define CONFIRMATION_PASSED 1
 
-uint8 password_counter = 0;
-uint8 key = 0;
-const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600};
 
+void alarmStop();
+uint8 password_counter = 0; 	/*Keeps track of the number of digits the user has entered so far*/
+uint8 key = 0;		/*Stores the pressed key*/
+const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
+const Ocu_ConfigType s_OcuConfig = {alarmStop, OCU_DISABLE,OCU_PRESCALER_1024,10};
+
+void alarmStart()
+{
+	LCD_goToRowCol(0,0);
+	LCD_displayString("Alarm Started       ");
+	LCD_displayInt(BIT_IS_SET(TIFR,OCF1A));
+
+	/*start the timer*/
+	Ocu_SetAbsoluteThreshold(0, 46874);
+	Ocu_Init(&s_OcuConfig);
+
+}
+void alarmStop()
+{
+	LCD_goToRowCol(1,0);
+	LCD_displayString("Alarm Stopped            ");
+	_delay_ms(100);
+
+	/*terminate the timer*/
+	//Ocu_DeInit();
+}
+
+/*------------------------------------------
+ * [Function Name]: setNewPass
+ * [Description]: lets the user to set a new password to be saved in the EEPROM
+ * [Args]: None
+ * [Return]: None
+ -------------------------------------------*/
 void setNewPass()
 {
+	/*Display instructions for the user*/
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Enter New Pass:");
 	LCD_goToRowCol(1,0);
@@ -27,16 +59,24 @@ void setNewPass()
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);
+
+	/*Enter 5 digits, and transmit them to the control ECU*/
 	while(password_counter < PASSWORD_LENGTH)
 	{
 		key = keypad_getPressedKey();
 		UART_sendByte(key);
 		_delay_ms(400);
+
+		/*Display '*' instead of the actual digit*/
 		LCD_displayCharacter('*');
 		password_counter++;
 	}
+
+	/*Display instructions for the user*/
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Press 'C' To Enter.         ");
+
+	/*wait until the user enters 'C'*/
 	key = keypad_getPressedKey();
 	while(key != 'C')
 	{
@@ -44,13 +84,21 @@ void setNewPass()
 
 	}
 	_delay_ms(400); //if not introduced, the first digit in the confirmation password would be 'C'
-	//LCD_clear();
 }
 
 
-/*Password Confirmation*/
+
+/*------------------------------------------
+ * [Function Name]: confirmPass
+ * [Description]: Sends the confirmation password to the control ECU to be compared with the saved one
+ * [Args]: None
+ * [Return]:
+		CONFIRMATION_FAILED for password mismatch
+		CONFIRMATION_PASS for password match
+ -------------------------------------------*/
 uint8 confirmPass()
 {
+	/*Display instructions for the user*/
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Re-enter The Pass:");
 	LCD_goToRowCol(1,0);
@@ -58,34 +106,43 @@ uint8 confirmPass()
 
 	password_counter = 0;
 	LCD_goToRowCol(1,0);
-	/*send the confirmation password to the control ECU*/
+
+	/*Send the confirmation password to the control ECU*/
 	while(password_counter < PASSWORD_LENGTH)
 	{
 		key = keypad_getPressedKey();
 		UART_sendByte(key);
 		_delay_ms(400);
+
+		/*Display '*' instead of the actual digit*/
 		LCD_displayCharacter('*');
 		password_counter++;
 	}
 
+	/*Display instructions for the user*/
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Press 'C' To Enter.         ");
+
+	/*wait until the user enters 'C'*/
 	key = keypad_getPressedKey();
 	while(key != 'C')
 	{
 		key = keypad_getPressedKey();
 	}
-	_delay_ms(400);
-	LCD_displayCharacter('U');
-	uint8 confirm = UART_receiveByte(); //doesn't return --> reason: Eep_Write() wasn't returning due to the polling in TWI_stop()
 
-	return confirm;//UART_receiveByte();
+	_delay_ms(400); //if not introduced and there was a mismatch, the first digit of the new password would be 'C'
+	//uint8 confirm = UART_receiveByte(); //doesn't return --> reason: Eep_Write() wasn't returning due to the polling in TWI_stop()
+
+	return UART_receiveByte();
 }
 
 int main()
 {
 	LCD_init();
 	UART_init(&s_UartConfig);
+	SET_BIT(SREG, 7);
+
+
 
 	setNewPass();
 
@@ -103,7 +160,7 @@ int main()
 
 	}
 #else
-
+	/*Reset the password and confirm again as long as there is a password mismatch*/
 	while (confirmPass() == CONFIRMATION_FAILED)
 	{
 		LCD_goToRowCol(0,0);
@@ -115,11 +172,19 @@ int main()
 	}
 
 	LCD_goToRowCol(0,0);
-	LCD_displayString("Done              ");
+	LCD_displayString("Password Confirmed     ");
+	_delay_ms(500);
 #endif
 
 	while(1)
 	{
+		/*
+		LCD_goToRowCol(0,0);
+		LCD_displayString("'+' : Open Door");
+		LCD_goToRowCol(1,0);
+		LCD_displayString("'-' : Change Password");
+*/
+		alarmStart();
 
 
 	}

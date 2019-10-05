@@ -1,0 +1,63 @@
+/*
+ * gpt.c
+ *
+ *  Created on: 4 Oct 2019
+ *      Author: Home
+ */
+
+/*-------------------------------------------------------------
+ * [Function Name]: Gpt_Init
+ * [Description]: initializes the timer
+ * [Args]:
+ * 		ConfigPtr: pointer to the configuration set
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Gpt_Init(const Gpt_ConfigType *ConfigPtr)
+{
+/*
+ * clc source
+ * set normal mode
+ * enable overflow interrupt
+ */
+}
+
+
+
+/*-------------------------------------------------------------
+ * [Function Name]: Gpt_StartTimer
+ * [Description]: starts the timer with the defined target time
+ * [Args]:
+ * 		Value: timer value (number of ticks)
+ * [Return]: None
+ *  --------------------------------------------------------------*/
+void Gpt_StartTimer(uint8 Value)
+{
+
+}
+
+/*-------------------------------------------------------------
+ * [Function Name]: Gpt_StopTimer
+ * [Description]: Stops the timer
+ * [Args]: None
+ * [Return]: None
+ *  --------------------------------------------------------------*/
+void Gpt_StopTimer()
+{
+
+}
+
+void Gpt_SetMode(Gpt_ModeType Mode)
+{
+
+}
+
+/*-------------------------------------------------------------
+ * [Function Name]: Gpt_Notification
+ * [Description]: Callback notification
+ * [Args]: None
+ * [Return]: None
+ *  --------------------------------------------------------------*/
+void Gpt_Notification()
+{
+
+}
