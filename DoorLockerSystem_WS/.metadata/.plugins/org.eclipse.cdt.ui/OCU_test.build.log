@@ -1,13 +1,16 @@
-13:45:54 **** Incremental Build of configuration Debug for project OCU_test ****
+16:11:36 **** Incremental Build of configuration Debug for project OCU_test ****
 make all 
-Building file: ../main.c
+Building file: ../Ocu.c
 Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"Ocu.d" -MT"Ocu.o" -c -o "Ocu.o" "../Ocu.c"
 In file included from ../micro_config.h:18,
                  from ../Ocu.h:13,
-                 from ../main.c:9:
+                 from ../Ocu.c:8:
 f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-Finished building: ../main.c
+In file included from ../Ocu.c:9:
+../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
+Finished building: ../Ocu.c
  
 Building target: OCU_test.elf
 Invoking: AVR C Linker
@@ -24,15 +27,15 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    6614 bytes (40.4% Full)
+Program:    6480 bytes (39.6% Full)
 (.text + .data + .bootloader)
 
-Data:         26 bytes (2.5% Full)
+Data:         25 bytes (2.4% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-13:45:56 Build Finished (took 1s.422ms)
+16:11:44 Build Finished (took 7s.930ms)
 

@@ -71,15 +71,16 @@ typedef struct
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~ Functions Definitions ~~~~~~~~~~~~~~~~~~~~~*/
-void Ocu_Init(const Ocu_ConfigType* ConfigPtr);
-void Ocu_DeInit(void);
-void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction);
-void Ocu_SetAbsoluteThreshold( Ocu_ChannelType ChannelNumber, Ocu_ValueType AbsoluteValue);
-void Ocu_Notification_0(void);
-void Ocu_Notification_1(void);
-
-void Ocu_setCb( void (*cbNotificationPtr)(void));
-void Ocu_start(uint16 top);
+void Ocu_init(const Ocu_ConfigType* ConfigPtr);
+void Ocu_deInit(void);
+void Ocu_setCbk( void (*cbkPtr)(void) );
+void Ocu_start(uint16 counterTop, uint8 n_ticks);
 void Ocu_stop(void);
+//void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction);
+//void Ocu_SetAbsoluteThreshold( Ocu_ChannelType ChannelNumber, Ocu_ValueType AbsoluteValue);
+//void Ocu_Notification_0(void);
+//void Ocu_Notification_1(void);
+
+
 
 #endif /* OCU_H_ */

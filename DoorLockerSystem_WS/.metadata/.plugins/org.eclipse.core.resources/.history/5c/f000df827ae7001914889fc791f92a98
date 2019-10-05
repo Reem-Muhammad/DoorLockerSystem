@@ -57,13 +57,13 @@ typedef struct
 	 * 	 Microcontroller OCU-specific HW properties (optional prescaler, clock settings if supported by hardware) _/
 	 */
 
-	//void (*Ocu_NotificationPtr)();	/*reference to a callback function*/
+	void (*Ocu_NotificationPtr)();	/*reference to a callback function*/
 
 	Ocu_PinActionType e_ocu_pinAction;	/*controls the behavior of OC pins on compare match*/
 	Ocu_PrescalerType e_ocu_prescaler;	/*controls the tick duration (timer resolution)*/
 	//Ocu_ChannelType ocu_channel;
 
-	//uint8 time_in_INT;	/*number of interrupts required before notifying the callback function*/
+	uint8 time_in_INT;	/*number of interrupts required before notifying the callback function*/
 }Ocu_ConfigType;
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -71,16 +71,11 @@ typedef struct
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~ Functions Definitions ~~~~~~~~~~~~~~~~~~~~~*/
-void Ocu_init(const Ocu_ConfigType* ConfigPtr);
-void Ocu_deInit(void);
-void Ocu_setCbk( void (*cbkPtr)(void) );
-void Ocu_start(uint16 counterTop, uint8 n_ticks);
-void Ocu_stop(void);
-//void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction);
-//void Ocu_SetAbsoluteThreshold( Ocu_ChannelType ChannelNumber, Ocu_ValueType AbsoluteValue);
-//void Ocu_Notification_0(void);
-//void Ocu_Notification_1(void);
-
-
+void Ocu_Init(const Ocu_ConfigType* ConfigPtr);
+void Ocu_DeInit(void);
+void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction);
+void Ocu_SetAbsoluteThreshold( Ocu_ChannelType ChannelNumber, Ocu_ValueType AbsoluteValue);
+void Ocu_Notification_0(void);
+void Ocu_Notification_1(void);
 
 #endif /* OCU_H_ */

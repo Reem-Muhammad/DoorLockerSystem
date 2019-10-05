@@ -28,8 +28,8 @@ void Ocu_setCbk( void (*cbkPtr)(void) )
 void Ocu_init(const Ocu_ConfigType *ConfigPtr)
 {
 	/*Set FOC1 for non-PWM mode */
-	SET_BIT(TCCR1A, FOC1A);
-	//SET_BIT(TCCR1A, FOC1B);
+		SET_BIT(TCCR1A, FOC1A);
+		//SET_BIT(TCCR1A, FOC1B);
 
 	/*set OC1A behavior on compare match*/
 	TCCR1A = (TCCR1A & 0x3F) | (ConfigPtr->e_ocu_pinAction << 6);
@@ -65,20 +65,11 @@ void Ocu_start(uint16 counterTop, uint8 n_ticksRequired)
 	OCR1A = counterTop;
 }
 
-/*-------------------------------------------------------------
- * [Function Name]: Ocu_stop
- * [Description]: Stops the timer
- * [Args]: None
- * [Return]: None
- --------------------------------------------------------------*/
 void Ocu_stop(void)
 {
-	/*Disable module interrupt*/
 	CLEAR_BIT(TIMSK, OCIE1A);
 }
-
-
-/*-------------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Don't know if i should keep it. Ocu_stop seems like it is doing the job
+/*-------------------------------------------------------------
  * [Function Name]: Ocu_DeInit
  * [Description]: De-initializes the output compare unit
  * [Args]: None
@@ -86,11 +77,71 @@ void Ocu_stop(void)
  --------------------------------------------------------------*/
 void Ocu_deInit(void)
 {
-	CLEAR_BIT(TCCR1A, FOC1A);
-	//CLEAR_BIT(TCCR1A, FOC1B);
-	TCCR1A = (TCCR1A & 0x3F) | (0);
-	TCCR1B &= ~(1<<WGM12);
 	TCCR1B = (TCCR1B & 0xF8) | (0);		/*no clock source*/
+}
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_SetPinAction
+ * [Description]: sets the action to be performed by hardware automatically, at the next compare match in the corresponding OCU channel
+ * [Args]:
+ * 		ChannelNumber: Numeric identifier of the OCU channel (CHANNEL_1A or CHANNEL_1B)
+ * 		PinAction: behavior on compare match
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction)
+{
+	TCCR1A = (TCCR1A & 0x3F) | (PinAction << 6);	/*set OC1A behavior*/
+	TCCR1A = (TCCR1A & 0xCF) | (PinAction << 4);	/*set OC1B behavior*/
+#if 0
+	switch(ChannelNumber)
+	{
+	case CHANNEL_1A:
+		TCCR1A = (TCCR1A & 0x3F) | (PinAction << 6);
+		break;
+	case CHANNEL_1B:
+		TCCR1A = (TCCR1A & 0xCF) | (PinAction << 4);
+		break;
+	default:
+		break;
+	}
+#endif
+}
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_SetAbsoluteThreshold
+ * [Description]: sets the compare value for the specified channel
+ * [Args]:
+ * 		ChannelNumber: Numeric identifier of the OCU channel (CHANNEL_1A or CHANNEL_1B)
+ * 		AbsoluteValue: Value to compare with the content of the counter
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_SetAbsoluteThreshold( Ocu_ChannelType ChannelNumber, Ocu_ValueType AbsoluteValue)
+{
+	/*set the compare value (number of ticks required to trigger the interrupt)*/
+	OCR1A = AbsoluteValue;
+}
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_Notification_0
+ * [Description]: notification function that is called when a compare match occurs on channel 1A
+ * [Args]: None
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_Notification_0(void)
+{
+
+}
+
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_Notification_1
+ * [Description]: notification function that is called when a compare match occurs on channel 1B
+ * [Args]: None
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_Notification_1(void)
+{
+
 }
 
 

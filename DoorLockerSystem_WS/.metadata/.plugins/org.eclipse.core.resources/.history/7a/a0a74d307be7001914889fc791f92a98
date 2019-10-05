@@ -15,21 +15,22 @@
 #define CONFIRMATION_FAILED 0
 #define CONFIRMATION_PASSED 1
 
-uint8 flag = 0;
 
+void alarmStop();
 uint8 password_counter = 0; 	/*Keeps track of the number of digits the user has entered so far*/
 uint8 key = 0;		/*Stores the pressed key*/
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
-const Ocu_ConfigType s_OcuConfig = {OCU_DISABLE,OCU_PRESCALER_1024};
+const Ocu_ConfigType s_OcuConfig = {alarmStop, OCU_DISABLE,OCU_PRESCALER_1024,10};
 
 void alarmStart()
 {
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Alarm Started       ");
+	LCD_displayInt(BIT_IS_SET(TIFR,OCF1A));
 
 	/*start the timer*/
-	Ocu_start(46874, 10);
-
+	Ocu_SetAbsoluteThreshold(0, 46874);
+	Ocu_Init(&s_OcuConfig);
 
 }
 void alarmStop()
@@ -39,7 +40,7 @@ void alarmStop()
 	_delay_ms(100);
 
 	/*terminate the timer*/
-	Ocu_stop();
+	//Ocu_DeInit();
 }
 
 /*------------------------------------------
@@ -140,8 +141,7 @@ int main()
 	LCD_init();
 	UART_init(&s_UartConfig);
 	SET_BIT(SREG, 7);
-	Ocu_init(&s_OcuConfig);
-	Ocu_setCbk(alarmStop);
+
 
 
 	setNewPass();
@@ -184,12 +184,7 @@ int main()
 		LCD_goToRowCol(1,0);
 		LCD_displayString("'-' : Change Password");
 */
-		if (flag == 0)
-		{
-			alarmStart();
-			flag =1;
-		}
-
+		alarmStart();
 
 
 	}

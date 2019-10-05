@@ -28,9 +28,9 @@ int main()
 	DDRD = 0xFF;
 	SET_BIT(SREG, 7);
 
-	Ocu_setCbk(mainCb);
+	Ocu_setCb(mainCb);
 
-	Ocu_init(&s_OcuConfig);
+	Ocu_Init(&s_OcuConfig);
 	//Ocu_start(46874);
 	//PORTC = 0xFF;
 
@@ -38,7 +38,7 @@ int main()
 	{
 		if(flag == 0)
 		{
-			Ocu_start(46874, 10);
+			Ocu_start(46874);
 			PORTC = 0xFF;
 			flag = 1;
 		}
