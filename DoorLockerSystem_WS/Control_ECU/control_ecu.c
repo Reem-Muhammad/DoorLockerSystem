@@ -18,7 +18,12 @@
 
 #define SET_NEW_PASS 0xF0
 #define CONFIRM_PASS 0x0F
+#define START_ALARM 0x8A
+#define STOP_ALARM 0xA8
+#define DOOR_OPEN 0xBB
 
+#define MOTOR_DRIVER_DIR DDRD
+#define MOTOR_DRIVER_PORT PORTD
 #define MOTOR_IN1 PD5
 #define MOTOR_IN2 PD6
 #define MOTOR_EN1 PD7
@@ -29,10 +34,26 @@ const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 960
 const Ocu_ConfigType s_OcuConfig = {OCU_DISABLE,OCU_PRESCALER_1024};
 uint8 data_buffer[PASSWORD_LENGTH] = {0};
 uint8 confirm_buffer[PASSWORD_LENGTH] = {0};
-uint8 key = 0;
-uint8 wrongPassCounter = 0;
+//uint8 key = 0;
+//uint8 wrongPassCounter = 0;
 uint8 commandReceived = 0;
 
+
+void doorOpen()
+{
+	/*rotate the motor clock-wise*/
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_IN1);
+	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
+	_delay_ms(1000);
+	/*rotate the motor CCW*/
+	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_IN1);
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
+	_delay_ms(1000);
+	/*stop the motor*/
+	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
+}
 void saveNewPass()
 {
 	LCD_goToRowCol(0,0);
@@ -82,9 +103,10 @@ void alarmStart()
 {
 	CLEAR_BIT(PORTC, BUZZER);
 	LCD_displayString("ALARM");
+	_delay_ms(1000);
 
 	/*start the timer*/
-	Ocu_start(46874, 10);
+	//Ocu_start(46874, 10);
 }
 
 void alarmStop()
@@ -106,7 +128,7 @@ int main()
 
 	SET_BIT(DDRC, BUZZER);
 	SET_BIT(PORTC, BUZZER);		/*init*/
-	DDRD |= (1<< MOTOR_IN1) | (1<< MOTOR_IN2) | (1<< MOTOR_EN1);
+	MOTOR_DRIVER_DIR |= (1<< MOTOR_IN1) | (1<< MOTOR_IN2) | (1<< MOTOR_EN1);
 #if 0
 	commandReceived = UART_receiveByte();
 	if(commandReceived == SET_NEW_PASS)
@@ -157,11 +179,18 @@ int main()
 		{
 		case SET_NEW_PASS:
 			saveNewPass();
-			//LCD_displayInt();
 			break;
 		case CONFIRM_PASS:
-			//LCD_displayInt(7);
 			confirmPass();
+			break;
+		case START_ALARM:
+			alarmStart();
+			break;
+		case STOP_ALARM:
+			alarmStop();
+			break;
+		case DOOR_OPEN:
+			doorOpen();
 			break;
 		default:
 			break;

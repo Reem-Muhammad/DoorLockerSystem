@@ -99,7 +99,7 @@ void Ocu_deInit(void)
 ISR(TIMER1_COMPA_vect)
 {
 	g_ticksCounter++;
-	PORTD = g_ticksCounter;
+	//PORTD = g_ticksCounter;
 	//LCD_displayInt(g_n_ticksRequired);
 	if(g_ticksCounter == g_n_ticksRequired)
 	{

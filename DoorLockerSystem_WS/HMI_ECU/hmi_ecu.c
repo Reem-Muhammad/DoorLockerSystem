@@ -18,9 +18,15 @@
 
 #define SET_NEW_PASS 0xF0
 #define CONFIRM_PASS 0x0F
+#define START_ALARM 0x8A
+#define STOP_ALARM 0xA8
+#define DOOR_OPEN 0xBB
 
 
-uint8 flag = 0;
+
+
+uint8 alarmOn_flag = 0;
+uint8 thief_flag = 0;
 
 uint8 password_counter = 0; 	/*Keeps track of the number of digits the user has entered so far*/
 uint8 key = 0;		/*Stores the pressed key*/
@@ -31,8 +37,11 @@ const Ocu_ConfigType s_OcuConfig = {OCU_DISABLE,OCU_PRESCALER_1024};
 
 void alarmStart()
 {
+	alarmOn_flag = 1;
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Alarm Started       ");
+
+	UART_sendByte(START_ALARM);
 
 	/*start the timer*/
 	Ocu_start(46874, 10);
@@ -41,10 +50,12 @@ void alarmStart()
 }
 void alarmStop()
 {
+	alarmOn_flag = 0;
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Alarm Stopped            ");
 	_delay_ms(100);
 
+	UART_sendByte(STOP_ALARM);
 	/*terminate the timer*/
 	Ocu_stop();
 }
@@ -145,10 +156,7 @@ uint8 confirmPass()
 	return UART_receiveByte();
 }
 
-openAndClose()
-{
 
-}
 
 int main()
 {
@@ -162,7 +170,7 @@ int main()
 	setNewPass();
 
 
-	/*Reset the password and confirm again as long as there is a password mismatch*/
+	/*Reset the password and confirm again as long as there is password mismatch*/
 	while (confirmPass() == CONFIRMATION_FAILED)
 	{
 		LCD_goToRowCol(0,0);
@@ -182,11 +190,11 @@ int main()
 	{
 
 		LCD_goToRowCol(0,0);
-		LCD_displayString("'+' : Open Door");
+		LCD_displayString("'+' : Open Door   ");
 		LCD_goToRowCol(1,0);
-		LCD_displayString("'-' : Change Password");
+		LCD_displayString("'-' : Change Password  ");
 
-		key = keypad_getPressedKey;
+		key = keypad_getPressedKey();
 		while(key != '+' && key != '-')
 		{
 			key = keypad_getPressedKey();
@@ -196,17 +204,30 @@ int main()
 		UART_sendByte(key);
 		if(key == '+')
 		{
+			thief_flag = 0;
+			wrongPassCounter = 0;
+			//if (confirmPass() == CONFIRMATION_PASSED)
+#if 1
 			while (confirmPass() == CONFIRMATION_FAILED)
 			{
 				wrongPassCounter++;
 				if(wrongPassCounter == WRONG_PASS_MAX)
 				{
-					UART_sendByte('A');
+					//UART_sendByte('A');
 					alarmStart();
-					while(1);
+					thief_flag = 1;
+					while(alarmOn_flag);
+					break;
 				}
 			}
-			openAndClose();
+			if(thief_flag == 0)
+			{
+				UART_sendByte(DOOR_OPEN);
+			}
+
+
+#endif
+
 		}
 		else if(key == '-')
 		{
