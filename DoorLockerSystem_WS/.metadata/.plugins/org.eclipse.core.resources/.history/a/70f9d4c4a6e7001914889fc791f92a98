@@ -33,7 +33,7 @@ uint8 key = 0;
 uint8 wrongPassCounter = 0;
 uint8 commandReceived = 0;
 
-void saveNewPass()
+uint8 saveNewPass()
 {
 	LCD_goToRowCol(0,0);
 	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
@@ -44,6 +44,7 @@ void saveNewPass()
 
 	Eep_Write(0, data_buffer, PASSWORD_LENGTH);
 	//LCD_displayInt(8888); //debug
+	return 9;
 }
 
 uint8 confirmPass()
@@ -150,22 +151,19 @@ int main()
 	}
 #endif
 	//LCD_displayInt(8);
-	while(1)
-	{
-		commandReceived = UART_receiveByte();
-		switch(commandReceived)
-		{
-		case SET_NEW_PASS:
-			saveNewPass();
-			//LCD_displayInt();
-			break;
-		case CONFIRM_PASS:
-			//LCD_displayInt(7);
-			confirmPass();
-			break;
-		default:
-			break;
-		}
+	commandReceived = UART_receiveByte();
 
+	switch(commandReceived)
+	{
+	case SET_NEW_PASS:
+		LCD_displayInt(saveNewPass());
+
+		break;
+	case CONFIRM_PASS:
+		LCD_displayInt(7);
+		confirmPass();
+		break;
+	default:
+		break;
 	}
 }

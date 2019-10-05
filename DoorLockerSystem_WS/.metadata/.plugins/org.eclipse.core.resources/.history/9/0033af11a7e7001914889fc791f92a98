@@ -152,20 +152,20 @@ int main()
 	//LCD_displayInt(8);
 	while(1)
 	{
-		commandReceived = UART_receiveByte();
-		switch(commandReceived)
-		{
-		case SET_NEW_PASS:
-			saveNewPass();
-			//LCD_displayInt();
-			break;
-		case CONFIRM_PASS:
-			//LCD_displayInt(7);
-			confirmPass();
-			break;
-		default:
-			break;
-		}
+	commandReceived = UART_receiveByte();
+	switch(commandReceived)
+	{
+	case SET_NEW_PASS:
+		saveNewPass()
+		//LCD_displayInt();
+		break;
+	case CONFIRM_PASS:
+		//LCD_displayInt(7);
+		confirmPass();
+		break;
+	default:
+		break;
+	}
 
 	}
 }

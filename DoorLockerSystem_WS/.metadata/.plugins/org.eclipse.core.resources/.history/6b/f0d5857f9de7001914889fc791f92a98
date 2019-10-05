@@ -106,7 +106,6 @@ void setNewPass()
  -------------------------------------------*/
 uint8 confirmPass()
 {
-	UART_sendByte(CONFIRM_PASS);
 	/*Display instructions for the user*/
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Please Re-enter The Pass:");
@@ -161,7 +160,20 @@ int main()
 
 	setNewPass();
 
+#if 0
+	if ( conf == CONFIRMATION_PASSED)
+	{
+		LCD_goToRowCol(0,0);
+		LCD_displayString("Done              ");
+	}
+	else
+	{
+		LCD_goToRowCol(0,0);
+		LCD_displayString("Confirmation Failed           ");
+		_delay_ms(500);
 
+	}
+#else
 	/*Reset the password and confirm again as long as there is a password mismatch*/
 	while (confirmPass() == CONFIRMATION_FAILED)
 	{
@@ -176,7 +188,7 @@ int main()
 	LCD_goToRowCol(0,0);
 	LCD_displayString("Password Confirmed     ");
 	_delay_ms(500);
-
+#endif
 
 	while(1)
 	{

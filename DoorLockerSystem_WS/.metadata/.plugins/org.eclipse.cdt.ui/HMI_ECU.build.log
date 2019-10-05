@@ -1,4 +1,4 @@
-18:08:22 **** Incremental Build of configuration Debug for project HMI_ECU ****
+20:37:05 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
 Building file: ../hmi_ecu.c
 Invoking: AVR Compiler
@@ -11,27 +11,27 @@ In file included from ../hmi_ecu.c:10:
 ../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
 ../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
 ../hmi_ecu.c: In function 'alarmStart':
-../hmi_ecu.c:31: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:35: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c: In function 'alarmStop':
-../hmi_ecu.c:41: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:45: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c: In function 'setNewPass':
-../hmi_ecu.c:58: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:60: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:80: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:63: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:65: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:85: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c: In function 'confirmPass':
-../hmi_ecu.c:106: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:108: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:127: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:112: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:114: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:133: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c: At top level:
-../hmi_ecu.c:143: warning: return type defaults to 'int'
+../hmi_ecu.c:149: warning: return type defaults to 'int'
 ../hmi_ecu.c: In function 'openAndClose':
-../hmi_ecu.c:145: warning: control reaches end of non-void function
+../hmi_ecu.c:151: warning: control reaches end of non-void function
 ../hmi_ecu.c: In function 'main':
-../hmi_ecu.c:176: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:184: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:192: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:194: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:196: warning: assignment makes integer from pointer without a cast
+../hmi_ecu.c:169: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:177: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:185: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:187: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:189: warning: assignment makes integer from pointer without a cast
 Finished building: ../hmi_ecu.c
  
 Building target: HMI_ECU.elf
@@ -49,7 +49,7 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   10586 bytes (64.6% Full)
+Program:   10598 bytes (64.7% Full)
 (.text + .data + .bootloader)
 
 Data:        318 bytes (31.1% Full)
@@ -59,5 +59,5 @@ Data:        318 bytes (31.1% Full)
 Finished building: sizedummy
  
 
-18:08:24 Build Finished (took 1s.734ms)
+20:37:06 Build Finished (took 1s.484ms)
 
