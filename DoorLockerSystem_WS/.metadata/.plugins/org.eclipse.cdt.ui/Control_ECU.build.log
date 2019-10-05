@@ -1,4 +1,4 @@
-23:46:21 **** Incremental Build of configuration Debug for project Control_ECU ****
+01:25:18 **** Incremental Build of configuration Debug for project Control_ECU ****
 make all 
 Building file: ../control_ecu.c
 Invoking: AVR Compiler
@@ -11,9 +11,9 @@ In file included from ../control_ecu.c:9:
 ../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
 ../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
 ../control_ecu.c: In function 'alarmStart':
-../control_ecu.c:105: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../control_ecu.c:114: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../control_ecu.c: In function 'alarmStop':
-../control_ecu.c:115: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../control_ecu.c:123: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 Finished building: ../control_ecu.c
  
 Building target: Control_ECU.elf
@@ -31,7 +31,7 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    9112 bytes (55.6% Full)
+Program:    8930 bytes (54.5% Full)
 (.text + .data + .bootloader)
 
 Data:         59 bytes (5.8% Full)
@@ -41,5 +41,5 @@ Data:         59 bytes (5.8% Full)
 Finished building: sizedummy
  
 
-23:46:22 Build Finished (took 1s.586ms)
+01:25:22 Build Finished (took 4s.597ms)
 

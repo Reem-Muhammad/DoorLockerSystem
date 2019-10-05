@@ -20,16 +20,13 @@
 #define CONFIRM_PASS 0x0F
 #define START_ALARM 0x8A
 #define STOP_ALARM 0xA8
-#define OPEN_DOOR 0xDB
-#define CLOSE_DOOR 0xBD
+#define DOOR_OPEN 0xBB
 
 #define MOTOR_DRIVER_DIR DDRD
 #define MOTOR_DRIVER_PORT PORTD
 #define MOTOR_IN1 PD5
 #define MOTOR_IN2 PD6
 #define MOTOR_EN1 PD7
-#define BUZZER_DIR DDRC
-#define BUZZER_PORT PORTC
 #define BUZZER PC7
 
 
@@ -44,22 +41,16 @@ uint8 commandReceived = 0;
 
 void doorOpen()
 {
-	/*rotate the motor CW*/
+	/*rotate the motor clock-wise*/
 	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_IN1);
 	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
 	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
-	_delay_ms(15000);
-	/*stop the motor*/
-	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
-
-}
-void doorClose()
-{
+	_delay_ms(1000);
 	/*rotate the motor CCW*/
 	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_IN1);
 	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
 	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
-	_delay_ms(15000);
+	_delay_ms(1000);
 	/*stop the motor*/
 	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
 }
@@ -110,8 +101,9 @@ uint8 confirmPass()
 
 void alarmStart()
 {
-	CLEAR_BIT(BUZZER_PORT, BUZZER);
+	SET_BIT(PORTC, BUZZER);
 	LCD_displayString("ALARM");
+	_delay_ms(1000);
 
 	/*start the timer*/
 	//Ocu_start(46874, 10);
@@ -119,7 +111,7 @@ void alarmStart()
 
 void alarmStop()
 {
-	SET_BIT(BUZZER_PORT, BUZZER);
+	CLEAR_BIT(PORTC, BUZZER);
 	LCD_displayString("STOPPED");
 
 	/*terminate the timer*/
@@ -134,10 +126,10 @@ int main()
 	Ocu_setCbk(alarmStop);
 	Eep_init();
 
-	SET_BIT(BUZZER_DIR, BUZZER);
-	SET_BIT(BUZZER_PORT, BUZZER);		/*init*/
+	SET_BIT(DDRC, BUZZER);
+	SET_BIT(PORTC, BUZZER);		/*init*/
 	MOTOR_DRIVER_DIR |= (1<< MOTOR_IN1) | (1<< MOTOR_IN2) | (1<< MOTOR_EN1);
-
+	SET_BIT(PORTC, BUZZER);
 #if 0
 	commandReceived = UART_receiveByte();
 	if(commandReceived == SET_NEW_PASS)
@@ -198,11 +190,8 @@ int main()
 		case STOP_ALARM:
 			alarmStop();
 			break;
-		case OPEN_DOOR:
+		case DOOR_OPEN:
 			doorOpen();
-			break;
-		case CLOSE_DOOR:
-			doorClose();
 			break;
 		default:
 			break;

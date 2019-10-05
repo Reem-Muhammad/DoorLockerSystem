@@ -20,8 +20,8 @@
 #define CONFIRM_PASS 0x0F
 #define START_ALARM 0x8A
 #define STOP_ALARM 0xA8
-#define OPEN_DOOR 0xDB
-#define CLOSE_DOOR 0xBD
+#define DOOR_OPEN 0xDB
+#define DOOR_CLOSE 0xBD
 
 #define MOTOR_DRIVER_DIR DDRD
 #define MOTOR_DRIVER_PORT PORTD
@@ -198,10 +198,10 @@ int main()
 		case STOP_ALARM:
 			alarmStop();
 			break;
-		case OPEN_DOOR:
+		case DOOR_OPEN:
 			doorOpen();
 			break;
-		case CLOSE_DOOR:
+		case DOOR_CLOSE:
 			doorClose();
 			break;
 		default:
