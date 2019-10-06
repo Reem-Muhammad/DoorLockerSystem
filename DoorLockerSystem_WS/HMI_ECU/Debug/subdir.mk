@@ -9,6 +9,7 @@ C_SRCS += \
 ../Ocu.c \
 ../UART.c \
 ../hmi_ecu.c \
+../hmi_ecu_functions.c \
 ../keypad.c \
 ../timer.c 
 
@@ -18,6 +19,7 @@ OBJS += \
 ./Ocu.o \
 ./UART.o \
 ./hmi_ecu.o \
+./hmi_ecu_functions.o \
 ./keypad.o \
 ./timer.o 
 
@@ -27,6 +29,7 @@ C_DEPS += \
 ./Ocu.d \
 ./UART.d \
 ./hmi_ecu.d \
+./hmi_ecu_functions.d \
 ./keypad.d \
 ./timer.d 
 

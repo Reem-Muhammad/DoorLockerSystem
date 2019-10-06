@@ -537,9 +537,9 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .stab          0x00001bd8      0x6a8 ./control_ecu.o
                                 0xa14 (size before relaxing)
 
-.stabstr        0x00000000     0x1385
+.stabstr        0x00000000     0x1395
  *(.stabstr)
- .stabstr       0x00000000     0x1385 ./EEPROM.o
+ .stabstr       0x00000000     0x1395 ./EEPROM.o
 
 .stab.excl
  *(.stab.excl)

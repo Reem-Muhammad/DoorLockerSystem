@@ -34,7 +34,7 @@
 
 
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600};
-const Ocu_ConfigType s_OcuConfig = {OCU_DISABLE,OCU_PRESCALER_1024};
+const Ocu_ConfigType s_OcuConfig = {OCU_PIN_DISABLE,OCU_PRESCALER_1024};
 uint8 data_buffer[PASSWORD_LENGTH] = {0};
 uint8 confirm_buffer[PASSWORD_LENGTH] = {0};
 //uint8 key = 0;

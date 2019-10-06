@@ -1,0 +1,142 @@
+/*
+ * hmi_ecu.c
+ *
+ *  Created on: 29 Sep 2019
+ *      Author: Home
+ */
+
+
+#include "hmi_ecu_functions.h"
+
+
+
+
+
+uint8 intruder_alert = 0;
+
+
+uint8 key = 0;					/*Stores the pressed key*/
+uint8 wrongPassCounter = 0;		/*Keeps track of the number of wrong attempts to enter the password*/
+
+const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
+const Ocu_ConfigType s_OcuConfig = {OCU_PIN_DISABLE,OCU_PRESCALER_1024};			/*Configuration set of OCU*/
+
+
+
+
+
+int main()
+{
+	/*Initialize LCD, UART, OCU*/
+	LCD_init();
+	UART_init(&s_UartConfig);
+	Ocu_init(&s_OcuConfig);
+
+	/*Enable global interrupt flag*/
+	SET_BIT(SREG, 7);
+
+	/*Set a new password*/
+	setNewPass();
+
+	/*Confirm the password. in case of password mismatch, repeat the process of setting new password and confirming again*/
+	while (confirmPass() == CONFIRMATION_FAILED)
+	{
+		/*Notify the user about the confirmation failure*/
+		LCD_goToRowCol(0,0);
+		LCD_displayString("Confirmation Failed           ");
+		_delay_ms(500);
+
+		/*Set a new password*/
+		setNewPass();
+		//_delay_ms(10);  //------------------> WTF?
+	}
+
+	/*The while loop terminates in case of password match*/
+	LCD_goToRowCol(0,0);
+	LCD_displayString("Password Confirmed        ");
+	/*delay so that "Password Confirmed " is visible*/
+	_delay_ms(500);
+
+
+	while(1)
+	{
+		/*Display the available options to the user*/
+		LCD_goToRowCol(0,0);
+		LCD_displayString("'+' : Open Door               ");
+		LCD_goToRowCol(1,0);
+		LCD_displayString("'-' : Change Password         ");
+
+		key = keypad_getPressedKey();
+		/*Wait until the user chooses one of the available options*/
+		while(key != '+' && key != '-')
+		{
+			key = keypad_getPressedKey();
+			_delay_ms(300);	//Wouldn't be necessary
+		}
+
+
+		//UART_sendByte(key); //----------------> WTF? I think this actually causes a bug!
+		if(key == '+')
+		{
+			intruder_alert = 0;
+			wrongPassCounter = 0;
+			while (confirmPass() == CONFIRMATION_FAILED)
+			{
+				wrongPassCounter++;
+
+				/*Display the number of wrong attempts & max number*/
+				LCD_goToRowCol(0,0);
+				LCD_displayString("WRONG PASSWORD_attempt ");
+				LCD_displayInt(wrongPassCounter);
+				LCD_displayString(" /3");
+				/*Delay so that the message is visible*/
+				_delay_ms(1000);
+				if(wrongPassCounter == WRONG_PASS_MAX)
+				{
+					alarmStart(46874, 10);
+					intruder_alert = 1;
+					while(alarmOn_flag);
+					break;
+				}
+			}
+			if(intruder_alert == 0)
+			{
+				UART_sendByte(OPEN_DOOR);
+				LCD_clear();
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Openning ...                  ");
+				_delay_ms(15000);
+
+				UART_sendByte(CLOSE_DOOR);
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Closing ...                   ");
+				_delay_ms(15000);
+			}
+		}
+
+		else if(key == '-')
+		{
+			if (confirmPass() == CONFIRMATION_PASSED)
+			{
+				setNewPass();
+
+				/*Reset the password and confirm again as long as there is password mismatch*/
+				while (confirmPass() == CONFIRMATION_FAILED)
+				{
+					LCD_goToRowCol(0,0);
+					LCD_displayString("Confirmation Failed           ");
+					_delay_ms(500);
+
+					setNewPass();
+					_delay_ms(10);
+				}
+
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Password Changed Successfully     ");
+				_delay_ms(500);
+
+			}
+		}
+
+	}
+}

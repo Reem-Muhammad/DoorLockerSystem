@@ -33,7 +33,7 @@ typedef enum
 /*Automatic action (by hardware) to be performed on a pin attached to an OCU channel.*/
 typedef enum
 {
-	OCU_DISABLE, OCU_TOGGLE, OCU_SET_LOW, OCU_SET_HIGH
+	OCU_PIN_DISABLE, OCU_PIN_TOGGLE, OCU_PIN_SET_LOW, OCU_PIN_SET_HIGH
 }Ocu_PinActionType;
 
 typedef enum
