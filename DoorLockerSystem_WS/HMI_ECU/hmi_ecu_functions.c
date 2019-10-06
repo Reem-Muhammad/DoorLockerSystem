@@ -1,8 +1,10 @@
 /*
- * hmi_ecu_functions.c
  *
- *  Created on: 6 Oct 2019
- *      Author: Home
+ *	Name		: hmi_ecu_functions.c
+ *	Author		: Reem Muhammad
+ *	Description	: Source file for the main application (HMI ECU)
+ *  Created on	: 6 Oct 2019
+ *
  */
 
 #include "hmi_ecu_functions.h"
@@ -15,6 +17,8 @@ uint8 password_counter = 0; 	/*Keeps track of the number of digits the user has 
  * but no conflict would arise if both files used the same variable
  */
 uint8 key_f = 0;			/*Stores the pressed key*/
+
+
 
 /*------------------------------------------
  * [Function Name]: alarmStart

@@ -1,8 +1,10 @@
 /*
- * hmi_ecu_functions.h
  *
- *  Created on: 6 Oct 2019
- *      Author: Home
+ *	Name		: hmi_ecu_functions.h
+ *	Author		: Reem Muhammad
+ *	Description	: Header file for the main application (HMI ECU)
+ *  Created on	: 6 Oct 2019
+ *
  */
 
 #ifndef HMI_ECU_FUNCTIONS_H_

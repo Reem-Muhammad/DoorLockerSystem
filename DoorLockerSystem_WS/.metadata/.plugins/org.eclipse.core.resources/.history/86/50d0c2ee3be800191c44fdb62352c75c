@@ -1,0 +1,97 @@
+/*
+ * control_ecu_functions.c
+ *
+ *  Created on: 6 Oct 2019
+ *      Author: Home
+ */
+
+#include "control_ecu_functions.h"
+
+
+void doorOpen()
+{
+	/*rotate the motor CW*/
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_IN1);
+	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
+	_delay_ms(15000);
+	/*stop the motor*/
+	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
+
+}
+
+void doorClose()
+{
+	/*rotate the motor CCW*/
+	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_IN1);
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
+	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
+	_delay_ms(15000);
+	/*stop the motor*/
+	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
+}
+
+
+void saveNewPass()
+{
+	LCD_goToRowCol(0,0);
+	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
+	{
+		data_buffer[i] = UART_receiveByte();
+		LCD_displayInt(data_buffer[i]);
+	}
+
+	Eep_Write(0, data_buffer, PASSWORD_LENGTH);
+	//LCD_displayInt(8888); //debug
+}
+
+
+uint8 confirmPass()
+{
+	/*receive the confirmation password entered by the user*/
+	LCD_goToRowCol(1,0);
+	//LCD_displayString("Ctrl ECU.."); //debug
+	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
+	{
+		confirm_buffer[i] = UART_receiveByte();
+		LCD_displayInt(confirm_buffer[i]);
+	}
+
+	/*compare it to the saved password*/
+	//LCD_goToRowCol(0,0);
+	//LCD_displayString("                 "); //debug
+	//LCD_displayInt(Eep_Read(0, data_buffer, PASSWORD_LENGTH)); //debug
+	//LCD_displayString("Reading.."); //debug
+	Eep_Read(0, data_buffer, PASSWORD_LENGTH);
+
+	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
+	{
+		if (confirm_buffer[i] != data_buffer[i])
+		{
+			//LCD_displayInt(i); //debug
+			UART_sendByte(CONFIRMATION_FAILED);
+			return CONFIRMATION_FAILED;
+		}
+	}
+	UART_sendByte(CONFIRMATION_PASSED);
+	return CONFIRMATION_PASSED;
+}
+
+
+void alarmStart()
+{
+	CLEAR_BIT(BUZZER_PORT, BUZZER);
+	LCD_displayString("ALARM");
+
+	/*start the timer*/
+	//Ocu_start(46874, 10);
+}
+
+void alarmStop()
+{
+	SET_BIT(BUZZER_PORT, BUZZER);
+	LCD_displayString("STOPPED");
+
+	/*terminate the timer*/
+	Ocu_stop();
+}

@@ -9,7 +9,8 @@ C_SRCS += \
 ../LCD.c \
 ../Ocu.c \
 ../UART.c \
-../control_ecu.c 
+../control_ecu.c \
+../control_ecu_functions.c 
 
 OBJS += \
 ./EEPROM.o \
@@ -17,7 +18,8 @@ OBJS += \
 ./LCD.o \
 ./Ocu.o \
 ./UART.o \
-./control_ecu.o 
+./control_ecu.o \
+./control_ecu_functions.o 
 
 C_DEPS += \
 ./EEPROM.d \
@@ -25,7 +27,8 @@ C_DEPS += \
 ./LCD.d \
 ./Ocu.d \
 ./UART.d \
-./control_ecu.d 
+./control_ecu.d \
+./control_ecu_functions.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

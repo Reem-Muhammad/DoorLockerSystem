@@ -1,28 +1,22 @@
 /*
- * hmi_ecu.c
  *
- *  Created on: 29 Sep 2019
- *      Author: Home
+ *	Name		: hmi_ecu.c
+ *	Author		: Reem Muhammad
+ *	Description	: HMI ECU, main application
+ *  Created on	: 29 Sep 2019
+ *
  */
 
 
 #include "hmi_ecu_functions.h"
 
 
-
-
-
-uint8 intruder_alert = 0;
-
-
+uint8 intruder_alert = 0;		/*if set, it indicates that the user reached the max permissible attempts of entering a wrong password*/
 uint8 key = 0;					/*Stores the pressed key*/
 uint8 wrongPassCounter = 0;		/*Keeps track of the number of wrong attempts to enter the password*/
 
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
 const Ocu_ConfigType s_OcuConfig = {OCU_PIN_DISABLE,OCU_PRESCALER_1024};			/*Configuration set of OCU*/
-
-
-
 
 
 int main()
@@ -151,6 +145,14 @@ int main()
 
 				LCD_goToRowCol(0,0);
 				LCD_displayString("Password Changed Successfully     ");
+				_delay_ms(500);
+			}
+
+			/*If confirmation failed, display a message then return to the main options*/
+			else
+			{
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Confirmation Failed           ");
 				_delay_ms(500);
 			}
 		}
