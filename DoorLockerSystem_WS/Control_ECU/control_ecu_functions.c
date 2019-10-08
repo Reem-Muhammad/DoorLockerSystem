@@ -10,7 +10,12 @@
 
 #include "control_ecu_functions.h"
 
-
+/*------------------------------------------
+ * [Function Name]: doorOpen
+ * [Description]: rotates the motor CW to open the door for 15 seconds
+ * [Args]: None
+ * [Return]: None
+ -------------------------------------------*/
 void doorOpen()
 {
 	/*rotate the motor CW*/
@@ -23,6 +28,12 @@ void doorOpen()
 
 }
 
+/*------------------------------------------
+ * [Function Name]: doorClose
+ * [Description]: rotates the motor CCW to close the door for 15 seconds, then stops the motor
+ * [Args]: None
+ * [Return]: None
+ -------------------------------------------*/
 void doorClose()
 {
 	/*rotate the motor CCW*/
@@ -63,6 +74,7 @@ void saveNewPass()
 --------------------------------------------*/
 void confirmPass()
 {
+
 	/*receive the confirmation password entered by the user*/
 	LCD_goToRowCol(1,0);
 	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)

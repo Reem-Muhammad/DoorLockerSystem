@@ -14,6 +14,8 @@
 /*~~~~~~~ Macros ~~~~~~~~*/
 #define E_OK 1
 #define E_NOT_OK 0
+#define READ 0b1
+#define WRITE 0b0
 
 #define DEVICE_TYPE_IDENTIFIER 0x0A
 

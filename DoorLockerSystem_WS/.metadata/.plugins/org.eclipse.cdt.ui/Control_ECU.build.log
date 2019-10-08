@@ -1,20 +1,43 @@
-16:26:55 **** Incremental Build of configuration Debug for project Control_ECU ****
+13:30:52 **** Incremental Build of configuration Debug for project Control_ECU ****
 make all 
+Building file: ../EEPROM.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"EEPROM.d" -MT"EEPROM.o" -c -o "EEPROM.o" "../EEPROM.c"
+In file included from ../micro_config.h:18,
+                 from ../I2C.h:11,
+                 from ../EEPROM.c:11:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../EEPROM.c:11:
+../I2C.h:15:2: warning: #warning "STATUS CODES ARE NOT COMPLETE YET"
+In file included from ../EEPROM.c:12:
+../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
+Finished building: ../EEPROM.c
+ 
+Building target: Control_ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega16 -o "Control_ECU.elf"  ./EEPROM.o ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./control_ecu.o ./control_ecu_functions.o   
+Finished building target: Control_ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S Control_ECU.elf  >"Control_ECU.lss"
+Finished building: Control_ECU.lss
+ 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 Control_ECU.elf
 AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    8940 bytes (54.6% Full)
+Program:    8982 bytes (54.8% Full)
 (.text + .data + .bootloader)
 
-Data:         59 bytes (5.8% Full)
+Data:         61 bytes (6.0% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-16:26:56 Build Finished (took 795ms)
+13:30:53 Build Finished (took 1s.172ms)
 

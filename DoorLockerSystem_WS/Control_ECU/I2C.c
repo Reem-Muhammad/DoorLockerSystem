@@ -1,49 +1,63 @@
 /*
- * I2C.c
  *
- *  Created on: 26 Sep 2019
- *      Author: Home
+ *	Name		: I2C.c
+ *	Author		: Reem Muhammad
+ *	Description	: Source file for the I2C driver
+ *  Created on	: 26 Sep 2019
+ *
  */
 
 
 #include "I2C.h"
 
-void TWI_init(const Twi_ConfigType* config_ptr)
+/*------------------------------------------
+ * [Function Name]: TWI_init
+ * [Description]: Initializes the TWI
+ * [Args]:
+ * 		ConfigPtr: pointer to the configuration set
+ * [Return]: None
+ -------------------------------------------*/
+void TWI_init(const Twi_ConfigType* ConfigPtr)
 {
 	/*
 	 * ****************************************
-	 * 1- set SCL frequency: TWBR		??	_/
+	 * - set SCL frequency: TWBR
 	 *
-	 * 2- enable acknowledge bit: TWEA		_/
-	 * 3- enable TWI interface: TWEN		_/
-	 * 4- enable module interrupt in case you are not using polling: TWIE	XX
+	 * - enable acknowledge bit: TWEA
+	 * - enable TWI interface: TWEN
+	 * - enable module interrupt in case you are not using polling: TWIE
 	 *
-	 * 5- set the prescaler: TWPS		??	_/
+	 * - set the prescaler: TWPS
 	 *
-	 * 6- set its slave address: TWA	_/
-	 * 7- enable/ disable recognition to general calls: TWGCE	_/
-	 *
-	 * - clear TWINT
+	 * - set its own slave address: TWA
+	 * - enable/ disable recognition to general calls: TWGCE
 	 * ****************************************
 	 */
 
 	/*Enable TWI interface, Acknowledge*/
 	TWCR |= (1<<TWEN) | (1<<TWEA);
 
-	/*Set the address*/
-	TWAR = (TWAR & 0x01) | (config_ptr->twi_address << 1);
+	/*Set the TWI own address*/
+	TWAR = (TWAR & 0x01) | (ConfigPtr->twi_address << 1);
 
-	/*configure the behavior on general calls*/
-	TWAR |= config_ptr->e_twi_general_call_recognition;
+	/*Configure the behavior on general calls*/
+	TWAR |= ConfigPtr->e_twi_general_call_recognition;
 
-	/*set the prescaler*/
-	TWSR = (TWSR & 0xFC) | (config_ptr->e_twi_prescaler);
+	/*Set the prescaler (writes to TWPS bits)*/
+	TWSR = (TWSR & 0xFC) | (TWI_PRESCALER_BITS);
 
-	/*set the bit rate register*/
-	TWBR = config_ptr->twi_bit_rate;
+	/*Set SCL frequency (writes to TWBR register)*/
+	SET_SCL(ConfigPtr->SCL_freq_Hz);
 }
 
 
+/*------------------------------------------
+ * [Function Name]: TWI_start
+ * [Description]: Transmits the start/ repeated start condition
+ * [Args]:
+ * 		ConfigPtr: pointer to the configuration set
+ * [Return]: None
+ -------------------------------------------*/
 void TWI_start()
 {
 	/*************************
@@ -55,20 +69,27 @@ void TWI_start()
 	/*generate the START condition to claim the bus*/
 	TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
 
-	/*TWINT will be set after successful transmission of the START condition*/
+	/*Wait until TWINT flag is set. TWINT will be set after successful transmission of the START condition*/
 	while(BIT_IS_CLEAR(TWCR, TWINT));
 
-	/*TWSTA would be cleared at the beginning of the other functions (it should be cleared after transmission of START condition and it is not cleared automatically),
-	 *  so there is no need to clear it here.
+	/*TWSTA would be cleared at the beginning of the other functions (it should be cleared after transmission of START condition since it is not cleared automatically),
+	 *so there is no need to clear it here.
 	 */
 	//TWCR &= ~(1<<TWSTA);
 }
 
 
 
-void TWI_write(const uint8 byte_to_write) /*made it const since the function shouldn't try to edit the value*/
+/*------------------------------------------
+ * [Function Name]: TWI_write
+ * [Description]: Transmits a byte
+ * [Args]:
+ * 		ConfigPtr: pointer to the configuration set
+ * [Return]: None
+ -------------------------------------------*/
+void TWI_write(const uint8 byte_to_write) /*const since the function shouldn't try to alter the value*/
 {
-	/*write the data/slave address to the data register TWDR*/
+	/*write the data/SLA to the data register TWDR to be transmitted*/
 	TWDR = byte_to_write;
 
 	/*******************
@@ -78,12 +99,16 @@ void TWI_write(const uint8 byte_to_write) /*made it const since the function sho
 	 *******************/
 	TWCR = (1<<TWINT) | (1<<TWEN);
 
-
-
-	/*wait until TWINT indicates the transmission of SLA+W*/
+	/*wait until TWINT indicates successful transmission of SLA+W*/
 	while( BIT_IS_CLEAR(TWCR, TWINT) );
 }
 
+/*------------------------------------------
+ * [Function Name]: TWI_readWithACK
+ * [Description]: Receives a byte and sends back an acknowledge bit
+ * [Args]: None
+ * [Return]: Received byte
+ -------------------------------------------*/
 uint8 TWI_readWithACK()
 {
 	/*******************
@@ -91,18 +116,25 @@ uint8 TWI_readWithACK()
 	 * TWINT	TWEA	TWSTA	TWSTO	TWWC	TWEN	-	TWIE
 	 * 	1		 1		 0		 0		 X		 1		0	 X
 	 *
-	 * 	setting TWINT will clear the flag
-	 * 	setting TWEA will generate the ACK pulse when data is received
+	 * 	Setting TWINT clears the flag
+	 * 	Setting TWEA generates the ACK pulse when data is received
+	 * 	Setting TWEN enables TWI
 	 *******************/
 	TWCR = (1<<TWINT) | (1<<TWEA) | (1<<TWEN);
 
-	/*wait until the byte is received, then send ACK*/
+	/*wait until the byte is received (TWINT flag is set), then send ACK*/
 	while( BIT_IS_CLEAR(TWCR, TWINT) );
 
 	/*return the received byte*/
 	return TWDR;
 }
 
+/*------------------------------------------
+ * [Function Name]: TWI_readWithNACK
+ * [Description]: Receives a byte without sending back an acknowledge bit
+ * [Args]: None
+ * [Return]: Received byte
+ -------------------------------------------*/
 uint8 TWI_readWithNACK()
 {
 	/*******************
@@ -110,19 +142,25 @@ uint8 TWI_readWithNACK()
 	 * TWINT	TWEA	TWSTA	TWSTO	TWWC	TWEN	-	TWIE
 	 * 	1		 0		 0		 0		 X		 1		0	 X
 	 *
-	 * 	setting TWINT will clear the flag
-	 * 	clearing TWEA will prevent the generation of the ACK pulse when data is received
+	 *	Setting TWINT clears the flag
+	 * 	Clearing TWEA suppresses the generation of the ACK pulse when data is received
+	 * 	Setting TWEN enables TWI
 	 *******************/
 	TWCR = (1<<TWINT) | (1<<TWEN);
 
-	/*wait until the byte is received, and no ACK would be sent*/
+	/*Wait until the byte is received. No ACK would be sent*/
 	while( BIT_IS_CLEAR(TWCR, TWINT) );
 
-	/*return the received byte*/
+	/*Return the received byte*/
 	return TWDR;
 }
 
-
+/*------------------------------------------
+ * [Function Name]: TWI_stop
+ * [Description]: Transmits a STOP condition
+ * [Args]: None
+ * [Return]: None
+ -------------------------------------------*/
 void TWI_stop()
 {
 	/*******************
@@ -132,6 +170,5 @@ void TWI_stop()
 	 *******************/
 	TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
 
-	/*wait until the STOP condition is transmitted*/
-	//while( BIT_IS_CLEAR(TWCR, TWINT) );
+	/*TWINT flag is not set after the transmission of a STOP condition --> DON'T USE POLLING*/
 }

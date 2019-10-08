@@ -1,50 +1,38 @@
-16:27:00 **** Incremental Build of configuration Debug for project HMI_ECU ****
+13:30:52 **** Incremental Build of configuration Debug for project Control_ECU ****
 make all 
-Building file: ../hmi_ecu.c
+Building file: ../EEPROM.c
 Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"hmi_ecu.d" -MT"hmi_ecu.o" -c -o "hmi_ecu.o" "../hmi_ecu.c"
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"EEPROM.d" -MT"EEPROM.o" -c -o "EEPROM.o" "../EEPROM.c"
 In file included from ../micro_config.h:18,
-                 from ../keypad.h:13,
-                 from ../hmi_ecu_functions.h:11,
-                 from ../hmi_ecu.c:9:
+                 from ../I2C.h:11,
+                 from ../EEPROM.c:11:
 f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../hmi_ecu_functions.h:12,
-                 from ../hmi_ecu.c:9:
+In file included from ../EEPROM.c:11:
+../I2C.h:15:2: warning: #warning "STATUS CODES ARE NOT COMPLETE YET"
+In file included from ../EEPROM.c:12:
 ../LCD.h:15:2: warning: #warning "SUPPORTS ONLY LCD WITH 2 ROWS"
 ../LCD.h:16:2: warning: #warning "LOW_NIBBLE is not working"
-../hmi_ecu.c: In function 'main':
-../hmi_ecu.c:46: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:55: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:64: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:66: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:92: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:94: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:122: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:128: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:146: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:153: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:161: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-Finished building: ../hmi_ecu.c
+Finished building: ../EEPROM.c
  
-Building target: HMI_ECU.elf
+Building target: Control_ECU.elf
 Invoking: AVR C Linker
-avr-gcc -Wl,-Map,HMI_ECU.map -mmcu=atmega16 -o "HMI_ECU.elf"  ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./hmi_ecu.o ./hmi_ecu_functions.o ./keypad.o ./timer.o   
-Finished building target: HMI_ECU.elf
+avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega16 -o "Control_ECU.elf"  ./EEPROM.o ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./control_ecu.o ./control_ecu_functions.o   
+Finished building target: Control_ECU.elf
  
 Invoking: AVR Create Extended Listing
-avr-objdump -h -S HMI_ECU.elf  >"HMI_ECU.lss"
-Finished building: HMI_ECU.lss
+avr-objdump -h -S Control_ECU.elf  >"Control_ECU.lss"
+Finished building: Control_ECU.lss
  
 Invoking: Print Size
-avr-size --format=avr --mcu=atmega16 HMI_ECU.elf
+avr-size --format=avr --mcu=atmega16 Control_ECU.elf
 AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   12398 bytes (75.7% Full)
+Program:    8982 bytes (54.8% Full)
 (.text + .data + .bootloader)
 
-Data:        462 bytes (45.1% Full)
+Data:         61 bytes (6.0% Full)
 (.data + .bss + .noinit)
 
 
