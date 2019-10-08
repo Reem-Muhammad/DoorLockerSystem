@@ -13,7 +13,7 @@
 #include "common_macros.h"
 #include "std_types.h"
 
-#warning "THE DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+#warning "SUPPORTS ONLY LCD WITH 2 ROWS"
 #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"	//------> [BUG#2]
 
 

@@ -1,10 +1,11 @@
 /*
-Â * LCD.c
  *
- *  Created on: 7 Sep 2019
- *      Author: Home
+ *	Name		: LCD.c
+ *	Author		: Reem Muhammad
+ *	Description	: Source file for LCD driver
+ *  Created on	: 7 Sep 2019
+ *
  */
-
 
 #include "LCD.h"
 
@@ -14,7 +15,7 @@
  * [Description]: sends a command to the LCD
  * [Args]:
  * 		command: command to be sent
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_sendCommand(uint8 command)
 {
@@ -24,7 +25,7 @@ void LCD_sendCommand(uint8 command)
 	/*Select write mode*/
 	CLEAR_BIT(CTRL_PORT_OUT, R_W);
 
-	/*wait at least 50ns (address setup time)*/
+	/*wait at least 50ns (tas)*/
 	_delay_ms(1);
 
 	/*enable the LCD*/
@@ -61,10 +62,13 @@ void LCD_sendCommand(uint8 command)
 	#endif
 #endif
 
+	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
 	CLEAR_BIT(CTRL_PORT_OUT, EN);
+
+	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 
 }
@@ -76,7 +80,7 @@ void LCD_sendCommand(uint8 command)
  * [Description]: sends a character to be displayed on the LCD
  * [Args]:
  * 		character: character to be displayed
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_displayCharacter(uint8 character)
 {
@@ -91,6 +95,8 @@ void LCD_displayCharacter(uint8 character)
 
 	/*enable the LCD*/
 	SET_BIT(CTRL_PORT_OUT, EN);
+
+	/*wait at least (tpw - tdsw)ns before sending the command*/
 	_delay_ms(1);
 
 #if N_BIT_INTERFACE == 8
@@ -121,10 +127,13 @@ void LCD_displayCharacter(uint8 character)
 	#endif
 #endif
 
+	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
 	CLEAR_BIT(CTRL_PORT_OUT, EN);
+
+	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 }
 
@@ -135,7 +144,7 @@ void LCD_displayCharacter(uint8 character)
  * [Description]: sends a string to be displayed on the LCD
  * [Args]:
  * 		character_ptr: pointer to the first character of the string to be displayed
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_displayString(uint8 *character_ptr)
 {
@@ -154,7 +163,7 @@ void LCD_displayString(uint8 *character_ptr)
  * [Description]: displays an integer number after it has been converted into a string
  * [Args]:
  * 		int_num: a signed 32-bit integer number to be displayed
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_displayInt(sint32 int_num)
 {
@@ -181,8 +190,8 @@ void LCD_displayInt(sint32 int_num)
  * [Description]: takes a positive integer number and converts it into a string
  * [Args]:
  * 		int_num: a signed 32-bit integer number to be converted
- * 		*str_of_int_ptr: pointer to the string that represents the integer number -->>>>>>>
- * [Return]: -
+ * 		*str_of_int_ptr: pointer to the string that represents the converted integer number
+ * [Return]: None
  -----------------------------------------*/
 void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
 {
@@ -195,6 +204,7 @@ void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
 	/*a reference array that stores the ASCII corresponding to each decimal digit*/
 	uint8 ASCII_reference[10] = {'0','1','2', '3', '4', '5', '6', '7', '8', '9'};
 
+	/*index starts from 1, since element 0 is the null terminator*/
 	uint8 index = 1;
 
 	if(int_num == 0)
@@ -225,19 +235,19 @@ void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
 /*----------------------------------------
  * [Function Name]: LCD_init
  * [Description]: initializes the LCD
- * [Args]: -
- * [Return]: -
+ * [Args]: None
+ * [Return]: None
  -----------------------------------------*/
 void LCD_init()
 {
+	/*Configure the control pins as o/p*/
 	CTRL_PORT_DIR |= (1<<RS) | (1<<R_W) | (1<<EN);
 
 #if N_BIT_INTERFACE == 8
-	//set to o/p
+	/*Configure data pins as i/p*/
 	DATA_PORT_DIR = 0xFF;
 
-
-
+	/*switch to 2 lines, 8-bit mode*/
 	LCD_sendCommand(TWO_LINE_8BIT_MODE);
 
 
@@ -261,8 +271,8 @@ void LCD_init()
 /*----------------------------------------
  * [Function Name]: LCD_clear
  * [Description]: clears the display
- * [Args]: -
- * [Return]: -
+ * [Args]: None
+ * [Return]: None
  -----------------------------------------*/
 void LCD_clear()
 {
@@ -277,10 +287,11 @@ void LCD_clear()
  * [Args]:
  * 		row: the desired row number, starting from 0
  * 		col: the desired column number, starting from 0
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_goToRowCol(uint8 row, uint8 col)
 {
+	/*To set the cursor position on the display, use the command: (0x80 + address)*/
 	switch(row)
 	{
 	case 0:

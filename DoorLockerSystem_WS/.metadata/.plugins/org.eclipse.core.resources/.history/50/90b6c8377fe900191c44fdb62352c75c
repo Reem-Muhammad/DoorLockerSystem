@@ -41,11 +41,11 @@
 
 
 /*~~~~~~~~~~ Static Configurations ~~~~~~~~~~~*/
-#define CTRL_PORT_DIR DDRB
-#define CTRL_PORT_OUT PORTB
-#define RS PB0
-#define R_W PB1
-#define EN PB2
+#define CTRL_PORT_DIR DDRC
+#define CTRL_PORT_OUT PORC
+#define RS PC0
+#define R_W PC1
+#define EN PC2
 
 #define DATA_PORT_DIR DDRA
 #define DATA_PORT_OUT PORTA

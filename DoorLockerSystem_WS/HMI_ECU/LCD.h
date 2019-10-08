@@ -1,10 +1,11 @@
 /*
- * LCD.h
  *
+ *	Name		: LCD.h
+ *	Author		: Reem Muhammad
+ *	Description	: Header file for LCD driver
  *  Created on: 7 Sep 2019
- *      Author: Home
+ *
  */
-
 #ifndef LCD_H_
 #define LCD_H_
 
@@ -12,17 +13,13 @@
 #include "common_macros.h"
 #include "std_types.h"
 
-#warning "SUPPORTS ONLY LCD WITH 2 ROWS"
-#warning "LOW_NIBBLE is not working"
-
-
-
+#warning "THE DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+#warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"	//------> [BUG#2]
 
 
 /*first character address of each line*/
 #define FIRST_LINE_BASE_ADDRESS 0x00
 #define SECOND_LINE_BASE_ADDRESS 0x40
-
 
 
 /*~~~~~~~~~~~~ LCD commands ~~~~~~~~~~~~~~~~~*/
@@ -38,6 +35,7 @@
 #define CURSOR_TO_ROW1 0x80
 #define CURSOR_TO_ROW2 0xC0
 
+/*for 4-bit mode*/
 #define LOW_NIBBLE 0x0F
 #define HIGH_NIBBLE 0xF0
 
@@ -55,7 +53,11 @@
 #define LCD_N_COL 32	/*Max no. characters allowed in a single row*/
 
 #define N_BIT_INTERFACE 8
-#define NIBBLE HIGH_NIBBLE	/*use HIGH_NIBBLE or LOW_NIBBLE*/
+#if N_BIT_INTERFACE == 4
+	#define LOW_NIBBLE 0x0F
+	#define HIGH_NIBBLE 0xF0
+	#define NIBBLE HIGH_NIBBLE	/*use HIGH_NIBBLE or LOW_NIBBLE*/
+#endif
 
 
 /*~~~~~~~~~~~~~ Functions Prototypes ~~~~~~~~~~~*/

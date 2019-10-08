@@ -1,11 +1,10 @@
 /*
+Â * LCD.c
  *
- *	Name		: LCD.c
- *	Author		: Reem Muhammad
- *	Description	: Source file for LCD driver
- *  Created on	: 7 Sep 2019
- *
+ *  Created on: 7 Sep 2019
+ *      Author: Home
  */
+
 
 #include "LCD.h"
 
@@ -25,7 +24,7 @@ void LCD_sendCommand(uint8 command)
 	/*Select write mode*/
 	CLEAR_BIT(CTRL_PORT_OUT, R_W);
 
-	/*wait at least 50ns (tas)*/
+	/*wait at least 50ns (address setup time)*/
 	_delay_ms(1);
 
 	/*enable the LCD*/
@@ -62,13 +61,10 @@ void LCD_sendCommand(uint8 command)
 	#endif
 #endif
 
-	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
 	CLEAR_BIT(CTRL_PORT_OUT, EN);
-
-	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 
 }
@@ -95,8 +91,6 @@ void LCD_displayCharacter(uint8 character)
 
 	/*enable the LCD*/
 	SET_BIT(CTRL_PORT_OUT, EN);
-
-	/*wait at least (tpw - tdsw)ns before sending the command*/
 	_delay_ms(1);
 
 #if N_BIT_INTERFACE == 8
@@ -127,13 +121,10 @@ void LCD_displayCharacter(uint8 character)
 	#endif
 #endif
 
-	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
 	CLEAR_BIT(CTRL_PORT_OUT, EN);
-
-	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 }
 
@@ -240,14 +231,14 @@ void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
  -----------------------------------------*/
 void LCD_init()
 {
-	/*Configure the control pins as o/p*/
 	CTRL_PORT_DIR |= (1<<RS) | (1<<R_W) | (1<<EN);
 
 #if N_BIT_INTERFACE == 8
-	/*Configure data pins as i/p*/
+	//set to o/p
 	DATA_PORT_DIR = 0xFF;
 
-	/*switch to 2 lines, 8-bit mode*/
+
+
 	LCD_sendCommand(TWO_LINE_8BIT_MODE);
 
 
@@ -271,8 +262,8 @@ void LCD_init()
 /*----------------------------------------
  * [Function Name]: LCD_clear
  * [Description]: clears the display
- * [Args]: None
- * [Return]: None
+ * [Args]: -
+ * [Return]: -
  -----------------------------------------*/
 void LCD_clear()
 {
@@ -287,11 +278,10 @@ void LCD_clear()
  * [Args]:
  * 		row: the desired row number, starting from 0
  * 		col: the desired column number, starting from 0
- * [Return]: None
+ * [Return]: -
  -----------------------------------------*/
 void LCD_goToRowCol(uint8 row, uint8 col)
 {
-	/*To set the cursor position on the display, use the command: (0x80 + address)*/
 	switch(row)
 	{
 	case 0:

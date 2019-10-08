@@ -1,5 +1,88 @@
-05:14:47 **** Incremental Build of configuration Debug for project HMI_ECU ****
+05:53:41 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
+Building file: ../LCD.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"LCD.d" -MT"LCD.o" -c -o "LCD.o" "../LCD.c"
+In file included from ../micro_config.h:18,
+                 from ../LCD.h:12,
+                 from ../LCD.c:10:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../LCD.c:10:
+../LCD.h:16:2: warning: #warning "THE DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
+Finished building: ../LCD.c
+ 
+Building file: ../Ocu.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"Ocu.d" -MT"Ocu.o" -c -o "Ocu.o" "../Ocu.c"
+In file included from ../micro_config.h:18,
+                 from ../Ocu.h:13,
+                 from ../Ocu.c:8:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../Ocu.c:9:
+../LCD.h:16:2: warning: #warning "THE DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
+Finished building: ../Ocu.c
+ 
+Building file: ../hmi_ecu.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"hmi_ecu.d" -MT"hmi_ecu.o" -c -o "hmi_ecu.o" "../hmi_ecu.c"
+In file included from ../micro_config.h:18,
+                 from ../keypad.h:13,
+                 from ../hmi_ecu_functions.h:13,
+                 from ../hmi_ecu.c:11:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../hmi_ecu_functions.h:14,
+                 from ../hmi_ecu.c:11:
+../LCD.h:16:2: warning: #warning "THE DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
+../hmi_ecu.c: In function 'main':
+../hmi_ecu.c:40: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:49: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:58: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:60: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:86: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:88: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:116: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:122: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:140: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:147: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:155: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+Finished building: ../hmi_ecu.c
+ 
+Building file: ../hmi_ecu_functions.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"hmi_ecu_functions.d" -MT"hmi_ecu_functions.o" -c -o "hmi_ecu_functions.o" "../hmi_ecu_functions.c"
+In file included from ../micro_config.h:18,
+                 from ../keypad.h:13,
+                 from ../hmi_ecu_functions.h:13,
+                 from ../hmi_ecu_functions.c:10:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../hmi_ecu_functions.h:14,
+                 from ../hmi_ecu_functions.c:10:
+../LCD.h:16:2: warning: #warning "THE DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
+../hmi_ecu_functions.c: In function 'alarmStart':
+../hmi_ecu_functions.c:42: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c: In function 'setNewPass':
+../hmi_ecu_functions.c:83: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:85: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:111: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c: In function 'confirmPass':
+../hmi_ecu_functions.c:140: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:142: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:167: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+Finished building: ../hmi_ecu_functions.c
+ 
+Building target: HMI_ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_ECU.map -mmcu=atmega16 -o "HMI_ECU.elf"  ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./hmi_ecu.o ./hmi_ecu_functions.o ./keypad.o ./timer.o   
+Finished building target: HMI_ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_ECU.elf  >"HMI_ECU.lss"
+Finished building: HMI_ECU.lss
+ 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 HMI_ECU.elf
 AVR Memory Usage

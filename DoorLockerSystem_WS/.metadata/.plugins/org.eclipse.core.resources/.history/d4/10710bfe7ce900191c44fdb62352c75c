@@ -1,4 +1,10 @@
 /*
+Â * LCD.c
+ *
+ *  Created on: 7 Sep 2019
+ *      Author: Home
+ */
+/*
  *
  *	Name		: LCD.c
  *	Author		: Reem Muhammad
@@ -25,7 +31,7 @@ void LCD_sendCommand(uint8 command)
 	/*Select write mode*/
 	CLEAR_BIT(CTRL_PORT_OUT, R_W);
 
-	/*wait at least 50ns (tas)*/
+	/*wait at least 50ns (address setup time)*/
 	_delay_ms(1);
 
 	/*enable the LCD*/
@@ -62,13 +68,10 @@ void LCD_sendCommand(uint8 command)
 	#endif
 #endif
 
-	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
 	CLEAR_BIT(CTRL_PORT_OUT, EN);
-
-	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 
 }
@@ -95,8 +98,6 @@ void LCD_displayCharacter(uint8 character)
 
 	/*enable the LCD*/
 	SET_BIT(CTRL_PORT_OUT, EN);
-
-	/*wait at least (tpw - tdsw)ns before sending the command*/
 	_delay_ms(1);
 
 #if N_BIT_INTERFACE == 8
@@ -127,13 +128,10 @@ void LCD_displayCharacter(uint8 character)
 	#endif
 #endif
 
-	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
 	CLEAR_BIT(CTRL_PORT_OUT, EN);
-
-	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 }
 
@@ -291,7 +289,7 @@ void LCD_clear()
  -----------------------------------------*/
 void LCD_goToRowCol(uint8 row, uint8 col)
 {
-	/*To set the cursor position on the display, use the command: (0x80 + address)*/
+	/*To set the cursor position on the display, use (0x80 + address)*/
 	switch(row)
 	{
 	case 0:

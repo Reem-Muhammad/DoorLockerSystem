@@ -1756,7 +1756,7 @@ void TWI_stop()
 00000c9c <LCD_sendCommand>:
  * [Args]:
  * 		command: command to be sent
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_sendCommand(uint8 command)
 {
@@ -1934,7 +1934,7 @@ _delay_loop_2(uint16_t __count)
      dae:	9c a7       	std	Y+44, r25	; 0x2c
      db0:	8b a7       	std	Y+43, r24	; 0x2b
 
-	/*wait at least 50ns (address setup time)*/
+	/*wait at least 50ns (tas)*/
 	_delay_ms(1);
 
 	/*enable the LCD*/
@@ -2230,8 +2230,8 @@ _delay_ms(double __ms)
      f8a:	f1 f7       	brne	.-4      	; 0xf88 <LCD_sendCommand+0x2ec>
      f8c:	98 8b       	std	Y+16, r25	; 0x10
      f8e:	8f 87       	std	Y+15, r24	; 0x0f
-#endif
 
+	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
@@ -2380,6 +2380,8 @@ _delay_ms(double __ms)
     107c:	f1 f7       	brne	.-4      	; 0x107a <LCD_sendCommand+0x3de>
     107e:	9a 83       	std	Y+2, r25	; 0x02
     1080:	89 83       	std	Y+1, r24	; 0x01
+
+	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 
 }
@@ -2396,7 +2398,7 @@ _delay_ms(double __ms)
 00001094 <LCD_displayCharacter>:
  * [Args]:
  * 		character: character to be displayed
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_displayCharacter(uint8 character)
 {
@@ -2717,6 +2719,7 @@ _delay_ms(double __ms)
     1296:	f1 f7       	brne	.-4      	; 0x1294 <LCD_displayCharacter+0x200>
     1298:	9e 8f       	std	Y+30, r25	; 0x1e
     129a:	8d 8f       	std	Y+29, r24	; 0x1d
+	/*wait at least (tpw - tdsw)ns before sending the command*/
 	_delay_ms(1);
 
 #if N_BIT_INTERFACE == 8
@@ -2863,8 +2866,8 @@ _delay_ms(double __ms)
     1382:	f1 f7       	brne	.-4      	; 0x1380 <LCD_displayCharacter+0x2ec>
     1384:	98 8b       	std	Y+16, r25	; 0x10
     1386:	8f 87       	std	Y+15, r24	; 0x0f
-#endif
 
+	/*wait at least (tdsw)ns before clearing the enable line*/
 	_delay_ms(1);
 
 	/*disable the LCD*/
@@ -3013,6 +3016,8 @@ _delay_ms(double __ms)
     1474:	f1 f7       	brne	.-4      	; 0x1472 <LCD_displayCharacter+0x3de>
     1476:	9a 83       	std	Y+2, r25	; 0x02
     1478:	89 83       	std	Y+1, r24	; 0x01
+
+	/*Wait at least (th)ns while holding the data on the line after disabling the LCD*/
 	_delay_ms(1);
 }
     147a:	e9 96       	adiw	r28, 0x39	; 57
@@ -3028,7 +3033,7 @@ _delay_ms(double __ms)
 0000148c <LCD_displayString>:
  * [Args]:
  * 		character_ptr: pointer to the first character of the string to be displayed
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_displayString(uint8 *character_ptr)
 {
@@ -3054,7 +3059,7 @@ void LCD_displayString(uint8 *character_ptr)
     14aa:	01 96       	adiw	r24, 0x01	; 1
     14ac:	9a 83       	std	Y+2, r25	; 0x02
     14ae:	89 83       	std	Y+1, r24	; 0x01
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_displayString(uint8 *character_ptr)
 {
@@ -3079,7 +3084,7 @@ void LCD_displayString(uint8 *character_ptr)
 000014c4 <LCD_displayInt>:
  * [Args]:
  * 		int_num: a signed 32-bit integer number to be displayed
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_displayInt(sint32 int_num)
 {
@@ -3169,8 +3174,8 @@ void LCD_displayInt(sint32 int_num)
 
 00001552 <convertIntToString>:
  * 		int_num: a signed 32-bit integer number to be converted
- * 		*str_of_int_ptr: pointer to the string that represents the integer number -->>>>>>>
- * [Return]: -
+ * 		*str_of_int_ptr: pointer to the string that represents the converted integer number
+ * [Return]: None
  -----------------------------------------*/
 void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
 {
@@ -3242,6 +3247,7 @@ void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
     15c4:	44 23       	and	r20, r20
     15c6:	49 f7       	brne	.-46     	; 0x159a <convertIntToString+0x48>
 
+	/*index starts from 1, since element 0 is the null terminator*/
 	uint8 index = 1;
     15c8:	81 e0       	ldi	r24, 0x01	; 1
     15ca:	8a 83       	std	Y+2, r24	; 0x02
@@ -3413,8 +3419,8 @@ void convertIntToString(uint32 int_num, uint8 *str_of_int_ptr)
 
 000016d0 <LCD_init>:
  * [Description]: initializes the LCD
- * [Args]: -
- * [Return]: -
+ * [Args]: None
+ * [Return]: None
  -----------------------------------------*/
 void LCD_init()
 {
@@ -3422,6 +3428,7 @@ void LCD_init()
     16d2:	cf 93       	push	r28
     16d4:	cd b7       	in	r28, 0x3d	; 61
     16d6:	de b7       	in	r29, 0x3e	; 62
+	/*Configure the control pins as o/p*/
 	CTRL_PORT_DIR |= (1<<RS) | (1<<R_W) | (1<<EN);
     16d8:	a4 e3       	ldi	r26, 0x34	; 52
     16da:	b0 e0       	ldi	r27, 0x00	; 0
@@ -3432,15 +3439,14 @@ void LCD_init()
     16e4:	8c 93       	st	X, r24
 
 #if N_BIT_INTERFACE == 8
-	//set to o/p
+	/*Configure data pins as i/p*/
 	DATA_PORT_DIR = 0xFF;
     16e6:	ea e3       	ldi	r30, 0x3A	; 58
     16e8:	f0 e0       	ldi	r31, 0x00	; 0
     16ea:	8f ef       	ldi	r24, 0xFF	; 255
     16ec:	80 83       	st	Z, r24
 
-
-
+	/*switch to 2 lines, 8-bit mode*/
 	LCD_sendCommand(TWO_LINE_8BIT_MODE);
     16ee:	88 e3       	ldi	r24, 0x38	; 56
     16f0:	0e 94 4e 06 	call	0xc9c	; 0xc9c <LCD_sendCommand>
@@ -3465,8 +3471,8 @@ void LCD_init()
 
 0000170c <LCD_clear>:
  * [Description]: clears the display
- * [Args]: -
- * [Return]: -
+ * [Args]: None
+ * [Return]: None
  -----------------------------------------*/
 void LCD_clear()
 {
@@ -3485,7 +3491,7 @@ void LCD_clear()
 00001720 <LCD_goToRowCol>:
  * 		row: the desired row number, starting from 0
  * 		col: the desired column number, starting from 0
- * [Return]: -
+ * [Return]: None
  -----------------------------------------*/
 void LCD_goToRowCol(uint8 row, uint8 col)
 {
@@ -3497,6 +3503,7 @@ void LCD_goToRowCol(uint8 row, uint8 col)
     172a:	de b7       	in	r29, 0x3e	; 62
     172c:	89 83       	std	Y+1, r24	; 0x01
     172e:	6a 83       	std	Y+2, r22	; 0x02
+	/*To set the cursor position on the display, use the command: (0x80 + address)*/
 	switch(row)
     1730:	89 81       	ldd	r24, Y+1	; 0x01
     1732:	28 2f       	mov	r18, r24

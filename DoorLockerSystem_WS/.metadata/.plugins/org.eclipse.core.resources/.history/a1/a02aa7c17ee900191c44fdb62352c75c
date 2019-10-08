@@ -291,7 +291,7 @@ void LCD_clear()
  -----------------------------------------*/
 void LCD_goToRowCol(uint8 row, uint8 col)
 {
-	/*To set the cursor position on the display, use the command: (0x80 + address)*/
+	/*To set the cursor position on the display, use (0x80 + address)*/
 	switch(row)
 	{
 	case 0:
