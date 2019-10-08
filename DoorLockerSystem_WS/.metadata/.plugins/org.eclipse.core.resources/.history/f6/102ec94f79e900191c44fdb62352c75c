@@ -1,10 +1,8 @@
 /*
+ * EEPROM.h
  *
- *	Name		: EEPROM.h
- *	Author		: Reem Muhammad
- *	Description	: Header file for EEPROM driver
  *  Created on: 28 Sep 2019
- *
+ *      Author: Home
  */
 
 #ifndef EEPROM_H_
@@ -25,6 +23,18 @@
 typedef uint16 Eep_AddressType;
 typedef uint16 Eep_LengthType;
 
+#if 0
+typedef struct
+{
+	/*
+	 * EEPROM size
+	 * maximum block sizes (write, erase) processed within the job processing function
+	 * maximum read block sizes for normal and fast EEPROM mode processed within the job processing function
+	 * call cycle of cyclic job processing function for read, write, erase
+	 */
+	Eep_AddressType Eep_Base_Address;
+}Eep_ConfigType;
+#endif
 
 /*~~~~~~~~~~ Functions Definitions ~~~~~~~~~~~*/
 void Eep_init();

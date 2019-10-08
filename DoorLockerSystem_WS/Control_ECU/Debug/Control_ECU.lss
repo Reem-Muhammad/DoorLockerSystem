@@ -9,27 +9,27 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   2 .bss          0000000f  0080008e  0080008e  000023aa  2**0
                   ALLOC
-  3 .stab         000023e8  00000000  00000000  000023ac  2**2
+  3 .stab         000023dc  00000000  00000000  000023ac  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00001355  00000000  00000000  00004794  2**0
+  4 .stabstr      00001319  00000000  00000000  00004788  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000140  00000000  00000000  00005ae9  2**0
+  5 .debug_aranges 00000140  00000000  00000000  00005aa1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 00000170  00000000  00000000  00005c29  2**0
+  6 .debug_pubnames 00000170  00000000  00000000  00005be1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00001c49  00000000  00000000  00005d99  2**0
+  7 .debug_info   00001c49  00000000  00000000  00005d51  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00000eeb  00000000  00000000  000079e2  2**0
+  8 .debug_abbrev 00000eeb  00000000  00000000  0000799a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00000dad  00000000  00000000  000088cd  2**0
+  9 .debug_line   00000dad  00000000  00000000  00008885  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000160  00000000  00000000  0000967c  2**2
+ 10 .debug_frame  00000160  00000000  00000000  00009634  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    0000028d  00000000  00000000  000097dc  2**0
+ 11 .debug_str    0000028d  00000000  00000000  00009794  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    000007ce  00000000  00000000  00009a69  2**0
+ 12 .debug_loc    000007ce  00000000  00000000  00009a21  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000050  00000000  00000000  0000a237  2**0
+ 13 .debug_ranges 00000050  00000000  00000000  0000a1ef  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1504,6 +1504,7 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
 	uint8 DataBufferIndex = 0;
      b80:	19 82       	std	Y+1, r1	; 0x01
 
+	/*Transmit the START condition*/
 	TWI_start();
      b82:	0e 94 ae 06 	call	0xd5c	; 0xd5c <TWI_start>
 	 *										     +                   0 (WRITE)
@@ -1523,24 +1524,16 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
      b96:	91 95       	neg	r25
      b98:	80 6a       	ori	r24, 0xA0	; 160
      b9a:	0e 94 be 06 	call	0xd7c	; 0xd7c <TWI_write>
-		return TWI_STATUS;
-	}
-	*/
 
 	/*Send a memory location to read from (A7:A0)*/
 	TWI_write( (uint8)EepromAddress );
      b9e:	8a 81       	ldd	r24, Y+2	; 0x02
      ba0:	0e 94 be 06 	call	0xd7c	; 0xd7c <TWI_write>
-		return TWI_STATUS;
-	}
-	*/
 
-	/*Repeated start*/
+	/*Repeated start, to switch to reading from the EEPROM*/
 	TWI_start();
      ba4:	0e 94 ae 06 	call	0xd5c	; 0xd5c <TWI_start>
-		return TWI_STATUS;
-	}
-	*/
+
 
 	/*send the device select code to read from the EEPROM*/
 	TWI_write( (DEVICE_TYPE_IDENTIFIER<<4) | ( ( (EepromAddress & 0x0700) >>7 ) + READ) );
@@ -1556,11 +1549,8 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
      bba:	8f 5f       	subi	r24, 0xFF	; 255
      bbc:	80 6a       	ori	r24, 0xA0	; 160
      bbe:	0e 94 be 06 	call	0xd7c	; 0xd7c <TWI_write>
-		return TWI_STATUS;
-	}
-	*/
 
-	/*Read the specified number of bytes, and store them in the data buffer*/
+	/*Read the specified number of bytes except for the last one and send ACK. Store them in the data buffer*/
 	for(DataBufferIndex = 0; DataBufferIndex <Length-1; DataBufferIndex++ )
      bc2:	19 82       	std	Y+1, r1	; 0x01
      bc4:	0f c0       	rjmp	.+30     	; 0xbe4 <Eep_Read+0x88>
@@ -1577,11 +1567,11 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
      bd6:	0e 94 d5 06 	call	0xdaa	; 0xdaa <TWI_readWithACK>
      bda:	f8 01       	movw	r30, r16
      bdc:	80 83       	st	Z, r24
-		return TWI_STATUS;
-	}
-	*/
 
-	/*Read the specified number of bytes, and store them in the data buffer*/
+	/*send the device select code to read from the EEPROM*/
+	TWI_write( (DEVICE_TYPE_IDENTIFIER<<4) | ( ( (EepromAddress & 0x0700) >>7 ) + READ) );
+
+	/*Read the specified number of bytes except for the last one and send ACK. Store them in the data buffer*/
 	for(DataBufferIndex = 0; DataBufferIndex <Length-1; DataBufferIndex++ )
      bde:	89 81       	ldd	r24, Y+1	; 0x01
      be0:	8f 5f       	subi	r24, 0xFF	; 255
@@ -1595,7 +1585,7 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
      bf0:	28 17       	cp	r18, r24
      bf2:	39 07       	cpc	r19, r25
      bf4:	40 f3       	brcs	.-48     	; 0xbc6 <Eep_Read+0x6a>
-		*/
+		DataBufferPtr[DataBufferIndex] = TWI_readWithACK();
 	}
 	/*the last byte is received without returning ACK, so the EEPROM stops sending.
 	 * receiving the last byte with ACK generated the following warning in Proteus:"Stop condition whilst memory is transmitting data is unreliable"
@@ -1612,11 +1602,10 @@ uint8 Eep_Read(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthTy
      c06:	0e 94 e8 06 	call	0xdd0	; 0xdd0 <TWI_readWithNACK>
      c0a:	f8 01       	movw	r30, r16
      c0c:	80 83       	st	Z, r24
-	//LCD_displayString(" NA"); //debug
 
+	/*Generate STOP condition*/
 	TWI_stop();
      c0e:	0e 94 fb 06 	call	0xdf6	; 0xdf6 <TWI_stop>
-	//LCD_displayString(" P"); //debug
 
 	return E_OK;		//<<<<<<<<<<<<<<<<<<<<<<<<<
      c12:	81 e0       	ldi	r24, 0x01	; 1
@@ -1659,11 +1648,11 @@ uint8 Eep_Write(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthT
 	uint8 DataBufferIndex = 0;
      c4a:	19 82       	std	Y+1, r1	; 0x01
 
+	/*Transmit the START condition*/
 	TWI_start();
      c4c:	0e 94 ae 06 	call	0xd5c	; 0xd5c <TWI_start>
-	//LCD_goToRowCol(0,0);		//debug
-	//LCD_displayString("Start ");	//debug
 
+	/*Send the device select code to write in the EEPROM*/
 	TWI_write( (DEVICE_TYPE_IDENTIFIER<<4) | ( ( (EepromAddress & 0x0700) >>7 ) + WRITE) );
      c50:	8a 81       	ldd	r24, Y+2	; 0x02
      c52:	9b 81       	ldd	r25, Y+3	; 0x03
@@ -1676,13 +1665,13 @@ uint8 Eep_Write(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthT
      c60:	91 95       	neg	r25
      c62:	80 6a       	ori	r24, 0xA0	; 160
      c64:	0e 94 be 06 	call	0xd7c	; 0xd7c <TWI_write>
-	//LCD_displayString("Sel ");	//debug
 
+	/*Send the EEPROM address, where data is to be written*/
 	TWI_write( (uint8)EepromAddress );
      c68:	8a 81       	ldd	r24, Y+2	; 0x02
      c6a:	0e 94 be 06 	call	0xd7c	; 0xd7c <TWI_write>
-	//LCD_displayString("Loc");	//debug
 
+	/*Write the data buffer into EEPROM*/
 	for(DataBufferIndex = 0; DataBufferIndex <Length; DataBufferIndex++ )
      c6e:	19 82       	std	Y+1, r1	; 0x01
      c70:	0e c0       	rjmp	.+28     	; 0xc8e <Eep_Write+0x64>
@@ -1698,11 +1687,11 @@ uint8 Eep_Write(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthT
      c80:	f3 1f       	adc	r31, r19
      c82:	80 81       	ld	r24, Z
      c84:	0e 94 be 06 	call	0xd7c	; 0xd7c <TWI_write>
-	//LCD_displayString("Sel ");	//debug
 
+	/*Send the EEPROM address, where data is to be written*/
 	TWI_write( (uint8)EepromAddress );
-	//LCD_displayString("Loc");	//debug
 
+	/*Write the data buffer into EEPROM*/
 	for(DataBufferIndex = 0; DataBufferIndex <Length; DataBufferIndex++ )
      c88:	89 81       	ldd	r24, Y+1	; 0x01
      c8a:	8f 5f       	subi	r24, 0xFF	; 255
@@ -1717,16 +1706,14 @@ uint8 Eep_Write(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthT
      c9c:	50 f3       	brcs	.-44     	; 0xc72 <Eep_Write+0x48>
 	{
 		TWI_write( DataBufferPtr[DataBufferIndex] );
-		//LCD_displayInt(DataBufferIndex);	//debug
 	}
-	//LCD_displayInt(TWI_STATUS);		//debug
+
+	/*Generate STOP condition*/
 	TWI_stop();
      c9e:	0e 94 fb 06 	call	0xdf6	; 0xdf6 <TWI_stop>
-	//LCD_displayString("stop");	//debug --> not displayed --> reason: polling
 
 	return E_OK;
      ca2:	81 e0       	ldi	r24, 0x01	; 1
-
 }
      ca4:	27 96       	adiw	r28, 0x07	; 7
      ca6:	0f b6       	in	r0, 0x3f	; 63
@@ -1800,8 +1787,8 @@ void TWI_init(const Twi_ConfigType* ConfigPtr)
      d06:	89 2b       	or	r24, r25
      d08:	8c 93       	st	X, r24
 
-	/*Set the prescaler*/
-	TWSR = (TWSR & 0xFC) | (TWI_PRESCALER);
+	/*Set the prescaler (writes to TWPS bits)*/
+	TWSR = (TWSR & 0xFC) | (TWI_PRESCALER_BITS);
      d0a:	a1 e2       	ldi	r26, 0x21	; 33
      d0c:	b0 e0       	ldi	r27, 0x00	; 0
      d0e:	e1 e2       	ldi	r30, 0x21	; 33

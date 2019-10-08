@@ -1,11 +1,10 @@
 /*
+ * EEPROM.c
  *
- *	Name		: EEPROM.c
- *	Author		: Reem Muhammad
- *	Description	: Source file for EEPROM driver
- *  Created on	: 28 Sep 2019
- *
+ *  Created on: 28 Sep 2019
+ *      Author: Home
  */
+
 
 #include "EEPROM.h"
 #include "I2C.h"
@@ -121,6 +120,8 @@ uint8 Eep_Write(Eep_AddressType EepromAddress, uint8 *DataBufferPtr, Eep_LengthT
 
 	/*Generate STOP condition*/
 	TWI_stop();
+	//LCD_displayString("stop");	//debug --> not displayed --> reason: polling
 
 	return E_OK;
+
 }

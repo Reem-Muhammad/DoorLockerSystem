@@ -527,25 +527,25 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x23e8
+.stab           0x00000000     0x23dc
  *(.stab)
- .stab          0x00000000      0x60c ./EEPROM.o
- .stab          0x0000060c      0x2f4 ./I2C.o
+ .stab          0x00000000      0x600 ./EEPROM.o
+ .stab          0x00000600      0x2f4 ./I2C.o
                                 0x57c (size before relaxing)
- .stab          0x00000900      0xae0 ./LCD.o
+ .stab          0x000008f4      0xae0 ./LCD.o
                                 0xd38 (size before relaxing)
- .stab          0x000013e0      0x3cc ./Ocu.o
+ .stab          0x000013d4      0x3cc ./Ocu.o
                                 0x624 (size before relaxing)
- .stab          0x000017ac      0x414 ./UART.o
+ .stab          0x000017a0      0x414 ./UART.o
                                 0x66c (size before relaxing)
- .stab          0x00001bc0      0x288 ./control_ecu.o
-                                0x5f4 (size before relaxing)
- .stab          0x00001e48      0x5a0 ./control_ecu_functions.o
-                                0x918 (size before relaxing)
+ .stab          0x00001bb4      0x288 ./control_ecu.o
+                                0x5e8 (size before relaxing)
+ .stab          0x00001e3c      0x5a0 ./control_ecu_functions.o
+                                0x90c (size before relaxing)
 
-.stabstr        0x00000000     0x1355
+.stabstr        0x00000000     0x1319
  *(.stabstr)
- .stabstr       0x00000000     0x1355 ./EEPROM.o
+ .stabstr       0x00000000     0x1319 ./EEPROM.o
 
 .stab.excl
  *(.stab.excl)
