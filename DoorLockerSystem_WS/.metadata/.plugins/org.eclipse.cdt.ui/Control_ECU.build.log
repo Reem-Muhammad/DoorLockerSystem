@@ -1,39 +1,12 @@
-20:36:41 **** Incremental Build of configuration Debug for project Control_ECU ****
+22:02:06 **** Incremental Build of configuration Debug for project Control_ECU ****
 make all 
-Building file: ../control_ecu_functions.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"control_ecu_functions.d" -MT"control_ecu_functions.o" -c -o "control_ecu_functions.o" "../control_ecu_functions.c"
-In file included from ../micro_config.h:18,
-                 from ../LCD.h:12,
-                 from ../control_ecu_functions.h:14,
-                 from ../control_ecu_functions.c:11:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../control_ecu_functions.h:14,
-                 from ../control_ecu_functions.c:11:
-../LCD.h:16:2: warning: #warning "THE DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-../control_ecu_functions.c: In function 'alarmStart':
-../control_ecu_functions.c:119: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../control_ecu_functions.c: In function 'alarmStop':
-../control_ecu_functions.c:136: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-Finished building: ../control_ecu_functions.c
- 
-Building target: Control_ECU.elf
-Invoking: AVR C Linker
-avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega16 -o "Control_ECU.elf"  ./EEPROM.o ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./control_ecu.o ./control_ecu_functions.o   
-Finished building target: Control_ECU.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S Control_ECU.elf  >"Control_ECU.lss"
-Finished building: Control_ECU.lss
- 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 Control_ECU.elf
 AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    9024 bytes (55.1% Full)
+Program:    9936 bytes (60.6% Full)
 (.text + .data + .bootloader)
 
 Data:         61 bytes (6.0% Full)
@@ -43,5 +16,5 @@ Data:         61 bytes (6.0% Full)
 Finished building: sizedummy
  
 
-20:36:43 Build Finished (took 2s.119ms)
+22:02:06 Build Finished (took 467ms)
 

@@ -64,7 +64,7 @@ int main()
 		while(key != '+' && key != '-')
 		{
 			key = keypad_getPressedKey();
-			_delay_ms(300);	//Not necessary
+			_delay_ms(300);	//Wouldn't be necessary
 		}
 
 
@@ -112,29 +112,14 @@ int main()
 				LCD_clear();
 				LCD_goToRowCol(0,0);
 				LCD_displayString("Openning ...");
-
-				/*
-				 * delay 15 seconds
-				 * _delay_ms() can only provide delays up to 6.5535 seconds
-				 */
-				_delay_ms(5000);
-				_delay_ms(5000);
-				_delay_ms(5000);
-
+				_delay_ms(15000UL);
 
 				/*Send a command to the Control ECU to close the door*/
 				UART_sendByte(CLOSE_DOOR);
 
 				LCD_goToRowCol(0,0);
 				LCD_displayString("Closing ... ");
-
-				/*
-				 * delay 15 seconds
-				 * _delay_ms() can only provide delays up to 6.5535 seconds
-				 */
-				_delay_ms(5000);
-				_delay_ms(5000);
-				_delay_ms(5000);
+				_delay_ms(15000UL);
 			}
 		}
 

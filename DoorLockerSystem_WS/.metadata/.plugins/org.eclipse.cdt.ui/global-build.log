@@ -1,4 +1,4 @@
-20:36:47 **** Incremental Build of configuration Debug for project HMI_ECU ****
+22:02:09 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
 Building file: ../hmi_ecu.c
 Invoking: AVR Compiler
@@ -17,13 +17,13 @@ In file included from ../hmi_ecu_functions.h:14,
 ../hmi_ecu.c:49: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c:58: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c:60: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:84: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 ../hmi_ecu.c:86: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:88: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:116: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:123: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:141: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:148: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:156: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:114: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:129: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:154: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:161: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu.c:169: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
 Finished building: ../hmi_ecu.c
  
 Building target: HMI_ECU.elf
@@ -41,7 +41,7 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   12422 bytes (75.8% Full)
+Program:   13854 bytes (84.6% Full)
 (.text + .data + .bootloader)
 
 Data:        462 bytes (45.1% Full)

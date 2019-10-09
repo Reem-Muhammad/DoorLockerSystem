@@ -23,10 +23,7 @@ void doorOpen()
 	CLEAR_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
 	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
 
-	/*
-	 * delay 15 seconds
-	 * _delay_ms() can only provide delays up to 6.5535 seconds
-	 */
+	/*_delay_ms() can only provide delays up to 6.5535 seconds*/
 	_delay_ms(5000);
 	_delay_ms(5000);
 	_delay_ms(5000);
@@ -49,10 +46,7 @@ void doorClose()
 	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_IN2);
 	SET_BIT(MOTOR_DRIVER_PORT, MOTOR_EN1);
 
-	/*
-	 * delay 15 seconds
-	 * _delay_ms() can only provide delays up to 6.5535 seconds
-	 */
+	/*_delay_ms() can only provide delays up to 6.5535 seconds*/
 	_delay_ms(5000);
 	_delay_ms(5000);
 	_delay_ms(5000);

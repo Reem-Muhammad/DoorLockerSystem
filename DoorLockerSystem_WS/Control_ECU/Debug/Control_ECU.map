@@ -150,7 +150,7 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2312
+.text           0x00000000     0x26a2
  *(.vectors)
  .vectors       0x00000000       0x54 f:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -350,37 +350,37 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text.main     0x00001d72       0xd0 ./control_ecu.o
                 0x00001d72                main
  .text.doorOpen
-                0x00001e42      0x142 ./control_ecu_functions.o
+                0x00001e42      0x30a ./control_ecu_functions.o
                 0x00001e42                doorOpen
  .text.doorClose
-                0x00001f84      0x142 ./control_ecu_functions.o
-                0x00001f84                doorClose
+                0x0000214c      0x30a ./control_ecu_functions.o
+                0x0000214c                doorClose
  .text.saveNewPass
-                0x000020c6       0x74 ./control_ecu_functions.o
-                0x000020c6                saveNewPass
+                0x00002456       0x74 ./control_ecu_functions.o
+                0x00002456                saveNewPass
  .text.confirmPass
-                0x0000213a       0xb4 ./control_ecu_functions.o
-                0x0000213a                confirmPass
+                0x000024ca       0xb4 ./control_ecu_functions.o
+                0x000024ca                confirmPass
  .text.alarmStart
-                0x000021ee       0x46 ./control_ecu_functions.o
-                0x000021ee                alarmStart
+                0x0000257e       0x46 ./control_ecu_functions.o
+                0x0000257e                alarmStart
  .text.alarmStop
-                0x00002234       0x28 ./control_ecu_functions.o
-                0x00002234                alarmStop
- .text.libgcc   0x0000225c       0x44 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x0000225c                __udivmodsi4
- .text.libgcc   0x000022a0        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000022a0        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000022a0        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x000022a0       0x38 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x000022a0                __prologue_saves__
- .text.libgcc   0x000022d8       0x36 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x000022d8                __epilogue_restores__
-                0x0000230e                . = ALIGN (0x2)
+                0x000025c4       0x28 ./control_ecu_functions.o
+                0x000025c4                alarmStop
+ .text.libgcc   0x000025ec       0x44 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x000025ec                __udivmodsi4
+ .text.libgcc   0x00002630        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00002630        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00002630        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00002630       0x38 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x00002630                __prologue_saves__
+ .text.libgcc   0x00002668       0x36 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00002668                __epilogue_restores__
+                0x0000269e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000230e        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000230e                exit
-                0x0000230e                _exit
+ .fini9         0x0000269e        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000269e                exit
+                0x0000269e                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -399,11 +399,11 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000230e        0x4 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000269e        0x4 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00002312                _etext = .
+                0x000026a2                _etext = .
 
-.data           0x00800060       0x2e load address 0x00002312
+.data           0x00800060       0x2e load address 0x000026a2
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -501,8 +501,8 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x0080009c                commandReceived
  *(COMMON)
                 0x0080009d                PROVIDE (__bss_end, .)
-                0x00002312                __data_load_start = LOADADDR (.data)
-                0x00002340                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000026a2                __data_load_start = LOADADDR (.data)
+                0x000026d0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080009d        0x0
                 0x0080009d                PROVIDE (__noinit_start, .)
@@ -527,7 +527,7 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x23d0
+.stab           0x00000000     0x2670
  *(.stab)
  .stab          0x00000000      0x600 ./EEPROM.o
  .stab          0x00000600      0x2f4 ./I2C.o
@@ -540,8 +540,8 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                                 0x66c (size before relaxing)
  .stab          0x00001ba8      0x27c ./control_ecu.o
                                 0x5dc (size before relaxing)
- .stab          0x00001e24      0x5ac ./control_ecu_functions.o
-                                0x918 (size before relaxing)
+ .stab          0x00001e24      0x84c ./control_ecu_functions.o
+                                0xbb8 (size before relaxing)
 
 .stabstr        0x00000000     0x130f
  *(.stabstr)
