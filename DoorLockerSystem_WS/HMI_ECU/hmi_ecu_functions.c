@@ -59,9 +59,6 @@ void alarmStop()
 {
 	alarmOn_flag = 0;
 
-	/*Send a command to the Control ECU to stop the alarm ========>[BUG#1]*/
-	UART_sendByte(STOP_ALARM);
-
 	/*stop the timer*/
 	Ocu_stop();
 }

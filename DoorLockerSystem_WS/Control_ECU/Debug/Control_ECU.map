@@ -150,7 +150,7 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x22e8
+.text           0x00000000     0x2312
  *(.vectors)
  .vectors       0x00000000       0x54 f:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -209,7 +209,6 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x0000008e                __vector_1
                 0x0000008e                __vector_12
                 0x0000008e                __bad_interrupt
-                0x0000008e                __vector_6
                 0x0000008e                __vector_3
                 0x0000008e                __vector_11
                 0x0000008e                __vector_13
@@ -330,57 +329,58 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text.Ocu_deInit
                 0x000019de       0x46 ./Ocu.o
                 0x000019de                Ocu_deInit
- .text.ISR      0x00001a24       0x4e ./Ocu.o
-                0x00001a24                ISR
+ .text.__vector_6
+                0x00001a24       0x80 ./Ocu.o
+                0x00001a24                __vector_6
  .text.UART_init
-                0x00001a72      0x19e ./UART.o
-                0x00001a72                UART_init
+                0x00001aa4      0x19e ./UART.o
+                0x00001aa4                UART_init
  .text.UART_sendByte
-                0x00001c10       0x2e ./UART.o
-                0x00001c10                UART_sendByte
+                0x00001c42       0x2e ./UART.o
+                0x00001c42                UART_sendByte
  .text.UART_receiveByte
-                0x00001c3e       0x1e ./UART.o
-                0x00001c3e                UART_receiveByte
+                0x00001c70       0x1e ./UART.o
+                0x00001c70                UART_receiveByte
  .text.UART_receiveString
-                0x00001c5c       0x86 ./UART.o
-                0x00001c5c                UART_receiveString
+                0x00001c8e       0x86 ./UART.o
+                0x00001c8e                UART_receiveString
  .text.UART_sendString
-                0x00001ce2       0x5e ./UART.o
-                0x00001ce2                UART_sendString
- .text.main     0x00001d40       0xe2 ./control_ecu.o
-                0x00001d40                main
+                0x00001d14       0x5e ./UART.o
+                0x00001d14                UART_sendString
+ .text.main     0x00001d72       0xd0 ./control_ecu.o
+                0x00001d72                main
  .text.doorOpen
-                0x00001e22      0x142 ./control_ecu_functions.o
-                0x00001e22                doorOpen
+                0x00001e42      0x142 ./control_ecu_functions.o
+                0x00001e42                doorOpen
  .text.doorClose
-                0x00001f64      0x142 ./control_ecu_functions.o
-                0x00001f64                doorClose
+                0x00001f84      0x142 ./control_ecu_functions.o
+                0x00001f84                doorClose
  .text.saveNewPass
-                0x000020a6       0x74 ./control_ecu_functions.o
-                0x000020a6                saveNewPass
+                0x000020c6       0x74 ./control_ecu_functions.o
+                0x000020c6                saveNewPass
  .text.confirmPass
-                0x0000211a       0xb4 ./control_ecu_functions.o
-                0x0000211a                confirmPass
+                0x0000213a       0xb4 ./control_ecu_functions.o
+                0x0000213a                confirmPass
  .text.alarmStart
-                0x000021ce       0x3c ./control_ecu_functions.o
-                0x000021ce                alarmStart
+                0x000021ee       0x46 ./control_ecu_functions.o
+                0x000021ee                alarmStart
  .text.alarmStop
-                0x0000220a       0x28 ./control_ecu_functions.o
-                0x0000220a                alarmStop
- .text.libgcc   0x00002232       0x44 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00002232                __udivmodsi4
- .text.libgcc   0x00002276        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00002276        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00002276        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00002276       0x38 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x00002276                __prologue_saves__
- .text.libgcc   0x000022ae       0x36 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x000022ae                __epilogue_restores__
-                0x000022e4                . = ALIGN (0x2)
+                0x00002234       0x28 ./control_ecu_functions.o
+                0x00002234                alarmStop
+ .text.libgcc   0x0000225c       0x44 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000225c                __udivmodsi4
+ .text.libgcc   0x000022a0        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000022a0        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000022a0        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000022a0       0x38 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x000022a0                __prologue_saves__
+ .text.libgcc   0x000022d8       0x36 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x000022d8                __epilogue_restores__
+                0x0000230e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000022e4        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000022e4                exit
-                0x000022e4                _exit
+ .fini9         0x0000230e        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000230e                exit
+                0x0000230e                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -399,11 +399,11 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000022e4        0x4 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000230e        0x4 f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000022e8                _etext = .
+                0x00002312                _etext = .
 
-.data           0x00800060       0x2e load address 0x000022e8
+.data           0x00800060       0x2e load address 0x00002312
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 f:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -501,8 +501,8 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x0080009c                commandReceived
  *(COMMON)
                 0x0080009d                PROVIDE (__bss_end, .)
-                0x000022e8                __data_load_start = LOADADDR (.data)
-                0x00002316                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00002312                __data_load_start = LOADADDR (.data)
+                0x00002340                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080009d        0x0
                 0x0080009d                PROVIDE (__noinit_start, .)
@@ -527,25 +527,25 @@ LOAD f:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x23dc
+.stab           0x00000000     0x23d0
  *(.stab)
  .stab          0x00000000      0x600 ./EEPROM.o
  .stab          0x00000600      0x2f4 ./I2C.o
                                 0x57c (size before relaxing)
  .stab          0x000008f4      0xae0 ./LCD.o
                                 0xd38 (size before relaxing)
- .stab          0x000013d4      0x3cc ./Ocu.o
-                                0x624 (size before relaxing)
- .stab          0x000017a0      0x414 ./UART.o
+ .stab          0x000013d4      0x3c0 ./Ocu.o
+                                0x618 (size before relaxing)
+ .stab          0x00001794      0x414 ./UART.o
                                 0x66c (size before relaxing)
- .stab          0x00001bb4      0x288 ./control_ecu.o
-                                0x5e8 (size before relaxing)
- .stab          0x00001e3c      0x5a0 ./control_ecu_functions.o
-                                0x90c (size before relaxing)
+ .stab          0x00001ba8      0x27c ./control_ecu.o
+                                0x5dc (size before relaxing)
+ .stab          0x00001e24      0x5ac ./control_ecu_functions.o
+                                0x918 (size before relaxing)
 
-.stabstr        0x00000000     0x1319
+.stabstr        0x00000000     0x130f
  *(.stabstr)
- .stabstr       0x00000000     0x1319 ./EEPROM.o
+ .stabstr       0x00000000     0x130f ./EEPROM.o
 
 .stab.excl
  *(.stab.excl)

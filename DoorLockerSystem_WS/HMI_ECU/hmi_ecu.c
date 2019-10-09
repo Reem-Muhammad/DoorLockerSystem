@@ -114,13 +114,14 @@ int main()
 				LCD_clear();
 				LCD_goToRowCol(0,0);
 				LCD_displayString("Openning ...");
-				_delay_ms(15000);
+				_delay_ms(15000UL);
 
 				/*Send a command to the Control ECU to close the door*/
 				UART_sendByte(CLOSE_DOOR);
+
 				LCD_goToRowCol(0,0);
 				LCD_displayString("Closing ... ");
-				_delay_ms(15000);
+				_delay_ms(15000UL);
 			}
 		}
 

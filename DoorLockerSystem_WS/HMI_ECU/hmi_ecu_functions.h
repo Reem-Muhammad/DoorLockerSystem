@@ -31,7 +31,6 @@ extern uint8 alarmOn_flag;
 #define SET_NEW_PASS 0xF0
 #define CONFIRM_PASS 0x0F
 #define START_ALARM 0x8A
-#define STOP_ALARM 0xA8
 #define OPEN_DOOR 0xDB
 #define CLOSE_DOOR 0xBD
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

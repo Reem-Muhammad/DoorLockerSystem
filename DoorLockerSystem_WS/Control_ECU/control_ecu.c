@@ -22,7 +22,7 @@ uint8 commandReceived = 0;						/*Stores the command received from HMI ECU*/
 
 int main()
 {
-	/*Initialize LCD, UART, OCU*/
+	/*Initialize UART, OCU, EEPROM*/
 	LCD_init();
 	UART_init(&s_UartConfig);
 	Ocu_init(&s_OcuConfig);
@@ -57,9 +57,6 @@ int main()
 			break;
 		case START_ALARM:
 			alarmStart(TOP, N_TICKS_REQUIRED);
-			break;
-		case STOP_ALARM:
-			alarmStop();
 			break;
 		case OPEN_DOOR:
 			doorOpen();

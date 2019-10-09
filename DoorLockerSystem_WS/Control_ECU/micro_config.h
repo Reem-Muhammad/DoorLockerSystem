@@ -16,7 +16,9 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 
+/* TESTED BUT NOT USED */
 /*DIO*/
 #define DIR_A (*(volatile uint8 * const) 0x3A)
 #define OUT_A (*(volatile uint8 * const) 0x3B)
