@@ -1,2 +1,7 @@
 1570694629291	Delete resource 'Control_ECU/Ocu2.c'
 1570694639931	Delete resource 'Control_ECU/Ocu2.h'
+1570707685870	Delete resource 'Control_ECU2_2'
+1570708326827	Delete resource 'Control_ECU'
+1570708332656	Delete resource 'HMI_ECU'
+1570708418692	Rename resource 'Control_ECU2'
+1570708429034	Rename resource 'HMI_ECU2'

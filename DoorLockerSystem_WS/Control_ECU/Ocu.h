@@ -47,16 +47,16 @@ typedef enum
 /*type of the data structure containing the initialization data for the OCU driver*/
 typedef struct
 {
-	//Ocu_PinActionType e_ocu_pinAction;	/*controls the behavior of OC pins on compare match*/
-	Ocu_PrescalerType e_ocu_prescaler;	/*controls the tick duration*/
+
 }Ocu_ConfigType;
 
+/*for setting timer parameters*/
 typedef struct
 {
 	Ocu_PrescalerType e_ocu_prescaler;
 
-	uint16 counterTop;
-	uint8 n_ticksRequired;
+	uint16 counterTop;	/*TOP value that would be compared to the TCNT*/
+	uint8 n_ticksRequired; /*specifies the the number of ISR executed before notifying the callback function*/
 }Ocu_TimerSettingsType;
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

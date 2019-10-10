@@ -39,7 +39,7 @@ extern uint8 alarmOn_flag;
 /*~~~~~~~~~~~~~~~ Functions Prototypes ~~~~~~~~~~~~~~~~~~~*/
 void setNewPass();
 uint8 confirmPass();
-void alarmStart(uint16 counterTop, uint8 n_ticksRequired);
+void alarmStart(Ocu_TimerSettingsType *TimerSettingsPtr);
 void alarmStop();
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

@@ -1,28 +1,5 @@
-10:21:47 **** Incremental Build of configuration Debug for project HMI_ECU ****
+13:13:50 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
-Building file: ../I2C.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"I2C.d" -MT"I2C.o" -c -o "I2C.o" "../I2C.c"
-In file included from ../micro_config.h:18,
-                 from ../I2C.h:12,
-                 from ../I2C.c:11:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../I2C.c:11:
-../I2C.h:16:2: warning: #warning "STATUS CODES OF TWI ARE NOT COMPLETE YET"
-Finished building: ../I2C.c
- 
-Building file: ../LCD.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"LCD.d" -MT"LCD.o" -c -o "LCD.o" "../LCD.c"
-In file included from ../micro_config.h:18,
-                 from ../LCD.h:12,
-                 from ../LCD.c:10:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../LCD.c:10:
-../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-Finished building: ../LCD.c
- 
 Building file: ../Ocu.c
 Invoking: AVR Compiler
 avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"Ocu.d" -MT"Ocu.o" -c -o "Ocu.o" "../Ocu.c"
@@ -30,80 +7,11 @@ In file included from ../micro_config.h:18,
                  from ../Ocu.h:15,
                  from ../Ocu.c:9:
 f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../Ocu.h:16,
+                 from ../Ocu.c:9:
+../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
 Finished building: ../Ocu.c
- 
-Building file: ../UART.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"UART.d" -MT"UART.o" -c -o "UART.o" "../UART.c"
-In file included from ../micro_config.h:18,
-                 from ../UART.h:11,
-                 from ../UART.c:9:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-Finished building: ../UART.c
- 
-Building file: ../hmi_ecu.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"hmi_ecu.d" -MT"hmi_ecu.o" -c -o "hmi_ecu.o" "../hmi_ecu.c"
-In file included from ../micro_config.h:18,
-                 from ../keypad.h:13,
-                 from ../hmi_ecu_functions.h:13,
-                 from ../hmi_ecu.c:11:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../hmi_ecu_functions.h:14,
-                 from ../hmi_ecu.c:11:
-../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-../hmi_ecu.c: In function 'main':
-../hmi_ecu.c:40: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:49: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:58: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:60: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:84: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:86: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:114: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:129: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:154: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:161: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu.c:169: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-Finished building: ../hmi_ecu.c
- 
-Building file: ../hmi_ecu_functions.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"hmi_ecu_functions.d" -MT"hmi_ecu_functions.o" -c -o "hmi_ecu_functions.o" "../hmi_ecu_functions.c"
-In file included from ../micro_config.h:18,
-                 from ../keypad.h:13,
-                 from ../hmi_ecu_functions.h:13,
-                 from ../hmi_ecu_functions.c:10:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../hmi_ecu_functions.h:14,
-                 from ../hmi_ecu_functions.c:10:
-../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-../hmi_ecu_functions.c: In function 'alarmStart':
-../hmi_ecu_functions.c:42: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu_functions.c: In function 'setNewPass':
-../hmi_ecu_functions.c:80: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu_functions.c:82: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu_functions.c:108: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu_functions.c: In function 'confirmPass':
-../hmi_ecu_functions.c:137: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu_functions.c:139: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../hmi_ecu_functions.c:164: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-Finished building: ../hmi_ecu_functions.c
- 
-Building file: ../keypad.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"keypad.d" -MT"keypad.o" -c -o "keypad.o" "../keypad.c"
-In file included from ../micro_config.h:18,
-                 from ../keypad.h:13,
-                 from ../keypad.c:9:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-Finished building: ../keypad.c
- 
-Building file: ../timer.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"timer.d" -MT"timer.o" -c -o "timer.o" "../timer.c"
-Finished building: ../timer.c
  
 Building target: HMI_ECU.elf
 Invoking: AVR C Linker
@@ -120,15 +28,15 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   13876 bytes (84.7% Full)
+Program:   13894 bytes (84.8% Full)
 (.text + .data + .bootloader)
 
-Data:        462 bytes (45.1% Full)
+Data:        464 bytes (45.3% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-10:21:53 Build Finished (took 5s.645ms)
+13:13:52 Build Finished (took 1s.409ms)
 

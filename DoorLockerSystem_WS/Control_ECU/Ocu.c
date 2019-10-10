@@ -36,24 +36,21 @@ void Ocu_setCbk( void (*cbkPtr)(void) )
  --------------------------------------------------------------*/
 void Ocu_init(const Ocu_ConfigType *ConfigPtr)
 {
-	/*store the prescaler in a global variable to be accessible by*/
-	//g_ConfigPtr = ConfigPtr;
 	/*Set FOC1 for non-PWM mode */
 	SET_BIT(TCCR1A, FOC1A);
 	//SET_BIT(TCCR1A, FOC1B);
 
-
-
 	/*set the source for max counter value to be OCR1A register: WGM13:0 -> 0 1 0 0 */
 	TCCR1B |= (1<<WGM12);
-
-	/*set the prescaler*/
-	//TCCR1B = (TCCR1B & 0xF8) | (ConfigPtr->e_ocu_prescaler);
-
-	LCD_goToRowCol(1, 8);
-	LCD_displayInt(TIFR);
-
 }
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_SetPinAction
+ * [Description]: Sets the automatic action to be performed on compare match
+ * [Args]:
+ * 		PinAction: action to be performed
+ * [Return]: None
+ --------------------------------------------------------------*/
 void Ocu_SetPinAction(Ocu_PinActionType PinAction)
 {
 	/*set OC1A behavior on compare match*/
@@ -63,10 +60,9 @@ void Ocu_SetPinAction(Ocu_PinActionType PinAction)
 
 /*-------------------------------------------------------------
  * [Function Name]: Ocu_start
- * [Description]: Starts the timer
+ * [Description]: Starts the timer with the specified prescaler, TOP, #ticks
  * [Args]:
- * 		counterTop: TOP value to be compared with the counter value.
- * 		n_ticksRequired: Number of ticks required to count the required time, given the specified counterTop.
+ * 		TimerSettingsPtr: pointer to a structure for timer settings
  * [Return]: None
  --------------------------------------------------------------*/
 void Ocu_start(Ocu_TimerSettingsType *TimerSettingsPtr)
@@ -138,8 +134,6 @@ void Ocu_deInit(void)
 ISR(TIMER1_COMPA_vect)
 {
 	g_ticksCounter++;
-	LCD_goToRowCol(0,8);
-	LCD_displayInt(g_ticksCounter);
 	if(g_ticksCounter == g_n_ticksRequired)
 	{
 		if(g_Ocu_cbkPtr != NULL_PTR)

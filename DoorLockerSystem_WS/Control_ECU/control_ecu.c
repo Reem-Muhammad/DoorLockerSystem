@@ -12,7 +12,7 @@
 
 
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
-const Ocu_ConfigType s_OcuConfig = {OCU_PIN_DISABLE,}; /*Configuration set of OCU*/
+const Ocu_ConfigType s_OcuConfig = {}; /*Configuration set of OCU*/
 Ocu_TimerSettingsType s_TimerSettings = {OCU_PRESCALER_1024, TOP, N_TICKS_REQUIRED};
 
 uint8 data_buffer[PASSWORD_LENGTH] = {0};		/*Stores the received password to be saved in EEPROM*/

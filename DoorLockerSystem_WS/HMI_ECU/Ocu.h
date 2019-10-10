@@ -13,6 +13,7 @@
 #include "std_types.h"
 #include "common_macros.h"
 #include "micro_config.h"
+#include "LCD.h"
 
 
 //#define CHANNEL_1A 0
@@ -46,9 +47,17 @@ typedef enum
 /*type of the data structure containing the initialization data for the OCU driver*/
 typedef struct
 {
-	Ocu_PinActionType e_ocu_pinAction;	/*controls the behavior of OC pins on compare match*/
-	Ocu_PrescalerType e_ocu_prescaler;	/*controls the tick duration*/
+
 }Ocu_ConfigType;
+
+/*for setting timer parameters*/
+typedef struct
+{
+	Ocu_PrescalerType e_ocu_prescaler;
+
+	uint16 counterTop;	/*TOP value that would be compared to the TCNT*/
+	uint8 n_ticksRequired; /*specifies the the number of ISR executed before notifying the callback function*/
+}Ocu_TimerSettingsType;
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
@@ -57,8 +66,9 @@ typedef struct
 /*~~~~~~~~~~~~~~~~~~~~~~~ Functions Definitions ~~~~~~~~~~~~~~~~~~~~~*/
 void Ocu_init(const Ocu_ConfigType* ConfigPtr);
 void Ocu_deInit(void);
+void Ocu_SetPinAction(Ocu_PinActionType PinAction);
 void Ocu_setCbk( void (*cbkPtr)(void) );
-void Ocu_start(uint16 counterTop, uint8 n_ticks);
+void Ocu_start(Ocu_TimerSettingsType *TimerSettingsPtr);
 void Ocu_stop(void);
 
 //void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction);

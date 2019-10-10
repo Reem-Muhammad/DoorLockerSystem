@@ -11,6 +11,7 @@
 uint8 g_n_ticksRequired = 0;
 uint8 g_ticksCounter = 0;
 
+
 /*pointer to the callback function*/
 void (*g_Ocu_cbkPtr)() = NULL_PTR;
 
@@ -39,38 +40,49 @@ void Ocu_init(const Ocu_ConfigType *ConfigPtr)
 	SET_BIT(TCCR1A, FOC1A);
 	//SET_BIT(TCCR1A, FOC1B);
 
-	/*set OC1A behavior on compare match*/
-	TCCR1A = (TCCR1A & 0x3F) | (ConfigPtr->e_ocu_pinAction << 6);
-	//TCCR1A = (TCCR1A & 0xCF) | (ConfigPtr->e_ocu_pinAction << 4);	/*set OC1B behavior*/
-
 	/*set the source for max counter value to be OCR1A register: WGM13:0 -> 0 1 0 0 */
 	TCCR1B |= (1<<WGM12);
+}
 
-	/*set the prescaler*/
-	TCCR1B = (TCCR1B & 0xF8) | (ConfigPtr->e_ocu_prescaler);
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_SetPinAction
+ * [Description]: Sets the automatic action to be performed on compare match
+ * [Args]:
+ * 		PinAction: action to be performed
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_SetPinAction(Ocu_PinActionType PinAction)
+{
+	/*set OC1A behavior on compare match*/
+	TCCR1A = (TCCR1A & 0x3F) | (PinAction << 6);
+	//TCCR1A = (TCCR1A & 0xCF) | (ConfigPtr->e_ocu_pinAction << 4);	/*set OC1B behavior*/
 }
 
 /*-------------------------------------------------------------
  * [Function Name]: Ocu_start
- * [Description]: Starts the timer
+ * [Description]: Starts the timer with the specified prescaler, TOP, #ticks
  * [Args]:
- * 		counterTop: TOP value to be compared with the counter value.
- * 		n_ticksRequired: Number of ticks required to count the required time, given the specified counterTop.
+ * 		TimerSettingsPtr: pointer to a structure for timer settings
  * [Return]: None
  --------------------------------------------------------------*/
-void Ocu_start(uint16 counterTop, uint8 n_ticksRequired)
+void Ocu_start(Ocu_TimerSettingsType *TimerSettingsPtr)
 {
 	/*set the number of ticks required before notifying the callback. this value will be used by the ISR*/
-	g_n_ticksRequired = n_ticksRequired;
+	g_n_ticksRequired = TimerSettingsPtr->n_ticksRequired;
 
 	/*enable module interrupt*/
 	SET_BIT(TIMSK, OCIE1A);
+
+	TCCR1B = (TCCR1B & 0xF8) | (TimerSettingsPtr->e_ocu_prescaler);
+
 
 	/*counter starts from 0*/
 	TCNT1 = 0;
 
 	/*counts to counterTop*/
-	OCR1A = counterTop;
+	OCR1A = TimerSettingsPtr->counterTop;
+
+
 }
 
 /*-------------------------------------------------------------

@@ -2,14 +2,14 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="g_ticksCounter" key="selection"/>
+		<item value="LCD" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="g_ticksCounter"/>
 			<item value="LCD"/>
+			<item value="g_ticksCounter"/>
 			<item value="BUG"/>
 			<item value="STOP"/>
 			<item value="TWI_PRESCALER"/>
