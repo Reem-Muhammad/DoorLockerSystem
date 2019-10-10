@@ -1,91 +1,15 @@
-19:40:40 **** Incremental Build of configuration Debug for project Control_ECU ****
+23:21:56 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
-Building file: ../EEPROM.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"EEPROM.d" -MT"EEPROM.o" -c -o "EEPROM.o" "../EEPROM.c"
-In file included from ../micro_config.h:18,
-                 from ../I2C.h:12,
-                 from ../EEPROM.c:11:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../EEPROM.c:11:
-../I2C.h:16:2: warning: #warning "STATUS CODES OF TWI ARE NOT COMPLETE YET"
-In file included from ../EEPROM.c:12:
-../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-Finished building: ../EEPROM.c
- 
-Building file: ../LCD.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"LCD.d" -MT"LCD.o" -c -o "LCD.o" "../LCD.c"
-In file included from ../micro_config.h:18,
-                 from ../LCD.h:12,
-                 from ../LCD.c:10:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../LCD.c:10:
-../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-Finished building: ../LCD.c
- 
-Building file: ../UART.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"UART.d" -MT"UART.o" -c -o "UART.o" "../UART.c"
-In file included from ../micro_config.h:18,
-                 from ../UART.h:12,
-                 from ../UART.c:10:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-Finished building: ../UART.c
- 
-Building file: ../control_ecu.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"control_ecu.d" -MT"control_ecu.o" -c -o "control_ecu.o" "../control_ecu.c"
-In file included from ../micro_config.h:18,
-                 from ../LCD.h:12,
-                 from ../control_ecu_functions.h:14,
-                 from ../control_ecu.c:11:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../control_ecu_functions.h:14,
-                 from ../control_ecu.c:11:
-../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-Finished building: ../control_ecu.c
- 
-Building file: ../control_ecu_functions.c
-Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"control_ecu_functions.d" -MT"control_ecu_functions.o" -c -o "control_ecu_functions.o" "../control_ecu_functions.c"
-In file included from ../micro_config.h:18,
-                 from ../LCD.h:12,
-                 from ../control_ecu_functions.h:14,
-                 from ../control_ecu_functions.c:11:
-f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-In file included from ../control_ecu_functions.h:14,
-                 from ../control_ecu_functions.c:11:
-../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
-../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
-../control_ecu_functions.c: In function 'alarmStart':
-../control_ecu_functions.c:135: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-../control_ecu_functions.c: In function 'alarmStop':
-../control_ecu_functions.c:152: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
-Finished building: ../control_ecu_functions.c
- 
-Building target: Control_ECU.elf
-Invoking: AVR C Linker
-avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega16 -o "Control_ECU.elf"  ./EEPROM.o ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./control_ecu.o ./control_ecu_functions.o   
-Finished building target: Control_ECU.elf
- 
-Invoking: AVR Create Extended Listing
-avr-objdump -h -S Control_ECU.elf  >"Control_ECU.lss"
-Finished building: Control_ECU.lss
- 
 Invoking: Print Size
-avr-size --format=avr --mcu=atmega16 Control_ECU.elf
+avr-size --format=avr --mcu=atmega16 HMI_ECU.elf
 AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   10074 bytes (61.5% Full)
+Program:   13996 bytes (85.4% Full)
 (.text + .data + .bootloader)
 
-Data:         63 bytes (6.2% Full)
+Data:        468 bytes (45.7% Full)
 (.data + .bss + .noinit)
 
 

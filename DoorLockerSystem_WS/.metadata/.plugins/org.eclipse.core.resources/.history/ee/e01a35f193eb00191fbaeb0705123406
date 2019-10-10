@@ -69,10 +69,14 @@ void doorClose()
  -------------------------------------------*/
 void saveNewPass()
 {
+	/*============REMOVE===================*/
+	LCD_goToRowCol(0,0);
 	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
 	{
 		data_buffer[i] = UART_receiveByte();
+		LCD_displayInt(data_buffer[i]);
 	}
+	/*======================================*/
 
 	Eep_Write(0, data_buffer, PASSWORD_LENGTH);
 }
@@ -88,9 +92,11 @@ void confirmPass()
 {
 
 	/*receive the confirmation password entered by the user*/
+	LCD_goToRowCol(1,0);
 	for(uint8 i = 0; i<PASSWORD_LENGTH; i++)
 	{
 		confirm_buffer[i] = UART_receiveByte();
+		LCD_displayInt(confirm_buffer[i]);	//==========REMOVE===========
 	}
 
 	/*read the saved password from the EEPROM*/
@@ -126,9 +132,10 @@ void alarmStart(Ocu_ValueType Threshold)
 
 	/*Set the buzzer to ON state*/
 	CLEAR_BIT(BUZZER_PORT, BUZZER);
+	LCD_displayString("ALARM"); //=====================REMOVE===================
 
 	/*start the timer*/
-	Ocu_start(Threshold);
+	Ocu_start(Threshold);  //==========> [BUG#1]
 }
 
 
@@ -142,6 +149,7 @@ void alarmStop()
 {
 	/*Set the buzzer to OFF state*/
 	SET_BIT(BUZZER_PORT, BUZZER);
+	LCD_displayString("STOPPED");  //==============REMOVE=========================
 
 	/*terminate the timer*/
 	Ocu_stop();

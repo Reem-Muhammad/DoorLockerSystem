@@ -87,7 +87,7 @@ void TWI_start()
  * 		ConfigPtr: pointer to the configuration set
  * [Return]: None
  -------------------------------------------*/
-void TWI_write(const uint8 byte_to_write) /*const since the function shouldn't try to alter the value*/
+void TWI_write(const uint8 byte_to_write)
 {
 	/*write the data/SLA to the data register TWDR to be transmitted*/
 	TWDR = byte_to_write;

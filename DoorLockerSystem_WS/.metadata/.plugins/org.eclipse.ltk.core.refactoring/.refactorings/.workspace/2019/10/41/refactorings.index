@@ -5,3 +5,6 @@
 1570708332656	Delete resource 'HMI_ECU'
 1570708418692	Rename resource 'Control_ECU2'
 1570708429034	Rename resource 'HMI_ECU2'
+1570737963959	Delete resource 'HMI_ECU/timer.c'
+1570737969572	Delete resource 'HMI_ECU/timer.h'
+1570738274840	Delete resource 'OCU_test'

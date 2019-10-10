@@ -17,6 +17,10 @@
 
 extern uint8 alarmOn_flag;
 
+/*~~~~~~~~~~~~ Timer settings ~~~~~~~~~*/
+#define TOP	46874
+#define N_TICKS_REQUIRED 10
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 #define PASSWORD_LENGTH 5
 #define CONFIRMATION_FAILED 0

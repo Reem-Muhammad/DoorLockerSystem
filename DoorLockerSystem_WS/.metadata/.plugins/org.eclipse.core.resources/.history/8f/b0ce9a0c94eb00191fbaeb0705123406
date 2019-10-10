@@ -9,7 +9,7 @@
 
 #include "EEPROM.h"
 #include "I2C.h"
-
+#include "LCD.h"
 
 #define TWI_OWN_ADDRESS 0b00000100	/*To address the TWI as a slave*/
 

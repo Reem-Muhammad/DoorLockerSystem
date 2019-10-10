@@ -10,8 +10,7 @@ C_SRCS += \
 ../UART.c \
 ../hmi_ecu.c \
 ../hmi_ecu_functions.c \
-../keypad.c \
-../timer.c 
+../keypad.c 
 
 OBJS += \
 ./I2C.o \
@@ -20,8 +19,7 @@ OBJS += \
 ./UART.o \
 ./hmi_ecu.o \
 ./hmi_ecu_functions.o \
-./keypad.o \
-./timer.o 
+./keypad.o 
 
 C_DEPS += \
 ./I2C.d \
@@ -30,8 +28,7 @@ C_DEPS += \
 ./UART.d \
 ./hmi_ecu.d \
 ./hmi_ecu_functions.d \
-./keypad.d \
-./timer.d 
+./keypad.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

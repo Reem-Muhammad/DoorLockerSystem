@@ -1,27 +1,30 @@
 /*
  *
- *	Name		: hmi_ecu_functions.h
+ *	Name		: control_ecu_functions.h
  *	Author		: Reem Muhammad
- *	Description	: Header file for the main application (HMI ECU)
+ *	Description	: Header file for the main application (Control ECU)
  *  Created on	: 6 Oct 2019
  *
  */
 
-#ifndef HMI_ECU_FUNCTIONS_H_
-#define HMI_ECU_FUNCTIONS_H_
 
-#include "keypad.h"
+#ifndef CONTROL_ECU_FUNCTIONS_H_
+#define CONTROL_ECU_FUNCTIONS_H_
+
 #include "LCD.h"
 #include "UART.h"
+#include "EEPROM.h"
 #include "Ocu.h"
-
-extern uint8 alarmOn_flag;
 
 
 #define PASSWORD_LENGTH 5
 #define CONFIRMATION_FAILED 0
 #define CONFIRMATION_PASSED 1
 #define WRONG_PASS_MAX 3
+
+extern uint8 data_buffer[PASSWORD_LENGTH];
+extern uint8 confirm_buffer[PASSWORD_LENGTH];
+
 
 /*~~~~~~~~~~ Communication Commands ~~~~~~~~~~~~*/
 #define SET_NEW_PASS 0xF0
@@ -32,11 +35,24 @@ extern uint8 alarmOn_flag;
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
+#define MOTOR_DRIVER_DIR DDRD
+#define MOTOR_DRIVER_PORT PORTD
+#define MOTOR_IN1 PD5
+#define MOTOR_IN2 PD6
+#define MOTOR_EN1 PD7
+#define BUZZER_DIR DDRC
+#define BUZZER_PORT PORTC
+#define BUZZER PC7
+
+
 /*~~~~~~~~~~~~~~~ Functions Prototypes ~~~~~~~~~~~~~~~~~~~*/
-void setNewPass();
-uint8 confirmPass();
+void doorOpen();
+void doorClose();
+void saveNewPass();
+void confirmPass();
 void alarmStart(Ocu_ValueType Threshold);
 void alarmStop();
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#endif /* HMI_ECU_FUNCTIONS_H_ */
+
+#endif /* CONTROL_ECU_FUNCTIONS_H_ */

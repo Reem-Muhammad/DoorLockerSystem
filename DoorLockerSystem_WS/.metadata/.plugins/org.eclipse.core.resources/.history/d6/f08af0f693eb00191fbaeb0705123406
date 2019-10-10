@@ -11,7 +11,7 @@
 #ifndef CONTROL_ECU_FUNCTIONS_H_
 #define CONTROL_ECU_FUNCTIONS_H_
 
-
+#include "LCD.h"
 #include "UART.h"
 #include "EEPROM.h"
 #include "Ocu.h"
@@ -24,6 +24,12 @@
 
 extern uint8 data_buffer[PASSWORD_LENGTH];
 extern uint8 confirm_buffer[PASSWORD_LENGTH];
+
+
+/*~~~~~~~~~~~~ Timer settings ~~~~~~~~~*/
+#define TOP	46874
+#define N_TICKS_REQUIRED 10
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
 /*~~~~~~~~~~ Communication Commands ~~~~~~~~~~~~*/

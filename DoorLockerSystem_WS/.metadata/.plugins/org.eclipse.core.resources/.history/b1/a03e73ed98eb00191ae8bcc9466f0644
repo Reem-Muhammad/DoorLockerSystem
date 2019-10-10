@@ -77,7 +77,7 @@ void setNewPass()
 
 	/*Display instructions for the user*/
 	LCD_goToRowCol(0,0);
-	LCD_displayString("Please Enter New Password:        ");
+	LCD_displayString("Please Enter New Pass:        ");
 	LCD_goToRowCol(1,0);
 	LCD_displayString("-----                  ");
 

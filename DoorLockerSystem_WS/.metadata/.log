@@ -628,3 +628,735 @@ Contains: Resource already exists on disk: 'E:\Odious hole\Embedded Systems\Fina
 
 !ENTRY org.eclipse.cdt.core 1 0 2019-10-10 19:08:09.784
 !MESSAGE Indexed 'HMI_ECU' (7 sources, 23 headers) in 0.327 sec: 259 declarations; 1,420 references; 0 unresolved inclusions; 4 syntax errors; 0 unresolved names (0%)
+!SESSION 2019-10-10 21:38:25.854 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-10-10 21:38:50.134
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.157
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.297
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.300
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.302
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.410
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.414
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.415
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.417
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.434
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.435
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.436
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.440
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.441
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.442
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.443
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.444
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.446
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.447
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.448
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.449
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.450
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.451
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.452
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.453
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.454
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.455
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.480
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.482
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.483
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.485
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:11.486
+!MESSAGE Error
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-10 21:39:12.865
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Home'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.135
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.144
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.145
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.146
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.163
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.164
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.166
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.167
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.168
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.169
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.170
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.171
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.173
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.173
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.175
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.175
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.177
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.178
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.179
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.180
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.180
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.533
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.534
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.535
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.537
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.540
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.548
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.549
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.554
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.565
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:13.572
+!MESSAGE Error
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2019-10-10 21:39:19.181
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 2.0.4.v20170307-1435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:93)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:124)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:38.978
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.074
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.077
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.078
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.090
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.093
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.095
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.096
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.097
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.098
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.099
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.102
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.103
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.107
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.109
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.110
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.112
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.113
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.130
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.131
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.132
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.133
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.134
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.135
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.137
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.139
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.142
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.143
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.145
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.147
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:39:39.149
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:05.721
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:06.474
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.915
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.923
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.925
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.926
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.937
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.938
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.939
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.940
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.941
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.942
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.943
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.944
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.948
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.949
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.951
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.952
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.953
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.954
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.955
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.957
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.959
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.960
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.961
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.964
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.966
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.967
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.974
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.975
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.977
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.980
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:11.982
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 4 0 2019-10-10 21:40:17.308
+!MESSAGE Error
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-10-10 21:40:32.388
+!MESSAGE Indexed 'Control_ECU' (7 sources, 22 headers) in 1.46 sec: 273 declarations; 1,528 references; 0 unresolved inclusions; 4 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-10-10 22:09:23.163
+!MESSAGE Indexed 'HMI_ECU' (7 sources, 22 headers) in 0.192 sec: 251 declarations; 1,450 references; 0 unresolved inclusions; 4 syntax errors; 0 unresolved names (0%)
+!SESSION 2019-10-10 23:05:08.011 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-10 23:05:36.183
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Home'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2019-10-10 23:05:41.168
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 2.0.4.v20170307-1435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:93)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:124)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-10-10 23:08:02.957
+!MESSAGE Indexed 'HMI_ECU' (7 sources, 22 headers) in 0.484 sec: 251 declarations; 1,450 references; 0 unresolved inclusions; 4 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-10-10 23:08:13.918
+!MESSAGE Indexed 'Control_ECU' (7 sources, 22 headers) in 0.277 sec: 273 declarations; 1,518 references; 0 unresolved inclusions; 4 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.ui.ide 4 4 2019-10-10 23:10:05.600
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2019-10-10 23:10:05.656
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2019-10-10 23:10:05.656
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: E:\Odious hole\Embedded Systems\Final_Project\DoorLockerSystem_WS\.metadata\.plugins\org.eclipse.core.resources\.projects\RemoteSystemsTempFiles\.markers (The system cannot find the path specified)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1657)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1739)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1199)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+!SESSION 2019-10-10 23:10:07.474 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-10 23:10:23.056
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Home'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2019-10-10 23:10:28.512
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 2.0.4.v20170307-1435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:93)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:124)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY org.eclipse.ui.ide 4 4 2019-10-10 23:14:38.004
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2019-10-10 23:14:38.579
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2019-10-10 23:14:38.579
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: E:\Odious hole\Embedded Systems\Final_Project\DoorLockerSystem_WS\.metadata\.plugins\org.eclipse.core.resources\.projects\RemoteSystemsTempFiles\.markers (The system cannot find the path specified)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1657)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1739)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1199)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+!SESSION 2019-10-10 23:15:41.946 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -data E:\Odious hole\Embedded Systems\Final_Project\DoorLockerSystem_WS -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-10 23:15:57.722
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Home'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2019-10-10 23:16:03.161
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 2.0.4.v20170307-1435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:93)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:124)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY org.eclipse.ui.ide 4 4 2019-10-10 23:16:13.936
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2019-10-10 23:16:13.965
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2019-10-10 23:16:13.965
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: E:\Odious hole\Embedded Systems\Final_Project\DoorLockerSystem_WS\.metadata\.plugins\org.eclipse.core.resources\.projects\RemoteSystemsTempFiles\.markers (The system cannot find the path specified)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1657)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1739)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1199)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+!SESSION 2019-10-10 23:17:20.088 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -data E:\Odious hole\Embedded Systems\Final_Project\DoorLockerSystem_WS -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-10 23:17:32.828
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Home'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2019-10-10 23:17:37.506
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 2.0.4.v20170307-1435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:93)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:124)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY org.eclipse.ui.ide 4 4 2019-10-10 23:18:17.213
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2019-10-10 23:18:18.236
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2019-10-10 23:18:18.236
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: E:\Odious hole\Embedded Systems\Final_Project\DoorLockerSystem_WS\.metadata\.plugins\org.eclipse.core.resources\.projects\RemoteSystemsTempFiles\.markers (The system cannot find the path specified)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1657)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1739)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1199)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+!SESSION 2019-10-10 23:19:16.476 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-10 23:19:40.006
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Home'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2019-10-10 23:19:46.375
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 2.0.4.v20170307-1435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:93)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:124)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
+
+!ENTRY org.eclipse.ui.ide 4 4 2019-10-10 23:20:17.537
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2019-10-10 23:20:17.585
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2019-10-10 23:20:17.586
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: E:\Odious hole\Embedded Systems\Final_Project\DoorLockerSystem_WS\.metadata\.plugins\org.eclipse.core.resources\.projects\RemoteSystemsTempFiles\.markers (The system cannot find the path specified)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1657)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1739)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1199)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+!SESSION 2019-10-10 23:21:23.336 -----------------------------------------------
+eclipse.buildId=4.6.3.M20170301-0400
+java.version=1.8.0_162
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-10-10 23:21:43.912
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Home'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.epp.logging.aeri.ide 2 17 2019-10-10 23:21:48.339
+!MESSAGE Server ‘org.eclipse.epp.logging.aeri.ide.server’ failed with exception: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1. ; version: 2.0.4.v20170307-1435
+!STACK 0
+com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:176)
+	at com.google.gson.Gson.fromJson(Gson.java:803)
+	at com.google.gson.Gson.fromJson(Gson.java:768)
+	at com.google.gson.Gson.fromJson(Gson.java:717)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.json.Json.deserialize(Json.java:93)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.IO.refreshConfiguration(IO.java:70)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.startUp(ServerConnection.java:124)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1
+	at com.google.gson.stream.JsonReader.beginObject(JsonReader.java:374)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:165)
+	... 9 more
