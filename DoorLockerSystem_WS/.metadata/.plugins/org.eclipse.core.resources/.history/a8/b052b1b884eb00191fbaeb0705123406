@@ -1,11 +1,10 @@
 /*
+ * UART.h
  *
- *	Name		: UART.h
- *	Author		: Reem Muhammad
- *	Description	: Header file for UART driver
- *  Created on	: 23 Sep 2019
- *
+ *  Created on: 23 Sep 2019
+ *      Author: Home
  */
+
 #ifndef UART_H_
 #define UART_H_
 

@@ -1,11 +1,10 @@
 /*
+ * UART.h
  *
- *	Name		: UART.h
- *	Author		: Reem Muhammad
- *	Description	: Header file for UART driver
- *  Created on	: 23 Sep 2019
- *
+ *  Created on: 23 Sep 2019
+ *      Author: Home
  */
+
 #ifndef UART_H_
 #define UART_H_
 
@@ -22,7 +21,7 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
-#if DOUBLE_SPEED == TRUE
+#ifdef DOUBLE_SPEED
 	#define BAUD_RATE_GENERATOR(BAUD_RATE) ( ( (F_CPU) / ( (8UL) * (BAUD_RATE) ) ) - 1 )
 #else
 	#define BAUD_RATE_GENERATOR(BAUD_RATE) ( ( (F_CPU) / ( (16UL) * (BAUD_RATE) ) ) - 1 )

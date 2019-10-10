@@ -1,10 +1,11 @@
 /*
- * UART.c
  *
- *  Created on: 23 Sep 2019
- *      Author: Home
+ *	Name		: UART.c
+ *	Author		: Reem Muhammad
+ *	Description	: Source file for UART driver
+ *  Created on	: 23 Sep 2019
+ *
  */
-
 
 #include "UART.h"
 
@@ -19,7 +20,7 @@ void UART_init(const Uart_ConfigType *config_ptr)
 {
 	/********************************************
 	 * - enable USART transmitter & receiver
-	 * - determine the operation mode (Synchronized/ Asynchronized)
+	 * - Set the operation mode (Synchronized/ Asynchronized)
 	 * - determine if you would use double speed or not
 	 * - set the parity mode (disabled/ odd/ even)
 	 * - determine whether the frame terminates with one or two stop bits
@@ -31,22 +32,26 @@ void UART_init(const Uart_ConfigType *config_ptr)
 	SET_BIT(UCSRB, RXEN);
 	SET_BIT(UCSRB, TXEN);
 
-#ifdef DOUBLE_SPEED
+#if DOUBLE_SPEED == TRUE
 	/*Enable double speed*/
 	SET_BIT(UCSRA, U2X);
 #endif
 
 	/*to access UCSRC, URSEL needs to be set*/
 	SET_BIT(UCSRC, URSEL);
+
 	/*set the mode to synchronous or asynchronous*/
 	UCSRC = (UCSRC & 0xBF) | (UART_MODE<<UMSEL);
-	/*~~~~~~~~~ frame ~~~~~~~*/
+
+	/**** frame *****/
 	UCSRC = (UCSRC & 0xCF) | (config_ptr->e_Uart_parityMode << UPM0);
 	UCSRC = (UCSRC & 0xF7) | (config_ptr->e_Uart_stopBit << USBS);
 	UCSRC = (UCSRC & 0xF9) | ((config_ptr->e_Uart_charSize & 0x03) << UCSZ0);
 	UCSRB = (UCSRB & 0xFB) | (config_ptr->e_Uart_charSize & 0x04);
+
 	/*Clear URSEL to access UBRRH*/
 	CLEAR_BIT(UBRRH, URSEL);
+
 	/*Baud rate*/
 	UBRRH = BAUD_RATE_GENERATOR(config_ptr->Uart_baudRate) >> 8;
 	UBRRL = BAUD_RATE_GENERATOR(config_ptr->Uart_baudRate);
@@ -64,10 +69,10 @@ void UART_init(const Uart_ConfigType *config_ptr)
  -----------------------------------------*/
 void UART_sendByte(uint8 data)
 {
-	/*wait until the transmit buffer is empty*/
+	/*Wait until the transmit buffer is empty*/
 	while( BIT_IS_CLEAR(UCSRA, UDRE));
 
-	/*start transmission*/
+	/*Start transmission*/
 	UDR = data;
 }
 
@@ -79,10 +84,10 @@ void UART_sendByte(uint8 data)
  -----------------------------------------*/
 uint8 UART_receiveByte()
 {
-	/*wait until the whole byte is received*/
+	/*Wait until the whole byte is received*/
 	while( BIT_IS_CLEAR(UCSRA, RXC));
 
-	/*read the buffer, clear the flag*/
+	/*Read the buffer, clear the flag*/
 	return UDR;
 }
 

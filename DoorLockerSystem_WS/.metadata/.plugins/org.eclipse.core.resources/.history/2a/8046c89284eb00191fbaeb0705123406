@@ -1,11 +1,10 @@
 /*
+ * UART.c
  *
- *	Name		: UART.c
- *	Author		: Reem Muhammad
- *	Description	: Source file for UART driver
- *  Created on	: 23 Sep 2019
- *
+ *  Created on: 23 Sep 2019
+ *      Author: Home
  */
+
 
 #include "UART.h"
 

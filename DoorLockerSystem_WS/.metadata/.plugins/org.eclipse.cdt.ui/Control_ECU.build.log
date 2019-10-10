@@ -1,13 +1,39 @@
-19:09:18 **** Incremental Build of configuration Debug for project Control_ECU ****
+19:40:40 **** Incremental Build of configuration Debug for project Control_ECU ****
 make all 
-Building file: ../Ocu.c
+Building file: ../EEPROM.c
 Invoking: AVR Compiler
-avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"Ocu.d" -MT"Ocu.o" -c -o "Ocu.o" "../Ocu.c"
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"EEPROM.d" -MT"EEPROM.o" -c -o "EEPROM.o" "../EEPROM.c"
 In file included from ../micro_config.h:18,
-                 from ../Ocu.h:15,
-                 from ../Ocu.c:9:
+                 from ../I2C.h:12,
+                 from ../EEPROM.c:11:
 f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
-Finished building: ../Ocu.c
+In file included from ../EEPROM.c:11:
+../I2C.h:16:2: warning: #warning "STATUS CODES OF TWI ARE NOT COMPLETE YET"
+In file included from ../EEPROM.c:12:
+../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
+Finished building: ../EEPROM.c
+ 
+Building file: ../LCD.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"LCD.d" -MT"LCD.o" -c -o "LCD.o" "../LCD.c"
+In file included from ../micro_config.h:18,
+                 from ../LCD.h:12,
+                 from ../LCD.c:10:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../LCD.c:10:
+../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
+Finished building: ../LCD.c
+ 
+Building file: ../UART.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"UART.d" -MT"UART.o" -c -o "UART.o" "../UART.c"
+In file included from ../micro_config.h:18,
+                 from ../UART.h:12,
+                 from ../UART.c:10:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../UART.c
  
 Building file: ../control_ecu.c
 Invoking: AVR Compiler
@@ -66,5 +92,5 @@ Data:         63 bytes (6.2% Full)
 Finished building: sizedummy
  
 
-19:09:22 Build Finished (took 3s.294ms)
+19:40:43 Build Finished (took 3s.201ms)
 

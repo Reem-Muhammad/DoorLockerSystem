@@ -3,7 +3,7 @@
  *	Name		: LCD.h
  *	Author		: Reem Muhammad
  *	Description	: Header file for LCD driver
- *  Created on	: 7 Sep 2019
+ *  Created on: 7 Sep 2019
  *
  */
 #ifndef LCD_H_
