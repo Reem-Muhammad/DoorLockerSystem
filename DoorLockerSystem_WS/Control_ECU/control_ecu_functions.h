@@ -56,7 +56,7 @@ void doorOpen();
 void doorClose();
 void saveNewPass();
 void confirmPass();
-void alarmStart(uint16 counterTop, uint8 n_ticksRequired);
+void alarmStart(Ocu_TimerSettingsType *TimerSettingsPtr);
 void alarmStop();
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

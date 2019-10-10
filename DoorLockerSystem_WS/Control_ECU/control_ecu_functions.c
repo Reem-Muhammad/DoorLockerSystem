@@ -125,7 +125,7 @@ void confirmPass()
  * 		n_ticksRequired: Number of ticks required to count the required time, given the specified counterTop.
  * [Return]: None
  -------------------------------------------*/
-void alarmStart(uint16 counterTop, uint8 n_ticksRequired)
+void alarmStart(Ocu_TimerSettingsType *TimerSettingsPtr)
 {
 	/*Set the callback function*/
 	Ocu_setCbk(alarmStop);
@@ -135,7 +135,7 @@ void alarmStart(uint16 counterTop, uint8 n_ticksRequired)
 	LCD_displayString("ALARM"); //=====================REMOVE===================
 
 	/*start the timer*/
-	Ocu_start(counterTop, n_ticksRequired);  //==========> [BUG#1]
+	Ocu_start(TimerSettingsPtr);  //==========> [BUG#1]
 }
 
 

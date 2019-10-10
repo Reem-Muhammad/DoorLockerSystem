@@ -1,8 +1,10 @@
 /*
- * Ocu.h
  *
+ *	Name		: Ocu.h
+ *	Author		: Reem Muhammad
+ *	Description	: Header file for OCU driver
  *  Created on: 4 Oct 2019
- *      Author: Home
+ *
  */
 
 #ifndef OCU_H_
@@ -11,10 +13,11 @@
 #include "std_types.h"
 #include "common_macros.h"
 #include "micro_config.h"
+#include "LCD.h"
 
 
-#define CHANNEL_1A 0
-#define CHANNEL_1B 1
+//#define CHANNEL_1A 0
+//#define CHANNEL_1B 1
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~ Type Definitions ~~~~~~~~~~~~~~~~~~~~~~*/
@@ -44,27 +47,17 @@ typedef enum
 /*type of the data structure containing the initialization data for the OCU driver*/
 typedef struct
 {
-	/*
-	 * Mandatory parameters:
-	 * 	 Symbolic name for channel / channel ID  _/ --> why do i need it in the config set?
-	 * 	 maximum value of the counter --> TOP
-	 * 	 Time resolution in number of ticks ?? if tick duration = 0.128msec, it should notify the user each 10 ticks? or is it OCR value?
-	 * 	 Notification function 					_/
-	 * 	 Default value of the threshold ??		XX
-	 * 	 Minimum value of the counter --> TCNT?  XX always start from 0
-	 *
-	 *
-	 * 	 Microcontroller OCU-specific HW properties (optional prescaler, clock settings if supported by hardware) _/
-	 */
-
-	//void (*Ocu_NotificationPtr)();	/*reference to a callback function*/
-
-	Ocu_PinActionType e_ocu_pinAction;	/*controls the behavior of OC pins on compare match*/
-	Ocu_PrescalerType e_ocu_prescaler;	/*controls the tick duration (timer resolution)*/
-	//Ocu_ChannelType ocu_channel;
-
-	//uint8 time_in_INT;	/*number of interrupts required before notifying the callback function*/
+	//Ocu_PinActionType e_ocu_pinAction;	/*controls the behavior of OC pins on compare match*/
+	Ocu_PrescalerType e_ocu_prescaler;	/*controls the tick duration*/
 }Ocu_ConfigType;
+
+typedef struct
+{
+	Ocu_PrescalerType e_ocu_prescaler;
+
+	uint16 counterTop;
+	uint8 n_ticksRequired;
+}Ocu_TimerSettingsType;
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
@@ -73,9 +66,11 @@ typedef struct
 /*~~~~~~~~~~~~~~~~~~~~~~~ Functions Definitions ~~~~~~~~~~~~~~~~~~~~~*/
 void Ocu_init(const Ocu_ConfigType* ConfigPtr);
 void Ocu_deInit(void);
+void Ocu_SetPinAction(Ocu_PinActionType PinAction);
 void Ocu_setCbk( void (*cbkPtr)(void) );
-void Ocu_start(uint16 counterTop, uint8 n_ticks);
+void Ocu_start(Ocu_TimerSettingsType *TimerSettingsPtr);
 void Ocu_stop(void);
+
 //void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction);
 //void Ocu_SetAbsoluteThreshold( Ocu_ChannelType ChannelNumber, Ocu_ValueType AbsoluteValue);
 //void Ocu_Notification_0(void);
