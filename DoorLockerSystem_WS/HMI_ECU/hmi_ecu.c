@@ -16,9 +16,7 @@ uint8 key = 0;					/*Stores the pressed key*/
 uint8 wrongPassCounter = 0;		/*Keeps track of the number of wrong attempts to enter the password*/
 
 const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
-const Ocu_ConfigType s_OcuConfig = {};			/*Configuration set of OCU*/
-Ocu_TimerSettingsType s_TimerSettings = {OCU_PRESCALER_1024, TOP, N_TICKS_REQUIRED};
-
+const Ocu_ConfigType s_OcuConfig = {OCU_RESOLUTION_1S}; /*Configuration set of OCU*/
 
 int main()
 {
@@ -94,7 +92,7 @@ int main()
 				if(wrongPassCounter == WRONG_PASS_MAX)
 				{
 					/*start the alarm*/
-					alarmStart(&s_TimerSettings);
+					alarmStart(60);
 
 					/*set a flag, so no action is taken after the alarm stops*/
 					intruder_alert = 1;

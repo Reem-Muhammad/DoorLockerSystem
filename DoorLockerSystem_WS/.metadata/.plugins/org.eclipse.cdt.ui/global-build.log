@@ -1,12 +1,45 @@
-13:50:02 **** Incremental Build of configuration Debug for project HMI_ECU2 ****
+19:15:33 **** Incremental Build of configuration Debug for project HMI_ECU ****
 make all 
+Building file: ../hmi_ecu_functions.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=8000000UL -MMD -MP -MF"hmi_ecu_functions.d" -MT"hmi_ecu_functions.o" -c -o "hmi_ecu_functions.o" "../hmi_ecu_functions.c"
+In file included from ../micro_config.h:18,
+                 from ../keypad.h:13,
+                 from ../hmi_ecu_functions.h:13,
+                 from ../hmi_ecu_functions.c:10:
+f:/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+In file included from ../hmi_ecu_functions.h:14,
+                 from ../hmi_ecu_functions.c:10:
+../LCD.h:16:2: warning: #warning "DRIVER SUPPORTS ONLY LCD WITH 2 ROWS"
+../LCD.h:17:2: warning: #warning "4BIT_MODE: LOW_NIBBLE IS NOT WORKING"
+../hmi_ecu_functions.c: In function 'alarmStart':
+../hmi_ecu_functions.c:42: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c: In function 'setNewPass':
+../hmi_ecu_functions.c:80: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:82: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:108: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c: In function 'confirmPass':
+../hmi_ecu_functions.c:137: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:139: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+../hmi_ecu_functions.c:164: warning: pointer targets in passing argument 1 of 'LCD_displayString' differ in signedness
+Finished building: ../hmi_ecu_functions.c
+ 
+Building target: HMI_ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_ECU.map -mmcu=atmega16 -o "HMI_ECU.elf"  ./I2C.o ./LCD.o ./Ocu.o ./UART.o ./hmi_ecu.o ./hmi_ecu_functions.o ./keypad.o ./timer.o   
+Finished building target: HMI_ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_ECU.elf  >"HMI_ECU.lss"
+Finished building: HMI_ECU.lss
+ 
 Invoking: Print Size
-avr-size --format=avr --mcu=atmega16 HMI_ECU2.elf
+avr-size --format=avr --mcu=atmega16 HMI_ECU.elf
 AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   13894 bytes (84.8% Full)
+Program:   13992 bytes (85.4% Full)
 (.text + .data + .bootloader)
 
 Data:        464 bytes (45.3% Full)

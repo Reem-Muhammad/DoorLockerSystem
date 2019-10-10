@@ -1,0 +1,85 @@
+/*
+ *
+ *	Name		: Ocu.h
+ *	Author		: Reem Muhammad
+ *	Description	: Header file for OCU driver
+ *  Created on: 4 Oct 2019
+ *
+ */
+
+#ifndef OCU_H_
+#define OCU_H_
+
+#include "std_types.h"
+#include "common_macros.h"
+#include "micro_config.h"
+#include "LCD.h"
+
+
+//#define CHANNEL_1A 0
+//#define CHANNEL_1B 1
+
+/*Module resolution (TOP value)*/
+#define TICK 31249 /*with F_CPU=8MHz, prescaler=8, OCR1A=999 --> count resolution will be 1 ms*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~ Type Definitions ~~~~~~~~~~~~~~~~~~~~~~*/
+/*Numeric identifier of an OCU channel*/
+typedef uint8 Ocu_ChannelType;
+
+/*for reading the counter and writing the threshold values (in number of ticks)*/
+typedef uint16 Ocu_ValueType;
+
+/*Output state of the pin linked to an OCU channel --> XXXX DELETE*/
+typedef enum
+{
+	OCU_LOW, OCU_HIGH
+}Ocu_PinStateType;
+
+/*Automatic action (by hardware) to be performed on a pin attached to an OCU channel.*/
+typedef enum
+{
+	OCU_PIN_DISABLE, OCU_PIN_TOGGLE, OCU_PIN_SET_LOW, OCU_PIN_SET_HIGH
+}Ocu_PinActionType;
+
+typedef enum
+{
+	NO_CLOCK_SOURCE, OCU_PRESCALER_1, OCU_PRESCALER_8, OCU_PRESCALER_64, OCU_PRESCALER_256, OCU_PRESCALER_1024
+}Ocu_PrescalerType;
+
+/*type of the data structure containing the initialization data for the OCU driver*/
+typedef struct
+{
+	uint16 configurableResolution; /*#ticks: configurable by the user */
+}Ocu_ConfigType;
+
+/*
+typedef struct
+{
+	Ocu_PrescalerType e_ocu_prescaler;
+
+	uint16 counterTop;
+	uint8 n_ticksRequired;
+}Ocu_TimerSettingsType;
+*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~ Functions Definitions ~~~~~~~~~~~~~~~~~~~~~*/
+void Ocu_init(const Ocu_ConfigType* ConfigPtr);
+void Ocu_deInit(void);
+void Ocu_SetPinAction(Ocu_PinActionType PinAction);
+void Ocu_setCbk( void (*cbkPtr)(void) );
+//void Ocu_start(Ocu_TimerSettingsType *TimerSettingsPtr);
+void Ocu_start(Ocu_ValueType Threshold);
+void Ocu_stop(void);
+
+//void Ocu_SetPinAction(Ocu_ChannelType ChannelNumber, Ocu_PinActionType PinAction);
+//void Ocu_SetAbsoluteThreshold( Ocu_ChannelType ChannelNumber, Ocu_ValueType AbsoluteValue);
+//void Ocu_Notification_0(void);
+//void Ocu_Notification_1(void);
+
+
+
+#endif /* OCU_H_ */

@@ -30,38 +30,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-Control_ECU2.lss \
+Control_ECU.lss \
 
 SIZEDUMMY += \
 sizedummy \
 
 
 # All Target
-all: Control_ECU2.elf secondary-outputs
+all: Control_ECU.elf secondary-outputs
 
 # Tool invocations
-Control_ECU2.elf: $(OBJS) $(USER_OBJS)
+Control_ECU.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,Control_ECU2.map -mmcu=atmega16 -o "Control_ECU2.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,Control_ECU.map -mmcu=atmega16 -o "Control_ECU.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Control_ECU2.lss: Control_ECU2.elf
+Control_ECU.lss: Control_ECU.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S Control_ECU2.elf  >"Control_ECU2.lss"
+	-avr-objdump -h -S Control_ECU.elf  >"Control_ECU.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: Control_ECU2.elf
+sizedummy: Control_ECU.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega16 Control_ECU2.elf
+	-avr-size --format=avr --mcu=atmega16 Control_ECU.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Control_ECU2.elf
+	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Control_ECU.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(SIZEDUMMY)

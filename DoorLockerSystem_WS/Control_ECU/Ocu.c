@@ -1,4 +1,4 @@
-/*
+ /*
  *
  *	Name		: Ocu.c
  *	Author		: Reem Muhammad
@@ -8,12 +8,62 @@
  */
 #include "Ocu.h"
 
-uint8 g_n_ticksRequired = 0;
-uint8 g_ticksCounter = 0;
-
+Ocu_ValueType g_thresholdCounter = 0;
+Ocu_ValueType g_Threshold = 0;
+const Ocu_ConfigType *g_ConfigPtr;
 
 /*pointer to the callback function*/
 void (*g_Ocu_cbkPtr)() = NULL_PTR;
+
+
+/*-------------------------------------------------------------
+ * [Function Name]: Ocu_init
+ * [Description]: initializes the output compare unit
+ * [Args]:
+ * 		ConfigPtr: pointer to the configuration set
+ * [Return]: None
+ --------------------------------------------------------------*/
+void Ocu_init(const Ocu_ConfigType *ConfigPtr)
+{
+	/*store the address of the configuration set in a global pointer*/
+	g_ConfigPtr = ConfigPtr;
+
+	/*Set the count resolution*/
+	if(ConfigPtr->e_OcuResolution == OCU_RESOLUTION_1MS)
+	{
+		#if F_CPU == 8000000UL
+			OCR1A = OCU_8MHZ_1MS_TOP;
+		#elif F_CPU == 4000000UL
+			OCR1A = OCU_4MHZ_1MS_TOP;
+		#elif F_CPU == 2000000UL
+			OCR1A = OCU_2MHZ_1MS_TOP;
+		#elif F_CPU == 1000000UL
+			OCR1A = OCU_1MHZ_1MS_TOP;
+		#endif
+	}
+	else if(ConfigPtr->e_OcuResolution == OCU_RESOLUTION_1S)
+	{
+		#if F_CPU == 8000000UL
+			OCR1A = OCU_8MHZ_1S_TOP;
+		#elif F_CPU == 4000000UL
+			OCR1A = OCU_4MHZ_1S_TOP;
+		#elif F_CPU == 2000000UL
+			OCR1A = OCU_2MHZ_1S_TOP;
+		#elif F_CPU == 1000000UL
+			OCR1A = OCU_1MHZ_1S_TOP;
+		#endif
+	}
+
+	/*Set FOC1 for non-PWM mode */
+	SET_BIT(TCCR1A, FOC1A);
+	//SET_BIT(TCCR1A, FOC1B);
+
+	/*set the source for max counter value to be OCR1A register: WGM13:0 -> 0 1 0 0 */
+	TCCR1B |= (1<<WGM12);
+
+
+}
+
 
 /*-------------------------------------------------------------
  * [Function Name]: Ocu_setCbk
@@ -25,23 +75,6 @@ void (*g_Ocu_cbkPtr)() = NULL_PTR;
 void Ocu_setCbk( void (*cbkPtr)(void) )
 {
 	g_Ocu_cbkPtr = cbkPtr;
-}
-
-/*-------------------------------------------------------------
- * [Function Name]: Ocu_init
- * [Description]: initializes the output compare unit
- * [Args]:
- * 		ConfigPtr: pointer to the configuration set
- * [Return]: None
- --------------------------------------------------------------*/
-void Ocu_init(const Ocu_ConfigType *ConfigPtr)
-{
-	/*Set FOC1 for non-PWM mode */
-	SET_BIT(TCCR1A, FOC1A);
-	//SET_BIT(TCCR1A, FOC1B);
-
-	/*set the source for max counter value to be OCR1A register: WGM13:0 -> 0 1 0 0 */
-	TCCR1B |= (1<<WGM12);
 }
 
 /*-------------------------------------------------------------
@@ -60,29 +93,51 @@ void Ocu_SetPinAction(Ocu_PinActionType PinAction)
 
 /*-------------------------------------------------------------
  * [Function Name]: Ocu_start
- * [Description]: Starts the timer with the specified prescaler, TOP, #ticks
+ * [Description]: Starts the timer
  * [Args]:
- * 		TimerSettingsPtr: pointer to a structure for timer settings
+ * 		Threshold: time in ticks (tick: resolution of 1 count)
  * [Return]: None
  --------------------------------------------------------------*/
-void Ocu_start(Ocu_TimerSettingsType *TimerSettingsPtr)
+void Ocu_start(Ocu_ValueType Threshold)
 {
-	/*set the number of ticks required before notifying the callback. this value will be used by the ISR*/
-	g_n_ticksRequired = TimerSettingsPtr->n_ticksRequired;
+	/*Store the threshold value in a global variable so it's accessible by the ISR*/
+	g_Threshold = Threshold;
+
+	/*
+	 * Set the prescaler:
+	 * The prescaler should only be set when it is desired to start the timer.
+	 * setting the prescaler in Ocu_init() would start the timer before calling Ocu_start()
+	 */
+	if(g_ConfigPtr->e_OcuResolution == OCU_RESOLUTION_1MS)
+	{
+		#if F_CPU == 8000000UL
+		TCCR1B = (TCCR1B & 0xF8) | OCU_8MHZ_1MS_PRESCALER;
+		#elif F_CPU == 4000000UL
+		TCCR1B = (TCCR1B & 0xF8) | OCU_4MHZ_1MS_PRESCALER;
+		#elif F_CPU == 2000000UL
+		TCCR1B = (TCCR1B & 0xF8) | OCU_2MHZ_1MS_PRESCALER;
+		#elif F_CPU == 1000000UL
+		TCCR1B = (TCCR1B & 0xF8) | OCU_1MHZ_1MS_PRESCALER;
+		#endif
+	}
+	else if(g_ConfigPtr->e_OcuResolution == OCU_RESOLUTION_1S)
+	{
+		#if F_CPU == 8000000UL
+			TCCR1B = (TCCR1B & 0xF8) | OCU_8MHZ_1S_PRESCALER;
+		#elif F_CPU == 4000000UL
+			TCCR1B = (TCCR1B & 0xF8) | OCU_4MHZ_1S_PRESCALER;
+		#elif F_CPU == 2000000UL
+			TCCR1B = (TCCR1B & 0xF8) | OCU_2MHZ_1S_PRESCALER;
+		#elif F_CPU == 1000000UL
+			TCCR1B = (TCCR1B & 0xF8) | OCU_1MHZ_1S_PRESCALER;
+		#endif
+	}
 
 	/*enable module interrupt*/
 	SET_BIT(TIMSK, OCIE1A);
 
-	TCCR1B = (TCCR1B & 0xF8) | (TimerSettingsPtr->e_ocu_prescaler);
-
-
 	/*counter starts from 0*/
 	TCNT1 = 0;
-
-	/*counts to counterTop*/
-	OCR1A = TimerSettingsPtr->counterTop;
-
-
 }
 
 /*-------------------------------------------------------------
@@ -133,13 +188,13 @@ void Ocu_deInit(void)
 /*~~~~~~~~~~~~~~~~~~~ ISR ~~~~~~~~~~~~~~~~~~~~~*/
 ISR(TIMER1_COMPA_vect)
 {
-	g_ticksCounter++;
-	if(g_ticksCounter == g_n_ticksRequired)
+	g_thresholdCounter++;
+	if(g_thresholdCounter == g_Threshold)
 	{
 		if(g_Ocu_cbkPtr != NULL_PTR)
 		{
 			g_Ocu_cbkPtr();
-			g_ticksCounter = 0;
+			g_thresholdCounter = 0;
 		}
 	}
 }
@@ -147,15 +202,14 @@ ISR(TIMER1_COMPA_vect)
 #if 0
 ISR(TIMER1_COMPB_vect)
 {
-	g_n_ticksRequired++;
-		if(g_n_ticksRequired == 10)
+	g_thresholdCounter++;
+	if(g_thresholdCounter == g_Threshold)
+	{
+		if(g_Ocu_cbkPtr != NULL_PTR)
 		{
-			if(g_Ocu_cbkPtr != NULL_PTR)
-			{
-				g_Ocu_cbkPtr();
-				g_n_ticksRequired = 0;
-			}
-
+			g_Ocu_cbkPtr();
+			g_thresholdCounter = 0;
 		}
+	}
 }
 #endif

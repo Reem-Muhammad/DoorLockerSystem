@@ -1,0 +1,175 @@
+/*
+ *
+ *	Name		: hmi_ecu.c
+ *	Author		: Reem Muhammad
+ *	Description	: HMI ECU, main application
+ *  Created on	: 29 Sep 2019
+ *
+ */
+
+
+#include "hmi_ecu_functions.h"
+
+
+uint8 intruder_alert = 0;		/*if set, it indicates that the user reached the max permissible attempts of entering a wrong password*/
+uint8 key = 0;					/*Stores the pressed key*/
+uint8 wrongPassCounter = 0;		/*Keeps track of the number of wrong attempts to enter the password*/
+
+const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
+const Ocu_ConfigType s_OcuConfig = {OCU_RESOLUTION_1S}; /*Configuration set of OCU*/
+
+int main()
+{
+	/*Initialize LCD, UART, OCU*/
+	LCD_init();
+	UART_init(&s_UartConfig);
+	Ocu_init(&s_OcuConfig);
+	Ocu_SetPinAction(OCU_PIN_DISABLE);
+
+	/*Enable global interrupt flag*/
+	SET_BIT(SREG, 7);
+
+	/*Set a new password*/
+	setNewPass();
+
+	/*Confirm the password. in case of password mismatch, repeat the process of setting new password and confirming*/
+	while (confirmPass() == CONFIRMATION_FAILED)
+	{
+		/*Notify the user about the confirmation failure*/
+		LCD_goToRowCol(0,0);
+		LCD_displayString("Confirmation Failed           ");
+		_delay_ms(500);
+
+		/*Set a new password*/
+		setNewPass();
+	}
+
+	/*The while loop terminates in case of password match*/
+	LCD_goToRowCol(0,0);
+	LCD_displayString("Password Confirmed        ");
+	/*delay so the message is visible*/
+	_delay_ms(500);
+
+
+	while(1)
+	{
+		/*Display the available options to the user*/
+		LCD_goToRowCol(0,0);
+		LCD_displayString("'+' : Open Door               ");
+		LCD_goToRowCol(1,0);
+		LCD_displayString("'-' : Change Password         ");
+
+		key = keypad_getPressedKey();
+		/*Wait until the user chooses one of the available options*/
+		while(key != '+' && key != '-')
+		{
+			key = keypad_getPressedKey();
+			_delay_ms(300);	//Not necessary
+		}
+
+
+		if(key == '+')
+		{
+			/*Clear the flags*/
+			intruder_alert = 0;
+			wrongPassCounter = 0;
+
+			/*Confirm the password. in case of password mismatch, allow only WRONG_PASS_MAX attempts then set an alarm*/
+			while (confirmPass() == CONFIRMATION_FAILED)
+			{
+				wrongPassCounter++;
+
+				/*Display the number of wrong attempts & max number*/
+				LCD_goToRowCol(0,0);
+				LCD_displayString("WRONG PASSWORD_attempt ");
+				LCD_displayInt(wrongPassCounter);
+				LCD_displayString(" /3");
+
+				/*Delay so that the message is visible*/
+				_delay_ms(1000);
+
+				/*Start the alarm if the user reached the max number of wrong attempts*/
+				if(wrongPassCounter == WRONG_PASS_MAX)
+				{
+					/*start the alarm*/
+					alarmStart(&s_TimerSettings);
+
+					/*set a flag, so no action is taken after the alarm stops*/
+					intruder_alert = 1;
+
+					/*Disable all interfaces until the alarm stops*/
+					while(alarmOn_flag);
+					break;
+				}
+			}
+
+			/*Open the door if the user entered the right password within the number of permissible attempts (the flag is not set) */
+			if(intruder_alert == 0)
+			{
+				/*Send a command to the Control ECU to open the door*/
+				UART_sendByte(OPEN_DOOR);
+
+				LCD_clear();
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Openning ...");
+
+				/*
+				 * delay 15 seconds
+				 * _delay_ms() can only provide delays up to 6.5535 seconds
+				 */
+				_delay_ms(5000);
+				_delay_ms(5000);
+				_delay_ms(5000);
+
+
+				/*Send a command to the Control ECU to close the door*/
+				UART_sendByte(CLOSE_DOOR);
+
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Closing ... ");
+
+				/*
+				 * delay 15 seconds
+				 * _delay_ms() can only provide delays up to 6.5535 seconds
+				 */
+				_delay_ms(5000);
+				_delay_ms(5000);
+				_delay_ms(5000);
+			}
+		}
+
+		else if(key == '-')
+		{
+			/*Confirm the old password before changing it*/
+			if (confirmPass() == CONFIRMATION_PASSED)
+			{
+				/*Set the new password*/
+				setNewPass();
+
+				/*Confirm the password. in case of password mismatch, repeat the process of setting new password and confirming*/
+				while (confirmPass() == CONFIRMATION_FAILED)
+				{
+					/*Notify the user about the confirmation failure*/
+					LCD_goToRowCol(0,0);
+					LCD_displayString("Confirmation Failed           ");
+					_delay_ms(500);
+
+					setNewPass();
+				}
+
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Password Changed Successfully     ");
+				_delay_ms(500);
+			}
+
+			/*If confirmation failed, display a message then return to the main options*/
+			else
+			{
+				LCD_goToRowCol(0,0);
+				LCD_displayString("Confirmation Failed           ");
+				_delay_ms(500);
+			}
+		}
+
+	}
+}

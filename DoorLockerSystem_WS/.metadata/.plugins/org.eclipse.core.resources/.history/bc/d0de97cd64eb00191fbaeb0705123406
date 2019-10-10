@@ -1,0 +1,75 @@
+/*
+ *
+ *	Name		: control_ecu.c
+ *	Author		: Reem Muhammad
+ *	Description	: Control ECU, main application
+ *  Created on	: 29 Sep 2019
+ *
+ */
+
+
+#include "control_ecu_functions.h"
+
+
+const Uart_ConfigType s_UartConfig = {PARITY_DISABLED, ONE_STOP_BIT, CHAR_8, 9600}; /*Configuration set of the UART*/
+const Ocu_ConfigType s_OcuConfig = {}; /*Configuration set of OCU*/
+//Ocu_TimerSettingsType s_TimerSettings = {OCU_PRESCALER_1024, TOP, N_TICKS_REQUIRED};
+
+uint8 data_buffer[PASSWORD_LENGTH] = {0};		/*Stores the received password to be saved in EEPROM*/
+uint8 confirm_buffer[PASSWORD_LENGTH] = {0};	/*Stores the confirmation password*/
+
+uint8 commandReceived = 0;						/*Stores the command received from HMI ECU*/
+
+
+int main()
+{
+	/*Initialize UART, OCU, EEPROM*/
+	LCD_init();
+	UART_init(&s_UartConfig);
+
+	Ocu_init(&s_OcuConfig);
+	Ocu_SetPinAction(OCU_PIN_DISABLE);
+
+	Eep_init();
+
+	/*Enable global interrupt flag*/
+	SET_BIT(SREG, 7);
+
+	/*Configure the buzzer pin as o/p */
+	SET_BIT(BUZZER_DIR, BUZZER);
+
+	/*Configure the motor driver pins as o/p*/
+	MOTOR_DRIVER_DIR |= (1<< MOTOR_IN1) | (1<< MOTOR_IN2) | (1<< MOTOR_EN1);
+
+	/*initialize the buzzer to OFF state*/
+	SET_BIT(BUZZER_PORT, BUZZER);
+
+
+	while(1)
+	{
+		/*Receive a command from HMI ECU*/
+		commandReceived = UART_receiveByte();
+
+		/*execute the corresponding action*/
+		switch(commandReceived)
+		{
+		case SET_NEW_PASS:
+			saveNewPass();
+			break;
+		case CONFIRM_PASS:
+			confirmPass();
+			break;
+		case START_ALARM:
+			alarmStart(60000UL);
+			break;
+		case OPEN_DOOR:
+			doorOpen();
+			break;
+		case CLOSE_DOOR:
+			doorClose();
+			break;
+		default:
+			break;
+		}
+	}
+}

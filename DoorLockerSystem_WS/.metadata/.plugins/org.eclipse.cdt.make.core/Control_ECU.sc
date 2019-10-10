@@ -122,7 +122,6 @@
 <definedSymbol symbol="__AVR_MEGA__=1"/>
 <definedSymbol symbol="__AVR_HAVE_JMP_CALL__=1"/>
 <definedSymbol symbol="__AVR_2_BYTE_PC__=1"/>
-<definedSymbol symbol="F_CPU=1000000UL"/>
 <definedSymbol symbol="F_CPU=8000000UL"/>
 </collector>
 </instance>

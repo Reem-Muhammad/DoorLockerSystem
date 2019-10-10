@@ -56,7 +56,7 @@ void doorOpen();
 void doorClose();
 void saveNewPass();
 void confirmPass();
-void alarmStart(Ocu_TimerSettingsType *TimerSettingsPtr);
+void alarmStart(Ocu_ValueType Threshold);
 void alarmStop();
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

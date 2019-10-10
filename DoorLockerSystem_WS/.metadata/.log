@@ -625,3 +625,6 @@ Contains: Resource already exists on disk: 'E:\Odious hole\Embedded Systems\Fina
 
 !ENTRY org.eclipse.cdt.core 1 0 2019-10-10 13:53:49.224
 !MESSAGE Indexed 'HMI_ECU' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-10-10 19:08:09.784
+!MESSAGE Indexed 'HMI_ECU' (7 sources, 23 headers) in 0.327 sec: 259 declarations; 1,420 references; 0 unresolved inclusions; 4 syntax errors; 0 unresolved names (0%)
